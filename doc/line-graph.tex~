@@ -4,10 +4,18 @@
 from latextool_basic import *
 
 s = r"""
+from math import sin
 from latextool_basic import *
 plot = FunctionPlot()
-data = ((1, 1), (2, 2), (3, 0.5))
-plot.add(data, line_width='1', color='black')
+
+data = ((1, 1), (2, 2), (2.5, 0), (3, 0.5))
+data2 = ((0, 0), (1, 1), (2.5, 5), (3, 7))
+data3 = [(x/10.0, (x/10.0)**2) for x in range(0, 100)]
+data4 = [(x/10.0, 100 * sin(x/10.0)) for x in range(0, 200)]
+plot.add(data, line_width='3', color='red')
+plot.add(data2, line_width='3', color='blue')
+plot.add(data3, line_width='3', color='green')
+plot.add(data4, line_width='3', color='black')
 print plot
 """.strip()
 
