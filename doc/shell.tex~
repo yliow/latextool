@@ -1,0 +1,87 @@
+\section{shell}
+The following are 3 ways to draw a framed verbatim environment.
+
+METHOD 1.
+The following is a console latex environment:
+\begin{console}
+[student@localhost latextool] pwd
+home/student
+\end{console}
+Line after the console environment.
+
+METHOD 2.
+The following is a python environment that prints a shell function call:
+\begin{python}
+from latextool_basic import shell
+print shell('pwd')
+\end{python}
+Line after python environment with shell function call.
+
+METHOD 3.
+The following is a python environment that prints an execute function call:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import shell
+print shell('pwd')
+""", print_source=False)
+\end{python}
+Line after python environment with execute function call.
+
+Notice the vertical spacing before and after the framed window is smaller
+for 1. 
+The verbatim spacing before and after the framed window for 2 and 3 are
+the same.
+
+
+METHOD 4.
+The following is a python environment that prints an execute function call:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import shell
+print shell('pwd')
+""", print_source=True)
+\end{python}
+Line after python environment with execute function call.
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import shell
+print shell('ls -la c*.py')
+""", print_source=True)
+\end{python}
+
+
+
+Execute command in another directory
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import shell
+print shell('pwd; ls -la .b*', dir='/home/student')
+""", print_source=True)
+\end{python}
+
+no execution
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import shell
+print shell('ls -la', execute=False)
+""", print_source=True)
+\end{python}
+
+
+
+
+Executing multiple commands:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import shell
+print shell(['pwd', 'ls -la a*'])
+""", print_source=True)
+\end{python}

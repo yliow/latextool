@@ -1,0 +1,73 @@
+
+\documentclass[a4paper,12pt]{scrbook}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fancyvrb}
+\usepackage{parskip}
+\usepackage{lastpage}
+\usepackage{verbatim,boxedminipage,enumitem}
+\usepackage{ifthen}
+\usepackage{color,graphicx}
+\usepackage{pgf}
+\usepackage{longtable}
+\usepackage{upquote}
+%\usepackage[all]{xy}
+\usepackage{tobiShell}
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\usetikzlibrary{arrows}
+\usepackage{pgf,pgfarrows,pgfnodes}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{circuits}
+\usetikzlibrary{circuits.logic.US}
+\usepackage{mymath}
+\usepackage{python}
+%------------------------------------------------------------------
+% Verbatim for console window - single line frame, no line numbers
+%------------------------------------------------------------------
+\DefineVerbatimEnvironment%
+ {console}{Verbatim}
+ {frame=single}
+
+%--------------------------------------------------------
+% Remove the vertical spacing before and after Verbatim.
+%--------------------------------------------------------
+\usepackage{atbeginend}
+\BeforeBegin{console}{\mbox{}\\ \begin{minipage}{\textwidth}\vspace{3pt}}
+\AfterEnd{console}{\vspace{4pt} \end{minipage} \\ }
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw[black] (0.0, 0.0)
+circle (1.0);
+\draw (0.0, 0.0) node[color=red] {a};\fill[blue!20!white] (3.0, 0.0) circle (1);
+
+\draw[black] (3.0, 0.0)
+circle (1.0);
+\draw (3.0, 0.0) node[color=red] {$q_0$};\draw[gray] (-1.0,-1.0) -- (-1.0,1);
+\draw[gray] (0.0,-1.0) -- (0.0,1);
+\draw[gray] (1.0,-1.0) -- (1.0,1);
+\draw[gray] (2.0,-1.0) -- (2.0,1);
+\draw[gray] (3.0,-1.0) -- (3.0,1);
+\draw[gray] (4.0,-1.0) -- (4.0,1);
+\draw[gray] (-1.0,-1.0) -- (4,-1.0);
+\draw[gray] (-1.0,0.0) -- (4,0.0);
+\draw[gray] (-1.0,1.0) -- (4,1.0);
+\draw(-1, -1) node [font=\ttfamily, label=below:{\texttt{-1}}] {};
+\draw(0, -1) node [font=\ttfamily, label=below:{\texttt{0}}] {};
+\draw(1, -1) node [font=\ttfamily, label=below:{\texttt{1}}] {};
+\draw(2, -1) node [font=\ttfamily, label=below:{\texttt{2}}] {};
+\draw(3, -1) node [font=\ttfamily, label=below:{\texttt{3}}] {};
+\draw(4, -1) node [font=\ttfamily, label=below:{\texttt{4}}] {};
+\draw(-1, -1) node [font=\ttfamily, label=left:{\texttt{-1}}] {};
+\draw(-1, 0) node [font=\ttfamily, label=left:{\texttt{0}}] {};
+\draw(-1, 1) node [font=\ttfamily, label=left:{\texttt{1}}] {};
+\end{tikzpicture}
+
+\end{center}
+
+\end{document}

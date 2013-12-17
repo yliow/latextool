@@ -1,0 +1,14 @@
+\section{Scaling}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot(scale=0.5)
+p.add(grid, x0=-5, y0=-2, x1=5, y1=2)
+print p
+'''
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s, filename='scale1')
+\end{python}

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/latextool_basic.py", line 3671, in add
+    partbody = r"""\addplot[draw=%(color)s, line width=%(line_width)s] coordinates {%(points)s};""" % d
+KeyError: 'points'

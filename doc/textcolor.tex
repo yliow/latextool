@@ -1,0 +1,41 @@
+\section{Text Color}
+
+\begin{python}
+s = r"""
+Testing \verb!\textred!:
+\textred{hello world ... $x = 1$ ... $\int x \, dx = \frac{1}{2}x^2 + C$
+\[
+\sin \theta = 0
+\]
+}
+Black again.
+""".strip()
+
+print s
+print
+from latextool_basic import verbatim
+print verbatim(s)
+\end{python}
+
+Testing \verb!\textblue!:
+\textblue{hello world ... $x = 1$ ... $\int x \, dx = \frac{1}{2}x^2 + C$
+\[
+\sin \theta = 0
+\]
+}
+Black again.
+
+Testing \verb!\textwhite!:
+\textwhite{hello world ... $x = 1$ ... $\int x \, dx = \frac{1}{2}x^2 + C$
+\[
+\sin \theta = 0
+\]
+}
+Black again.
+
+Using underline/textbox with textwhite:
+\begin{align*}
+\int x \, dx &= \frac{1}{2} x^2 + C \\
+\int x \, dx &= \underline{\textwhite{\frac{1}{2} x^2 + C}} \\
+\int x \, dx &= \text{\textbox{\textwhite{$\frac{1}{2} x^2 + C$}}}
+\end{align*}

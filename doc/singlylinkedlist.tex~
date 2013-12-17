@@ -1,0 +1,27 @@
+\section{Singly Linked List}
+
+\begin{python}
+from latextool_basic import execute
+execute(r'''
+from latextool_basic import *
+p = Plot()
+
+DLLNode = DoublyLinkedListNode
+
+x = DLLNode(x=0, y=0, prev=None, label=5)
+p += x
+
+y = DLLNode(x=5, y=0, label=6, next=None)
+p += y
+
+p += Pointer(points = [x[2].center(), y[0].left()])
+
+p0 = y[0].center()
+p1 = x[1].top()
+p2 = p0[0], p0[1] + 0.5
+p3 = p1[0], p2[1]
+p += Pointer(points = [p0, p2, p3, p1])
+print p
+''')
+\end{python}
+

@@ -1,0 +1,74 @@
+\section{execute}
+The \verb!execute! (in \verb!latexbasic_tool.py!) 
+function executes a python string as a program
+and the stdout is inserted into the latex file:
+\begin{console}
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+print "hello world"
+""")
+\end{python}
+\end{console}
+Here's the result:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+print "hello world"
+""")
+\end{python}
+
+Note that there's some extra whitespace before the hello world.
+TODO: Need to figure a way to remove the whitespace.
+
+The following does the same except that it first prints
+the python source in a framed verbatim box:
+\begin{console}
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+print "hello world"
+""", print_source=True)
+\end{python}
+\end{console}
+
+If \verb!debug! is set to \verb!True!, there are three
+outputs: the python source, the stderr, and the stdout, all
+in framed verbatim boxes.
+\begin{console}
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+print "hello world"
+""", debug=True)
+\end{python}
+\end{console}
+If there's an error in the python source, the output will be the same as if
+\verb!debug! is set to \verb!True!.
+
+
+TEST: debug=True
+\begin{python}
+from latextool_basic import execute
+execute("print 'hello world'", debug=True)
+\end{python}
+
+
+TEST: debug=False
+
+\begin{python}
+from latextool_basic import execute
+execute("print 'hello world'", debug=False)
+\end{python}
+
+TEST: print source=True, debug=False
+\begin{python}
+from latextool_basic import execute
+execute("print 'hello world'", print_source=True, debug=False)
+\end{python}
+
+TEST: Error in source
+\begin{python}
+from latextool_basic import execute
+execute("print hello world")
+\end{python}

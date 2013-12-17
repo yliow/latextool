@@ -1,0 +1,277 @@
+\section{table}
+
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table({0:0, 1:1, 2:4, 3:9, 4:16})
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([(1, 2, 3),
+             (2, 2, 5),
+             (5, 2),
+             (-1, 2, 6),
+             (1, 2, 3),
+            ])
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([(1, 2, 3),
+             (2, 2, 5),
+             (5, 2),
+             (-1, 2, 6),
+             (1, 2, 3),
+            ],
+            col_headings = ['$x$', '$y$', '$z$'])
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,  8),
+             ('', '', 3,  6),
+             ('', '', '', 3),
+             ('', '', '', '')
+            ],
+            col_headings = ['0', '2', '5', '8'],
+            row_headings = ['0', '2', '5', '8'])
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,  8),
+             ('', '', 3,  6),
+             ('', '', '', 3),
+             ('', '', '', '')
+            ],
+            col_headings = ['0', '2', '5', '8'],
+            row_headings = ['0', '2', '5', '8'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+\newpage
+Too few row headings:
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,  8),
+             ('', '', 3,  6),
+             ('', '', '', 3),
+             ('', '', '', '')
+            ],
+            col_headings = ['0', '2', '5', '8'],
+            row_headings = ['0', '2'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+\newpage
+Too few col headings
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,  8),
+             ('', '', 3,  6),
+             ('', '', '', 3),
+             ('', '', '', '')
+            ],
+            col_headings = ['0', '2'],
+            row_headings = ['0', '2', '5', '8'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+
+\newpage
+Too few rows of data
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,  8),
+             ('', '', 3,  6),
+            ],
+            col_headings = ['0', '2', '5', '8'],
+            row_headings = ['0', '2', '5', '8'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+
+
+\newpage
+Too few rows of data
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,  8),
+             ('', '', 3,  6),
+            ],
+            col_headings = ['0', '2', '5', '8'],
+            row_headings = ['0', '2', '5', '8'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+
+
+\newpage
+Column headings only (no row headings).
+Note that topleft heading does not show.
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,),
+             ('', '', 3,),
+             ('', '', '',),
+             ('', '', '',)
+            ],
+            col_headings = ['0', '2', '5', '8'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}
+
+
+
+
+
+
+\newpage
+Row headings only (no column headings).
+Note that topleft heading does not show.
+\begin{python}
+from latextool_basic import console, execute
+
+s = r'''
+from latextool_basic import table
+print table([('',  2, 5,),
+             ('', '', 3,),
+             ('', '', '',),
+             ('', '', '',)
+            ],
+            row_headings = ['0', '2', '5', '8'],
+            topleft_heading = r'$\Delta X$',
+           )
+'''.strip()
+
+print console(s)
+
+execute(s)
+
+\end{python}

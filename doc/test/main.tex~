@@ -1,0 +1,4 @@
+\input{myblankpreamble}
+\begin{document}
+hello world
+\end{document}

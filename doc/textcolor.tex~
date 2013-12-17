@@ -1,0 +1,7 @@
+\section{Text Color}
+
+This is textred:
+\textred{hello world ... $x = 1$.}
+
+This is textwhite:
+\textwhite{hello world ... $x = 1$.}

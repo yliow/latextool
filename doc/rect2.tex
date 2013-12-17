@@ -1,0 +1,79 @@
+\section{Rect2 and RectContainer}
+
+Rect2 is the same as Rect except that the border is draw with half of the width
+in the rect and half of it outside.
+Use this for arrays -- adjacent cells with have their boundaries overlap
+correctly.
+
+Rect2:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect2(x0=0, y0=0, x1=3, y1=2, linecolor='red!30!white',
+           linewidth=1.0, label='hello')
+p += Grid()
+print p
+"""
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+
+
+\begin{samepage}
+Note that x0, y0, x1, y1 is what was specified:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+r = Rect2(x0=0, y0=0, x1=3, y1=2, linecolor='red!30!white',
+           linewidth=1.0, label='hello')
+p += r
+p += Circle(x=r.x0, y=r.y0, r=0.25, background='red', linewidth=0)
+p += Circle(x=r.x1, y=r.y1, r=0.25, background='blue', linewidth=0)
+p += Grid()
+print p
+"""
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+\end{samepage}
+
+
+
+
+
+\begin{samepage}
+However the top, bottom, left, right functions return
+points on the outer boundary:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+r = Rect2(x0=0, y0=0, x1=3, y1=2, linecolor='red!30!white',
+           linewidth=1.0, label='hello')
+p += r
+p += Circle(center=r.top(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.bottom(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.left(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.right(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.topleft(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.topright(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.bottomleft(), r=0.25, background='red', linewidth=0)
+p += Circle(center=r.bottomright(), r=0.25, background='red', linewidth=0)
+
+p += Grid()
+print p
+"""
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+\end{samepage}
+

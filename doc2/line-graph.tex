@@ -1,0 +1,149 @@
+\section{Line Graph}
+
+\begin{python}
+from latextool_basic import *
+
+from math import sin
+from latextool_basic import *
+plot = FunctionPlot()
+
+data = [(x/10.0, (x/10.0)**2) for x in range(100)]
+data2 = [(2,0),(2,4)]
+data2 += [(2 + x/100.0*5, (2 + x/100.0*5)**2) for x in range(100)]
+data2 += [(7, 0), (2, 0)]
+plot.add(data)
+plot.add(data2, color='red')
+print plot
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+
+from math import sin
+from latextool_basic import *
+plot = FunctionPlot()
+
+data = [(x/10.0, (x/10.0)**2) for x in range(100)]
+data2 = []
+x = 2
+dx = 0.125
+while x < 7:
+    data2.append((x, 0))
+    data2.append((x, x*x))
+    data2.append((x + dx, x*x))
+    data2.append((x + dx, 0))
+    x += dx
+data2.append((2,0))
+plot.add(data)
+plot.add(data2, color='red')
+print plot
+\end{python}
+
+
+
+\begin{python}
+from latextool_basic import *
+
+from math import sin
+from latextool_basic import *
+plot = FunctionPlot()
+
+data = ((1, 1), (2, 2), (2.5, 0), (3, 0.5))
+plot.add(data)
+print plot
+\end{python}
+
+
+\newpage
+Line width and color:
+
+\begin{python}
+from latextool_basic import *
+plot = FunctionPlot()
+plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='red')
+print plot
+\end{python}
+
+
+\newpage
+
+Width and height:
+
+\begin{python}
+from latextool_basic import *
+
+plot = FunctionPlot(width="6in", height="4in")
+plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='blue')
+print plot
+\end{python}
+
+
+\newpage
+
+Multiple lines:
+
+\begin{python}
+from latextool_basic import *
+
+from latextool_basic import *
+plot = FunctionPlot()
+plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='red')
+plot.add(((1, 5), (2, 3), (3, 7)), line_width='2', color='green')
+plot.add(((1, 5), (2, -3), (3, -5)), line_width='2', color='blue')
+print plot
+\end{python}
+
+
+\newpage
+
+Legend:
+
+\begin{python}
+from latextool_basic import *
+
+from latextool_basic import *
+plot = FunctionPlot()
+plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='red', legend='Graph 1')
+plot.add(((1, 5), (2, 3), (3, 7)), line_width='2', color='green', legend='Graph 2')
+plot.add(((1, 5), (2, -3), (3, -5)), line_width='2', color='blue', legend='Graph 3')
+print plot
+\end{python}
+
+
+\newpage
+
+Example:
+
+\begin{python}
+from latextool_basic import *
+
+from math import sin
+domain = [x / 10.0 for x in range(-100, 101)]
+y_sinx = [(x, 5 * sin(x)) for x in domain]
+y_x = [(x, x) for x in domain]
+
+from latextool_basic import *
+plot = FunctionPlot(width="6in", height="3in")
+plot.add(y_sinx, line_width='2', color='red', legend=r'$y = 5 \sin(x)$')
+plot.add(y_x, line_width='2', color='green', legend='$y = x$')
+print plot
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+from math import log
+
+domain = [x / 10.0 for x in range(0, 101)]
+f1 = [(x, x) for x in domain]
+f2 = [(x, x**2) for x in domain]
+f3 = [(x, log(x)) for x in [_ for _ in domain if _ > 0]]
+
+from latextool_basic import *
+plot = FunctionPlot(width="6in", height="7in")
+plot.add(f1, line_width='2', color='red', legend=r'$y = x$')
+plot.add(f2, line_width='2', color='green', legend=r'$y = x^2$')
+plot.add(f3, line_width='2', color='blue', legend=r'$y = x \ln x$')
+print plot
+\end{python}

@@ -1,0 +1,3 @@
+from latextool_basic import *
+makepdf(latex=r'''
+''')

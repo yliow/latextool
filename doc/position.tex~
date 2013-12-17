@@ -1,0 +1,50 @@
+\section{positions}
+
+The \verb!positions! function computes positions.
+\begin{python}
+s = r"""
+from latextool_basic import positions
+d = positions(r'''
+  A
+B C D
+    E F
+G
+''')
+
+from latextool_basic import Plot, circle
+p = Plot()
+for k,v in d.items():
+    x, y = v
+    p.add(circle, x=x, y=y, r=0.25, s=k)
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+You can scale the x and y axes:
+\begin{python}
+s = r"""
+from latextool_basic import positions
+d = positions(r'''
+  A
+B C D
+    E F
+G
+''', xscale=2.0, yscale=0.5)
+
+from latextool_basic import Plot, circle
+p = Plot()
+for k,v in d.items():
+    x, y = v
+    p.add(circle, x=x, y=y, r=0.25, s=k)
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}

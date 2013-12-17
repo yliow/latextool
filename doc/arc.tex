@@ -1,0 +1,83 @@
+\section{arc}
+
+%\begin{samepage}
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=0, y=0, r=1, angle0=0, angle1=45)
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+%\end{samepage}
+
+
+
+%\begin{samepage}
+Set linewidth:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=0, y=0, r=1, angle0=0, angle1=45, linewidth=0.2)
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+%\end{samepage}
+
+
+
+
+\begin{samepage}
+Set color:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=0, y=0, r=1, angle0=0, angle1=45, 
+         linewidth=0.2, linecolor='red')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+\end{samepage}
+
+
+
+\begin{samepage}
+Set linestyle:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=0, y=0, r=1, angle0=0, angle1=45, 
+        linewidth=0.2, linecolor='red', linestyle='dashed')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+\end{samepage}
+
+
+
+
+\begin{samepage}
+Change starting point of arc:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=0, angle1=45, 
+        linewidth=0.2, linecolor='red', linestyle='dashed')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+\end{samepage}

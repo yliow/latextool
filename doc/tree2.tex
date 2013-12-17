@@ -1,0 +1,15 @@
+\section{tree2}
+
+\begin{python}
+s = '''
+from latextool_basic import Plot, tree2
+
+p = Plot()
+p += tree2(edges={'A':['B','C','D'],
+                 },
+          )
+'''
+
+from latextool_basic import execute
+execute(s)
+\end{python}

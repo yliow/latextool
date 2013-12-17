@@ -1,0 +1,98 @@
+
+\documentclass[a4paper,12pt]{scrbook}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fancyvrb}
+\usepackage{parskip}
+\usepackage{lastpage}
+\usepackage{verbatim,boxedminipage,enumitem}
+\usepackage{ifthen}
+\usepackage{color,graphicx}
+\usepackage{pgf}
+\usepackage{longtable}
+\usepackage{upquote}
+%\usepackage[all]{xy}
+\usepackage{tobiShell}
+\usepackage{tikz}
+\usetikzlibrary{automata}
+\usetikzlibrary{arrows}
+\usepackage{pgf,pgfarrows,pgfnodes}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{circuits}
+\usetikzlibrary{circuits.logic.US}
+\usepackage{mymath}
+\usepackage{python}
+%------------------------------------------------------------------
+% Verbatim for console window - single line frame, no line numbers
+%------------------------------------------------------------------
+\DefineVerbatimEnvironment%
+ {console}{Verbatim}
+ {frame=single}
+
+%--------------------------------------------------------
+% Remove the vertical spacing before and after Verbatim.
+%--------------------------------------------------------
+\usepackage{atbeginend}
+\BeforeBegin{console}{\mbox{}\\ \begin{minipage}{\textwidth}\vspace{3pt}}
+\AfterEnd{console}{\vspace{4pt} \end{minipage} \\ }
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\begin{tikzpicture}
+
+\draw (1.0, 1.0)
+  node[fill=white,rounded corners=0cm,inner sep=0cm] {
+
+\begin{minipage}[t][1.0cm]{1.0cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.0, 1.0)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][1.0cm]{1.0cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.25, 1.25)
+  node[fill=white,rounded corners=0cm,inner sep=0cm] {
+
+\begin{minipage}[t][1.0cm]{1.0cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.25, 1.25)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][1.0cm]{1.0cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw[gray] (0.0,0.0) -- (0.0,2);
+\draw[gray] (1.0,0.0) -- (1.0,2);
+\draw[gray] (2.0,0.0) -- (2.0,2);
+\draw[gray] (0.0,0.0) -- (2,0.0);
+\draw[gray] (0.0,1.0) -- (2,1.0);
+\draw[gray] (0.0,2.0) -- (2,2.0);
+\draw(0, 0) node [font=\ttfamily, label=below:{\texttt{0}}] {};
+\draw(1, 0) node [font=\ttfamily, label=below:{\texttt{1}}] {};
+\draw(2, 0) node [font=\ttfamily, label=below:{\texttt{2}}] {};
+\draw(0, 0) node [font=\ttfamily, label=left:{\texttt{0}}] {};
+\draw(0, 1) node [font=\ttfamily, label=left:{\texttt{1}}] {};
+\draw(0, 2) node [font=\ttfamily, label=left:{\texttt{2}}] {};
+\end{tikzpicture}
+
+\end{center}
+
+\end{document}

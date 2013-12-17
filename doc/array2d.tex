@@ -1,0 +1,122 @@
+\section{2D Array}
+
+\begin{samepage}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+c = Array2d(x=0.5, y=0.5, xs=[[1,2,3],[4,5,6],[7,8,9]])
+p += c
+p += Grid()
+print p
+"""
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+\end{samepage}
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import *
+p = Plot()
+a = Array2d(0.5, 0.5, [[2, 3, 5, 7], [11,13,17,19]])
+
+p += a 
+p += Grid()
+print p
+""", print_source=True)
+\end{python}
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import *
+p = Plot()
+a = Array2d(0.5, 0.5, width=1.5, height=1.5, xs=[[2, 3, 5, 7], [11,13,17,19], [23, 29, 31], [37,41,43,47,51]])
+
+p += a
+p += Grid() 
+print p
+""", print_source=True)
+\end{python}
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import *
+p = Plot()
+a = Array2d(0, 0, width=1.5, height=1.5, xs=[[2, 3, 5, 7], [11,13,17,19], [23, 29, 31], [37,41,43,47,51]])
+
+def l((r0,c0), (r1,c1)):
+    return Line(a[r0][c0].centerx(), a[r0][c0].centery(),
+           a[r1][c1].centerx(), a[r1][c1].centery(),
+           linecolor='red', linewidth=0.25, endstyle='->')
+
+p += a
+p += l((0,0),(1,1))
+p += l((3,0),(2,2))
+
+print p
+""", print_source=True)
+\end{python}
+
+
+Test Array2d drawing 1d array:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import *
+p = Plot()
+p += Array2d(0, 0, width=1, height=1, xs=[[2, 3, 5, 7]])
+print p
+""", print_source=True)
+\end{python}
+
+The split operation in mergesort:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import *
+p = Plot()
+
+def arr(x, y, xs):
+    return Array2d(x, y, width=1, height=1, xs=xs)
+
+def string(x, y, s):
+    return Rect2(x0=x, y0=y, x1=x, y1=y, linewidth=0, label = s)
+
+def _line(x0, y0, x1, y1):
+    gap = 0.1
+    y0 -= gap
+    y1 += gap
+    return Line(x0, y0, x1, y1, endstyle='->', linewidth=0.05)
+
+xs = [2, 5, 3, 7]; left = xs[:len(xs)/2]; right = xs[len(xs)/2:]
+common_len = max(len(left), len(right))
+
+x = 1; y = 3
+a = arr(x, y, xs=[xs])
+midx = a.bottom()[0]
+
+b = arr(midx - 1 - common_len, y - 2, xs=[left])
+c = arr(midx + 1, y - 2, xs=[right])
+d = string(midx, 1.5, "split")
+p += a; p += b; p += c; p += d
+
+x0, y0 = a.bottom()
+x1, y1 = midx - 1 - common_len/2.0, y0 - 1
+p += _line(x0, y0, x1, y1)
+x1, y1 = midx + 1 + common_len/2.0, y0 - 1
+p += _line(x0, y0, x1, y1)
+
+p += Grid()
+print p
+""", print_source=True)
+\end{python}
+

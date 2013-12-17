@@ -1,0 +1,109 @@
+\section{Python}
+
+There are vertical spacing issues with the python environment.
+Vertical spacing before and after the python environment has been removed
+from the python environment in \verb!mypython.tex!.
+
+TEST 1.
+Python environment with console function call.
+Line before python environment.
+\begin{python}
+from latextool_basic import *
+print console("hello world")
+\end{python}
+Line after the python environment.
+
+TEST 2.
+One python environment with two console function calls.
+Line before python environment.
+\begin{python}
+from latextool_basic import *
+print console("hello world 1")
+print console("hello world 2")
+\end{python}
+Line after the python environment.
+ISSUE: Note that the two frames are joined up.
+For the time being do not put two console environment 
+immediately next to eash other.
+
+\newpage
+
+TEST 3.
+One python environment with two console function calls with
+one blank line between the console function calls.
+Line before python environment.
+\begin{python}
+from latextool_basic import *
+print console("hello world 1")
+print ""
+print console("hello world 2")
+\end{python}
+Line after the python environment.
+ISSUE: Note that the two frames are joined up.
+For the time being do not put two console environment 
+immediately next to eash other.
+
+TEST 4.
+Two python environments with one console function call each.
+Line before python environment.
+\begin{python}
+from latextool_basic import *
+print console("hello world 1")
+\end{python}
+Line between the python environments.
+\begin{python}
+from latextool_basic import *
+print console("hello world 2")
+\end{python}
+Line after the second python environment.
+
+TEST 5. This is the console environment in latex (no python).
+\begin{console}
+hello world 1
+\end{console}
+Line after.
+
+TEST 6. 1 console environment in latex (no python).
+\begin{console}
+hello world 1
+\end{console}
+Line between.
+\begin{console}
+hello world 2
+\end{console}
+Line after.
+
+TEST 7. 2 console environments in latex next to each other.
+\begin{console}
+hello world 1
+\end{console}
+\begin{console}
+hello world 2
+\end{console}
+Line after.
+
+TEST 8. 1 verbatim environment in latex (no python).
+\begin{Verbatim}[frame=single]
+hello world 1
+\end{Verbatim}
+Line after.
+
+TEST 9. This is 2 Verbatim environments in latex (no python).
+\begin{Verbatim}[frame=single]
+hello world 1
+\end{Verbatim}
+Line between.
+\begin{Verbatim}[frame=single]
+hello world 2
+\end{Verbatim}
+Line after.
+
+TEST 10. 2 Verbatim environments next to each.
+\begin{Verbatim}[frame=single]
+hello world 1
+\end{Verbatim}
+\begin{Verbatim}[frame=single]
+hello world 2
+\end{Verbatim}
+Line after.
+

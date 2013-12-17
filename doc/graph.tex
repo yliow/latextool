@@ -1,0 +1,163 @@
+\section{graph}
+
+\begin{console}
+\begin{python}
+from latextool_basic import graph
+print graph(layout="""
+A
+B C
+""")
+\end{python}
+\end{console}
+
+\begin{python}
+from latextool_basic import graph
+print graph(layout="""
+A
+B C
+""")
+\end{python}
+
+
+
+\newpage
+nodes and labels:
+\begin{console}
+\begin{python}
+from latextool_basic import graph
+print graph(layout='''
+     X1  C1
+     X2  C2
+     X3  C3
+     X4  C4
+''',
+minimum_size='8mm',
+edges='X1-C1,X2-C2,X1-C3,X2-C3,X1-C4,X2-C4,X3dashedC4',
+X1='label=$X_1$',
+X2='label=$X_2$',
+X3='label=$X_3$',
+X4='label=$X_4$',
+C1='shape=rectangle, label=$C_1$',
+C2='shape=rectangle, label=$C_2$',
+C3='shape=rectangle, label=$C_3$',
+C4='shape=rectangle, label=$C_4$',
+)
+\end{python}
+\end{console}
+
+\begin{python}
+from latextool_basic import graph
+print graph(layout='''
+     X1  C1
+     X2  C2
+     X3  C3
+     X4  C4
+''',
+minimum_size='8mm',
+edges='X1-C1,X2-C2,X1-C3,X2-C3,X1-C4,X2-C4,X3-C4',
+X1='label=$X_1$',
+X2='label=$X_2$',
+X3='label=$X_3$',
+X4='label=$X_4$',
+C1='shape=rectangle, label=$C_1$',
+C2='shape=rectangle, label=$C_2$',
+C3='shape=rectangle, label=$C_3$',
+C4='shape=rectangle, label=$C_4$',
+)
+\end{python}
+
+
+
+\newpage
+Isoceles triangle as subtree:
+\begin{python}
+from latextool_basic import graph
+print r"""
+\begin{console}
+graph(layout='''
+     A
+   B   C
+  D E
+''',
+minimum_size='8mm',
+edges='A-B,A-C',
+A=r'label=$\alpha$',
+B=r'label=$\beta$',
+C=r'shape=tree, minimum height=2cm, label=$T_1$',
+D=r'shape=tree, minimum height=2cm, label=$T_2$',
+E=r'shape=tree, minimum height=2cm, label=$T_3$',
+)
+\end{console}"""
+\end{python}
+
+\begin{python}
+from latextool_basic import graph
+print graph(yscale=0.8, layout='''
+     A
+   B   C
+  D E
+''',
+minimum_size='8mm',
+edges='A-B,A-C,B-D,B-E',
+A=r'label=$\alpha$',
+B=r'label=$\beta$',
+C=r'shape=tree, minimum height=2cm, label=$T_1$',
+D=r'shape=tree, minimum height=2cm, label=$T_2$',
+E=r'shape=tree, minimum height=2cm, label=$T_3$',
+)
+\end{python}
+
+
+\newpage
+Edge labels:
+
+
+\begin{console}
+from latextool_basic import graph
+print graph(layout='''
+          A
+   B      C      D
+       E     F
+          G     H
+       I
+''',
+minimum_size='8mm',
+edges='A-B,A-C,A-D,C-E,C-F,F-G,F-H,G-I',
+A=r'label=$\alpha$',
+B=r'label=$\beta$',
+edge_label={('A','B'):{'label':'X'},
+            ('A','C'):{'label':'Y', 'style':'pos=0.25,fill=white'},
+            ('A','D'):{'label':'a very very long label'},
+            ('C','E'):{'label':'5', 'style':'pos=0.5,above'},
+            ('C','F'):{'label':'5', 'style':'pos=0.5,below'},
+            ('F','G'):{'label':'5', 'style':'pos=0.5,above,inner sep=1mm,circle'},
+            ('F','H'):{'label':'5', 'style':'pos=0.5,below,inner sep=1mm,circle'},
+            ('G','I'):{'label':'abcdef', 'style':'sloped'},
+           },
+)
+\end{console}
+\begin{python}
+from latextool_basic import graph
+print graph(layout='''
+          A
+   B      C      D
+       E     F
+          G     H
+''',
+minimum_size='8mm',
+edges='A-B,A-C,A-D,C-E,C-F,F-G,F-H',
+A=r'label=$\alpha$',
+B=r'label=$\beta$',
+edge_label={('A','B'):{'label':'X'},
+            ('A','C'):{'label':'Y', 'style':'pos=0.25,fill=white'},
+            ('A','D'):{'label':'a very very long label'},
+            ('C','E'):{'label':'5', 'style':'pos=0.5,above'},
+            ('C','F'):{'label':'5', 'style':'pos=0.5,below'},
+            ('F','G'):{'label':'5', 'style':'pos=0.5,above,inner sep=1mm,circle'},
+            ('F','H'):{'label':'5', 'style':'pos=0.5,below,inner sep=1mm,circle'},
+           },
+)
+\end{python}
+
+
+\url{http://tex.stackexchange.com/questions/86386/edge-nodes-auto-and-node-distance}

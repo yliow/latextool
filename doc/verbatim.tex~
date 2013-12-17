@@ -1,0 +1,310 @@
+\section{verbatim}
+
+The \verb!verbatim! function allows you to 
+create verbatim environments.
+Executing tex commands in the environment can be easier.
+
+
+
+
+
+Example:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("hello world\nlorem ipsum")
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+You can have no frame:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("hello world\nlorem ipsum", frame=None)
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+You have line numbers on the left:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("hello world\nlorem ipsum", numbers='left')
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+You have line numbers on the right:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("hello world\nlorem ipsum", numbers='right')
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\begin{samepage}
+You can escape to a tex command:
+\begin{python}
+s = r'''
+
+t = r"""
+#include <iostream>
+
+int main()
+{
+    std::cout << "hello world" << std::endl;
+    return 0;
+}
+"""
+from latextool_basic import verbatim
+print verbatim(t.strip(), command=['redtext', 'iostream'])
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+\end{samepage}
+
+\newpage
+You can specify a list of words for each tex command:
+\begin{python}
+s = r'''
+
+t = r"""
+#include <iostream>
+
+int main()
+{
+    std::cout << "hello world" << std::endl;
+    return 0;
+}
+"""
+from latextool_basic import verbatim
+print verbatim(t.strip(), command=['redtext', ['iostream', 'std']])
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+
+
+You can use regular expressions:
+\begin{python}
+s = r'''
+
+t = r"""
+#include <iostream>
+
+int main()
+{
+    std::cout << "hello world" << std::endl;
+    return 0;
+}"""
+from latextool_basic import verbatim
+print verbatim(t.strip(), command=['redtext', '"[a-z ]*"'])
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+
+WARNING.
+Since search is by regular expression, 
+be careful to escape metacharacters:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+t = r"""
+#include <iostream>
+
+int main()
+{
+    std::cout << "hello world" << std::endl;
+    return 0;
+}
+"""
+
+print verbatim(t.strip(), command=['textbox', r'main\(\)'])
+'''
+
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+
+You can also specify which part of the text should be escaped
+by specifying 3
+numbers: the line number, the starting column number, and the ending
+column number.
+\begin{python}
+s = r'''
+
+t = r"""
+#include <iostream>
+
+int main()
+{
+    std::cout << "hello world" << std::endl;
+    return 0;
+}
+"""
+from latextool_basic import verbatim
+print verbatim(t.strip(), command=['underline', [4, 4, 13]])
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+
+
+
+
+\begin{samepage}
+You can have a list of tex commands:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("the answer is 42", 
+               commands=[
+                         ['underline', 'the'],
+                         ['textbox', ['answer','42']],
+                        ]
+              )
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+\end{samepage}
+
+
+You can also use the contents of a file like this:
+\begin{console}
+from latextool_basic import verbatim
+print verbatim(filename='helloworld.cpp')
+\end{console}
+
+
+\newpage
+\verb!verbatim! is not exactly a verbatim function:
+there's line wrap. 
+By default the width is set to 75.
+You can set the width to 40:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde", width=10)
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+You can also specify a string to indicate line wrap like this:
+\begin{python}
+s = r'''
+from latextool_basic import verbatim
+print verbatim("abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcde", width=10, 
+               wrapmarker='---> ')
+'''
+from latextool_basic import execute
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+
+TEST 1. Test vertical spacing before and after verbatim().
+Before.
+\begin{python}
+from latextool_basic import *
+print console(r"""hello world 1
+hello world 2""")
+\end{python}
+After.
+
+TEST 2. Test vertical spacing between two verbatim() in 1 python environment.
+Before.
+\begin{python}
+from latextool_basic import *
+print console(r"""frame 1
+hello world 1
+hello world 2""")
+print console(r"""frame 2
+hello world 1
+hello world 2""")
+\end{python}
+After.
+
+TEST 3. Same as before but print a blank line between the 2 verbatim()s.
+Before.
+\begin{python}
+from latextool_basic import *
+print console(r"""frame 1
+hello world 1
+hello world 2""")
+print r"\mbox{}"
+print console(r"""frame 2
+hello world 1
+hello world 2""")
+\end{python}
+After.
+
+TEST 4. Test vertical spacing between 2 python environments, 
+each containing 1 verbatim(), no blank line between the python environments.
+Before.
+\begin{python}
+from latextool_basic import *
+print console(r"""frame 1
+hello world 1
+hello world 2""")
+\end{python}
+\begin{python}
+from latextool_basic import *
+print console(r"""frame 2
+hello world 1
+hello world 2""")
+\end{python}
+After.
+
+
+TEST 5. For user input in verbatim environment.
+Before.
+\begin{python}
+from latextool_basic import *
+print verbatim(r'''
+Please enter x: 42
+Please enter y and z: 43 44
+Please enter login: jdoe
+'''.strip(), command=['userinput', ['42', '43 44', 'jdoe']])
+\end{python}
+After.
+
+

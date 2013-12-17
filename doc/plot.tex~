@@ -1,0 +1,38 @@
+\section{Plot}
+
+All drawing go into a \verb!Plot! object.
+The following should be in a python environment:
+
+\begin{console}
+from latextool_basic import Plot, Circle
+p = Plot()
+p += Circle(x=1, y=1, r=1)
+print p
+\end{console}
+
+or run in the \verb!execute! function in a python environment:
+
+\begin{console}
+from latextool_basic import execute
+
+s = r"""
+from latextool_basic import Plot, Circle
+p = Plot()
+p += Circle(x=1, y=1, r=1)
+print p
+"""
+
+execute(s)
+\end{console}
+
+You can also add a pgf/tikz string to plot:
+
+\begin{console}
+from latextool_basic import Plot, Circle
+p = Plot()
+p += Circle(x=1, y=1, r=1)
+p.add("\draw ...")
+print p
+\end{console}
+
+

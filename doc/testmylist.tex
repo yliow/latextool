@@ -1,0 +1,108 @@
+\section{Test mylist}
+
+For comparison, this is enumerate:
+\begin{enumerate}
+\li Line 1. 
+\li line 2.
+\li line 3.
+\end{enumerate}
+After enumerate.
+
+This is with paragraphing within items:
+\begin{enumerate}
+\li Line 1. 
+This is a test. This is a test. This is a test. This is a test. 
+This is a test. This is a test. This is a test. This is a test. 
+
+Next paragraph.
+\lipsum[1]
+
+\li line 2.
+\li line 3.
+\end{enumerate}
+
+A new paragraph after mylist.
+
+
+
+
+
+
+\newpage
+
+\verb!mylist! environment:
+Vertical spacing between items is set to 0.
+Also vertical and horizonal paragraph spacing in an item is set to 0. 
+
+Testing mylist:
+\begin{mylist}
+\li line 1
+\li line 2
+\li line 3
+\end{mylist}
+After mylist.
+Notice that there is no vertical spacing between items.
+However there is still vertical spacing before and after the mylist.
+
+This is with paragraphing within items:
+\begin{mylist}
+\li Line 1. 
+This is a test. This is a test. This is a test. This is a test. 
+This is a test. This is a test. This is a test. This is a test. 
+
+Next paragraph.
+\lipsum[1]
+
+\li line 2.
+\li line 3.
+\end{mylist}
+
+A new paragraph after above environment.
+The next environment is in a new paragraph.
+
+\begin{mylist}
+\li line 1
+\li line 2
+\li line 3
+\end{mylist}
+
+
+
+
+\newpage
+
+\verb!tightlist! environment: 
+This is the same as mylist except that the vertical spacing
+before and after the environment is removed.
+This does not work quite right is the environment is in a paragraph of its
+own -- there will be a little extra vertical spacing before the environment.
+
+Testing tightlist:
+\begin{tightlist}
+\li line 1
+\li line 2
+\li line 3
+\end{tightlist}
+After environment.
+
+This is with paragraphing within items:
+\begin{tightlist}
+\li Line 1. 
+This is a test. This is a test. This is a test. This is a test. 
+This is a test. This is a test. This is a test. This is a test. 
+
+Next paragraph.
+\lipsum[1]
+
+\li line 2.
+\li line 3.
+\end{tightlist}
+
+A new paragraph after above environment.
+The next environment is in a new paragraph.
+
+\begin{tightlist}
+\li line 1
+\li line 2
+\li line 3
+\end{tightlist}

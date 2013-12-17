@@ -1,0 +1,145 @@
+\section{circle}
+
+Boundary:
+\begin{python}
+s = """
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0.5, y=0.5, r=0.5)
+p += Circle(x=2.5, y=0.5, r=0.5, linewidth=0)
+p += Circle(x=4.5, y=0.5, r=0.5, linewidth=0.05)
+p += Circle(x=6.5, y=0.5, r=0.5, linewidth=0.05, linestyle='dashed')
+p += Circle(x=8.5, y=0.5, r=0.5, linewidth=0.1, linestyle='dashed', 
+                                 linecolor='red')
+p += Circle(x=10.5, y=0.5, r=0.5, linewidth=0.1, linestyle='double', 
+                                 linecolor='red')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+Background:
+\begin{python}
+s = """
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0.5, y=0.5, r=0.5)
+p += Circle(x=2.5, y=0.5, r=0.5, linewidth=0, background='green')
+p += Circle(x=4.5, y=0.5, r=0.5, linewidth=0.05, background='green')
+p += Circle(x=6.5, y=0.5, r=0.5, linewidth=0.05, linestyle='dashed',
+                                 background='green')
+p += Circle(x=8.5, y=0.5, r=0.5, linewidth=0.1, linestyle='dashed', 
+                                 linecolor='red', background='green')
+p += Circle(x=10.5, y=0.5, r=0.5, linewidth=0.1, linestyle='double', 
+                                 linecolor='red', background='green')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+Label:
+\begin{python}
+s = """
+from latextool_basic import *
+p = Plot()
+s = 'a b c d e f'
+p += Circle(x=0, y=0, r=1, linecolor='green!50!white', linewidth=0.3, 
+            background='blue!20!white', foreground='red',innersep=0, s=s)
+p += Circle(x=5, y=0, r=1, linecolor='green!50!white', linewidth=0.2, 
+            background='blue!20!white', foreground='red', innersep=0, s=s)
+p += Circle(x=10, y=0, r=1, linecolor='green!50!white', linewidth=0.1, 
+            background='blue!20!white', foreground='red', innersep=0, s=s)
+p += Circle(x=0, y=-3, r=1, linecolor='green!50!white', linewidth=0, 
+            background='blue!20!white', foreground='red', innersep=0, s=s)
+p += Circle(x=5, y=-3, r=1, linecolor='green!50!white', linewidth=0, 
+            background='blue!20!white', foreground='red', 
+            innersep=0.2, s=s)
+p += Circle(x=10, y=-3, r=1, linecolor='green!50!white', linewidth=0, 
+            background='blue!20!white', foreground='red',
+            innersep=0.4, s=s)
+p.add(grid)
+print p"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+Foreground:
+\begin{python}
+s = """
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=1, foreground='red', label='a')
+p += Circle(x=3, y=0, r=1, background='blue!20!white', 
+                           foreground='red', label='$q_0$')
+p.add(grid)
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+Center and boundary of Circle object:
+\begin{python}
+s = """
+s='1 2 3 4 5 6 7 8 9 10 11'
+b1 = 'blue!50!white'
+b2 = 'red!50!white'
+
+from latextool_basic import *
+p = Plot()
+
+c1 = Circle(x=0, y=0, r=1, background=b1, s=s)
+c2 = Circle(center=c1.center(), r=0.5, background=b2)
+p += c1; p += c2
+
+c1 = Circle(x=3, y=0, r=1, background=b1, s=s)
+c2 = Circle(center=c1.left(), r=0.5, background=b2)
+p += c1; p += c2
+
+c1 = Circle(x=6, y=0, r=1, background=b1, s=s)
+c2 = Circle(center=c1.right(), r=0.5, background=b2)
+p += c1; p += c2
+
+c1 = Circle(x=9, y=0, r=1, background=b1, s=s)
+c2 = Circle(center=c1.top(), r=0.5, background=b2)
+p += c1; p += c2
+
+c1 = Circle(x=12, y=0, r=1, background=b1, s=s)
+c2 = Circle(center=c1.bottom(), r=0.5, background=b2)
+p += c1; p += c2
+
+p += Grid()
+print p"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+
+

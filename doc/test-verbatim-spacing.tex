@@ -1,0 +1,37 @@
+\section{Test Verbatim Spacing}
+
+First here's the vertical spacing between paragraphs.
+\lipsum[2]
+
+\lipsum[2]
+
+TEST 1. Text, console environment, text:
+\begin{console}
+hello world
+\end{console}
+Line after.
+
+
+TEST 2. Text, console environment, console environment, text:
+\begin{console}
+hello world
+\end{console}
+\begin{console}
+hello world
+\end{console}
+Line after. 
+Probably won't be used.
+Probably too much spacing between the two environments.
+
+
+TEST 3. Text, python environment with console function, text:
+\begin{python}
+from latextool_basic import console
+print console("hello world")
+\end{python}
+Line after. 
+
+
+
+
+

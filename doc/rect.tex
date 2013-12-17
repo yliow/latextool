@@ -1,0 +1,215 @@
+\section{rect}
+
+
+TEST: Background is \verb!''!, i.e., totally transparent.
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=0.5, y0=0.5, x1=1.5, y1=1.5)
+p += Rect(x0=0.75, y0=0.75, x1=1.75, y1=1.75)
+p += Grid()
+print p
+"""
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+TEST: Background is white
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=0.5, y0=0.5, x1=1.5, y1=1.5, background='white')
+p += Rect(x0=0.75, y0=0.75, x1=1.75, y1=1.75, background='white')
+p += Grid()
+print p
+"""
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+TEST border, background, foreground:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=1, y0=1, x1=5, y1=3,
+          radius=0.25, innersep=0.25,
+          linecolor='red!30!white', linewidth=0.1,
+          background='blue!20!white!', foreground='blue!90!white', 
+          s='hello world! hello world!', align='t')
+p += Rect(x0=6, y0=1, x1=10, y1=3,
+          radius=0.25, innersep=0.25,
+          linecolor='red!20!white', linewidth=0.1,
+          background='blue!20!white!', foreground='blue!90!white', 
+          s='hello world! hello world!', align='c')
+p += Rect(x0=11, y0=1, x1=15, y1=3,
+          radius=0.25, innersep=0.25,
+          linecolor='red!20!white', linewidth=0.1,
+          background='blue!20!white!', foreground='blue!90!white', 
+          s='hello world! hello world!', align='b')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+TEST border, background, foreground:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot(radius=0.25, innersep=0.25,
+         linecolor='red!50!white', linewidth=0.1,
+         background='blue!20!white', foreground='blue!90!white', 
+         align='t')
+p += RectAdaptor(env=p.env, x0= 1, y0=1, x1= 4, y1=3, s='hello world!')
+p.env['linewidth'] = 0
+p += RectAdaptor(env=p.env, x0= 5, y0=1, x1= 8, y1=3, s='hello world!')
+p.env['background'] = ''
+p += RectAdaptor(env=p.env, x0= 9, y0=1, x1= 12, y1=3, s='hello world!')
+
+p.env['background'] = ''
+p.env['linecolor'] = 'red'
+p.env['linewidth'] = 0.2
+p += RectAdaptor(env=p.env, x0= 13, y0=1, x1= 16, y1=3, s='hello world!')
+
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+TEST: Align
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=0.25, y0=0.25, x1=1.75, y1=1.75, s='abc', align='t', 
+          linecolor='red', foreground='black')
+p += Rect(x0=3.25, y0=0.25, x1=4.75, y1=1.75, s='abc', align='c', 
+          linecolor='red')
+p += Rect(x0=6.25, y0=0.25, x1=7.75, y1=1.75, s='abc', align='b', 
+          linecolor='red')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+As above but using objects:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=0.5, y0=0.5, x1=1.5, y1=1.5)
+p += Rect(x0=3, y0=0, x1=6, y1=2, linecolor='red', linewidth=0.1, s='hello')
+p += Rect(x0=7, y0=0, x1=10, y1=2, linecolor='red', background='blue', 
+          linewidth=0.2, s='hello')
+p += Rect(x0=11, y0=0, x1=14, y1=2, linecolor='red', linewidth=0.2,
+          background='green',
+          innersep=0.5, s='hello')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+
+
+
+rect with rounded corners:
+(radius of corner is set to innersep by default):
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=3, y0=4, x1=6, y1=6, linecolor='red', linewidth=0.1,
+          innersep=0.5, radius=0.5, 
+          s=r'{\tiny this is a test ... this is a test ...}')
+p += Rect(x0=0.5, y0=0.5, x1=5, y1=3, 
+          background='blue!10!white', 
+          innersep=0.2, radius=0.2,
+          s=r'{\tiny this is a test ... this is a test ...}')
+p += Rect(x0=6.5, y0=0.5, x1=10, y1=3, 
+          background='green!10!white', 
+          innersep=0.01, radius=0.01,
+          s=r'{\tiny this is a test ... this is a test ...}')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+
+line style:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=1, y0=1, x1=3, y1=3,
+          linewidth=0.1, linecolor='red',
+          radius=0.5, linestyle='dashed')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+label:
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=1, y0=1, x1=5, y1=4,
+          linewidth=0.1, linecolor='red',
+          radius=0.5, linestyle='dashed', label='hello')
+p += Rect(x0=6, y0=0, x1=12, y1=4,
+          linewidth=0.1, linecolor='red',
+          foreground='blue',
+          radius=0.5, linestyle='dashed', label='hello')
+p += Grid()
+print p
+"""
+
+from latextool_basic import console, makeandincludegraphics
+print console(s.strip())
+print makeandincludegraphics(python=s)
+\end{python}
+
+
+

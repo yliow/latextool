@@ -1,0 +1,255 @@
+\section{Automata}
+
+
+DFA for \lq\lq starts with 0 and has odd length'':
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A D B C
+""",
+edges="A,$0$,B|B,$0,1$,C|C,$0,1$,B|A,$1$,D|D,$0,1$,D",
+A="initial|label=$q'_0$",
+B="accept|label=$q'_2$",
+C="label=$q'_3$",
+D="label=$q'_1$",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+Sipser 1.7c
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+  B  D
+  
+A
+
+  C  E  F
+""",
+edges="A,$\ep$,B|B,$0,1$,D|D,$0,1$,B|A,$\ep$,C|C,$1$,E|E,$1$,F|C,$0,1$,C|F,$0,1$,F",
+A="initial|label=$q_0$",
+B="accept|label=$q'_0$",
+C="label=$q''_0$",
+D="label=$q'_1$",
+E="label=$q''_1$",
+F="label=$q''_2$|accept",              
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+Sipser 1.7d
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+
+print automata(layout="""
+A B
+""",
+edges="A,$0$,B",
+A="initial|label=$q_0$",
+B="accept|label=$q_1$",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+
+Sipser 1.7e
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A B C
+""",
+edges="A,$\ep$,B|A,$0$,A|B,$1$,B|B,$0$,C|C,$0$,C",
+A="initial|label=$q_0$",
+B="label=$q_1$",
+C="label=$q_2$",              
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+NFA for at least three 1s:
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A B C D
+""",
+edges="A,1,B|B,1,C|C,1,D|A,$0,1$,A|D,$0,1$,D|B,0,B|C,0,C",
+A="initial|label=$q'_0$",
+B="label=$q'_1$",
+C="label=$q'_2$",
+D="accept|label=$q'_3$",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+NFA for $\emptyset$:
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A
+""",
+A="initial|label=$q''_0$",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+NFA for concat of \lq\lq contains at least 3 1s'' and $\emptyset$:
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A B C D   E
+""",
+edges="A,1,B|B,1,C|C,1,D|A,$0,1$,A|D,$0,1$,D|B,0,B|C,0,C|D,$\ep$,E",
+A="initial|label=$q'_0$",
+B="label=$q'_1$",
+C="label=$q'_2$",
+D="label=$q'_3$",
+E="label=$q''_0$"
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+NFA for concat of \lq\lq length $<=$ 5'' and 
+\lq\lq every odd position is a 1'':
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A B C D E F
+""",
+edges="A,$0,1$,B|B,$0,1$,C|C,$0,1$,D|D,$0,1$,E|E,$0,1$,F",
+A="accept|initial|label=$q'_0$",
+B="accept|label=$q'_1$",
+C="accept|label=$q'_2$",
+D="accept|label=$q'_3$",
+E="accept|label=$q'_4$",
+F="accept|label=$q'_5$",              
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+NFA for \lq\lq every odd position is a 1'':
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A B
+""",
+edges="A,$1$,B|B,$0,1$,A",
+A="accept|initial|label=$q''_0$",
+B="accept|label=$q''_1$",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+NFA for concat of \lq\lq length $<=$5'' and \lq\lq every odd position is a 1'':
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A B C D E F G H
+""",
+edges="A,$0,1$,B|B,$0,1$,C|C,$0,1$,D|D,$0,1$,E|E,$0,1$,F"+\
+ "|F,$\epsilon$,G"+\
+ "|A,$\epsilon$,G"+\
+ "|B,$\epsilon$,G"+\
+ "|C,$\epsilon$,G"+\
+ "|D,$\epsilon$,G"+\
+ "|E,$\epsilon$,G"+\
+ "|G,$1$,H|H,$0,1$,G",
+A="initial|label=$q'_0$",
+B="label=$q'_1$",
+C="label=$q'_2$",
+D="label=$q'_3$",
+E="label=$q'_4$",
+F="label=$q'_5$",
+G="accept|label=$q''_0$",
+H="accept|label=$q''_1$",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}
+
+
+
+
+NFA with vectors as $\Sigma$:
+\begin{python}
+from latextool_basic import execute, console
+s = r'''
+from latextool_basic import * 
+print automata(layout="""
+A      B
+""",
+edges=r"A,$\begin{bmatrix}0\\0\\0 \end{bmatrix},\begin{bmatrix}0\\1\\1 \end{bmatrix},\begin{bmatrix}1\\0\\1 \end{bmatrix}$,A"+\
+r"|A,$\begin{bmatrix}1\\1\\0\end{bmatrix}$,B"+\
+r"|B,$\begin{bmatrix}0\\1\\0\end{bmatrix},\begin{bmatrix}1\\0\\0\end{bmatrix},\begin{bmatrix}1\\1\\1\end{bmatrix}$,B"+\
+r"|B,$\begin{bmatrix}0\\0\\1\end{bmatrix}$,A"+\
+r"",
+A="initial|accept|label=carry=0",
+B="label=carry=1",
+)
+'''
+print console(s.strip())
+execute(s)
+\end{python}

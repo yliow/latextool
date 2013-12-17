@@ -1,0 +1,84 @@
+\section{console}
+
+NOTE: console function is now the same as the verbatim function.
+
+There a console latex environment and a console function in 
+\verb!latextool_basic!.
+ 
+TODO:
+Here's the console environment in latex:
+\begin{console}
+hello world
+\end{console}
+Here's the console function call in the python environment:
+\begin{python}
+from latextool_basic import *
+print console("hello world")
+\end{python}
+Notice the the second case has a blank line before and after the console
+window.
+Fix it.
+
+Here's a python environment that prints hello world, prints a console
+function return value, prints hello world:
+\begin{python}
+from latextool_basic import console
+print "hello world"
+print console("hello world")
+print "hello world"
+\end{python}
+
+Note that the spacing is different from the above.
+
+
+The console is just like verbatim:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import console
+print console("hello world")
+""", print_source=True)
+\end{python}
+
+
+However it wraps around:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import console
+print console(r'''
+line 1 ... hello world hello world hello world
+line 2 ... hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world
+'''.strip())
+""", print_source=True)
+\end{python}
+
+You can control the window width:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import console
+print console(r'''
+line 1 ... hello world hello world hello world
+line 2 ... hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world
+'''.strip(), width=40)
+""", print_source=True)
+\end{python}
+
+You can specify the \verb!wrapmarker! that is used to indicate a
+line wrap:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import console
+print console(r'''
+line 1 ... hello world hello world hello world
+line 2 ... hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world
+'''.strip(), width=40, wrapmarker='---> ')
+""", print_source=True)
+\end{python}
+
+
+TODO: Fix non-pagebreak.
+
+How to insert $\rightarrow$ symbol into verbatim area?
