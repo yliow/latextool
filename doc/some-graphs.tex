@@ -1,0 +1,377 @@
+\subsection{\texttt{Graph} class}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+for i in [1,2,3]:
+    p += Graph.node(p, x=i, y=1, name='a%s' % i)
+    p += Graph.node(p, x=i, y=-1, name='c%s' % i)
+
+for i in range(5):
+    p += Graph.node(p, x=i, y=0, name='b%s' % i)
+
+p += Graph.edge(names=['b%s' % i for i in range(5)])
+for i in [1,2,3]:
+    p += Graph.edge(names=['a%s' % i, 'b%s' % i])
+    p += Graph.edge(names=['c%s' % i, 'b%s' % i])
+
+p += Graph.arc(names=['c3', 'b4'])
+
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Edge label anchor}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Graph.node(x=0, y=0, label='a', name='0')
+p += Graph.node(x=5, y=0, label='b', name='1')
+p += Graph.edge(names=['0','1'], label='d', anchor='above')
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Cycle graphs}
+
+Odd Cycle.
+
+The node name is of the form \verb![radius]_[i]!
+where \verb!i! is the index of node going in an anticlockwise
+direction, starting at degree \verb!startdegree!.
+
+By default, the first node is at \verb!startdegree=90! degrees.
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=3, radius=1)
+print p'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=7, radius=2, drawline=False)
+print p'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Name of nodes}
+
+Name of the nodes:
+
+The nodes are names
+\verb!'0'!,
+\verb!'1'!, etc. in the anticlockwise direction where \verb!'0'!
+is the node with angle \verb!startdegree!.
+You can specify the \verb!startdegree! in the \verb!cyclegraph!.
+By default, when the number of nodes is even, the \verb!startdegree! is 0
+and when the number of nodes is odd, the \verb!startdegree! is 90.
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=7, radius=1, drawline=True)
+p += Circle(x=5, y=2, r=0.25, background='red', name='A')
+p += Circle(x=0, y=-2, r=0.25, background='blue', name='B')
+p += Line(names=['A', '0'])
+p += Line(names=['B', '3'])
+print p'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+You can change the pgf/tikz name of the nodes by
+setting \verb!names! dictionary in the \verb!cyclegraph!.
+For instance if you want the first node to be named \verb!'a'!
+instead of \verb!0!, then \verb!0:'a'! should be a key-value pair
+in \verb!names!.
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=7, radius=1, drawline=True,
+           names={0:'a',
+                  3:'d',
+                  })
+p += Circle(x=5, y=2, r=0.25, background='red', name='A')
+p += Circle(x=0, y=-2, r=0.25, background='blue', name='B')
+p += Line(names=['A', 'a'])
+p += Line(names=['B', 'd'])
+print p'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+\newpage
+Even Cycle.
+By default, the starting degree is 0.
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=4, radius=1)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+  
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=4, radius=1, startdegree=45)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+  
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+cyclegraph(p, num=6, radius=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Petersen graph}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+petersen(p)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Complete graphs}
+
+$K_4$:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completegraph(p, num=4)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+$K_4$:
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+completegraph(p, num=4, startdegree=45)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+$K_5$:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completegraph(p, num=5)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+  
+$K_6$:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completegraph(p, num=6, radius=1.5)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+  
+
+
+
+\newpage
+\subsection{Star graphs}
+
+The name of the center node is \verb!'center'!.
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+stargraph(p, num=5)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+stargraph(p, num=4)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+When there are two stars, you need to give the centers different names:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+stargraph(p, x=0, y=0, num=4, radius=1, names={'center':'c0'})
+stargraph(p, x=2, y=0, num=4, radius=1, names={'center':'c1'})
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+\newpage
+\subsection{Bipartite graphs}
+
+$K_{3,3}$:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completebipartite(p=p, num1=3, num2=3)
+print p
+'''.strip()
+
+from latextool_basic import *
+exec(s)
+print console(s)
+\end{python}
+
+
+$K_{3,3}$ without edges:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completebipartite(p=p, num1=3, num2=3, drawline=False)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+$K_{3,4}$:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completebipartite(p=p, num1=3, num2=4, horsep=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+$K_{3,4}$:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+completebipartite(p=p, num1=3, num2=4, versep=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+

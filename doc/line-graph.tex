@@ -124,3 +124,93 @@ print plot
 print console(s)
 execute(s)
 \end{python}
+
+
+
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+from math import sin
+from latextool_basic import *
+plot = FunctionPlot()
+
+data = [(x/10.0, (x/10.0)**2) for x in range(100)]
+data2 = [(2,0),(2,4)]
+data2 += [(2 + x/100.0*5, (2 + x/100.0*5)**2) for x in range(100)]
+data2 += [(7, 0), (2, 0)]
+plot.add(data)
+plot.add(data2, color='red')
+print plot
+'''.strip()
+print console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+from math import sin
+from latextool_basic import *
+plot = FunctionPlot()
+
+data = [(x/10.0, (x/10.0)**2) for x in range(100)]
+data2 = []
+x = 2
+dx = 0.125
+while x < 7:
+    data2.append((x, 0))
+    data2.append((x, x*x))
+    data2.append((x + dx, x*x))
+    data2.append((x + dx, 0))
+    x += dx
+data2.append((2,0))
+plot.add(data)
+plot.add(data2, color='red')
+print plot
+'''.strip()
+print console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+from math import log
+
+domain = [float(x) for x in range(0, 1001, 10)]
+f1 = [(x, x) for x in domain]
+f2 = [(x, x**1.7) for x in domain]
+f3 = [(x, log(x)) for x in [_ for _ in domain if _ > 0]]
+f3 = [(x, x * log(x)) for x in [_ for _ in domain if _ > 0]]
+f4 = [(x, x * log(x**2)) for x in [_ for _ in domain if _ > 0]]
+f5 = [(x, x**1.5 * log(x)) for x in [_ for _ in domain if _ > 0]]
+f6 = [(x, x**1.5) for x in [_ for _ in domain if _ > 0]]
+f7 = [(x, x**1.25 * log(x)) for x in [_ for _ in domain if _ > 0]]
+f8 = [(x, x**1.1 * log(x)) for x in [_ for _ in domain if _ > 0]]
+f9 = [(x, 1.01**x) for x in [_ for _ in domain if _ > 0]]
+
+plot = FunctionPlot(width="6.25in", height="7in")
+plot.add(f1, line_width='2', color='red', legend=r'$y = x$')
+plot.add(f2, line_width='2', color='green', legend=r'$y = x^{1.7}$')
+plot.add(f3, line_width='2', color='blue', legend=r'$y = x \ln x$')
+plot.add(f4, line_width='2', color='cyan', legend=r'$y = x \ln x^2$')
+plot.add(f5, line_width='2', color='yellow', legend=r'$y = x^{1.5} \ln x^2$')
+plot.add(f6, line_width='2', color='black', legend=r'$y = x^{1.5}$')
+plot.add(f7, line_width='2', color='pink', legend=r'$y = x^{1.25} \ln x$')
+plot.add(f8, line_width='2', color='brown', legend=r'$y = x^{1.1} \ln x$')
+plot.add(f9, line_width='2', color='teal', legend=r'$y = 1.01^x$')
+
+print plot
+'''.strip()
+print console(s)
+execute(s)
+\end{python}

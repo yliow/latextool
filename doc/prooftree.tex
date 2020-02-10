@@ -1,0 +1,75 @@
+\section{Proof Trees}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+xs = r'{\Gamma: 1 + 2 \vdash \texttt{int}}'
+     
+print r"""
+\[
+% s
+\]
+""" % prooftree(xs)
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+xs = {'root': r'{\Gamma: 1 + 2 \vdash \texttt{int}}',
+      'rule': '',
+      'children': [],
+     }
+     
+print r"""
+\[
+% s
+\]
+""" % prooftree(xs)
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+xs = {'root': r'{\Gamma: 1 + 2 \vdash \texttt{int}}',
+      'rule': '',
+      'children': [
+        {'root':r'\Gamma: 1 \vdash \texttt{int}',
+         'rule':r'\textsc{Const}',
+         'children':[''],
+        },
+        {'root':r'\Gamma: 2 \vdash \texttt{int}',
+         'rule':r'\textsc{Const}',
+         'children':[''],
+        },
+      ],
+     }
+     
+print r"""
+\[
+% s
+\]
+""" % prooftree(xs)
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}

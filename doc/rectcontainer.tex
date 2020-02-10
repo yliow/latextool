@@ -1,6 +1,5 @@
 \section{RectContainer}
 
-\begin{samepage}
 Horizontal array:
 \begin{python}
 s = r"""
@@ -16,17 +15,17 @@ p += c
 p += Grid()
 print p
 """
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
-print makeandincludegraphics(python=s)
+execute(s)
 \end{python}
-\end{samepage}
 
 
 
 
-\begin{samepage}
-Using []:
+\newpage
+\subsection{Using []}
+ 
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -42,18 +41,50 @@ p += bend(c[2].top(), c[5].top())
 p += Grid()
 print p
 """
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
+
+
+
+\newpage
+\section{name}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+c = RectContainer(x=1, y=1, name='A')
+for x in '12':
+    c += Rect2(x0=0, y0=0, x1=1, y1=1, 
+               linewidth=0.2, linecolor='red!30!white',
+               label=r'{\texttt{%s}}' % x)
+
+p += c
+                   
+d = RectContainer(x=3, y=4, name='B')
+for x in '34':
+    d += Rect2(x0=0, y0=0, x1=1, y1=1, 
+               linewidth=0.2, linecolor='blue!30!white',
+               label=r'{\texttt{%s}}' % x)
+                   
+p += d
+
+p += Line(names=['A','B'], endstyle='>')
+print p
+"""
+from latextool_basic import *
+print console(s.strip())
+execute(s)
+\end{python}
 
 
 
 
 
+\newpage
 Left-to-right, align bottom:
-\begin{samepage}
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -76,14 +107,12 @@ from latextool_basic import console, makeandincludegraphics
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
 
 
 
 
 \newpage
 Align top, left-to-right:
-\begin{samepage}
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -98,22 +127,19 @@ p += c
 # boundary of container
 p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 
-
 p += Grid()
 print p 
 """ 
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
 
 
 
 
 \newpage
 top-to-bottom, align left:
-\begin{samepage}
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -128,19 +154,18 @@ p += c
 # boundary of container
 p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 
-
 p += Grid()
 print p 
 """ 
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
+
+
 
 \newpage
 top-to-bottom, align right:
-\begin{samepage}
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -159,15 +184,16 @@ p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 p += Grid()
 print p 
 """ 
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
+
+
+
 
 \newpage
 2-d stack
-\begin{samepage}
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -195,12 +221,11 @@ from latextool_basic import console, makeandincludegraphics
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
 
 
 
 
-\begin{samepage}
+\newpage
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -218,11 +243,10 @@ p += c
 p += Grid()
 print p 
 """ 
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
-\end{samepage}
 
 
 
@@ -235,8 +259,7 @@ print makeandincludegraphics(python=s)
 
 
 
-
-\begin{samepage}
+\newpage
 Vertical array and pointers
 \begin{python}
 s = r"""
@@ -265,17 +288,15 @@ p += Line(x0=v[0].centerx(), y0=v[0].centery(),
 p += Grid()
 print p
 """
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
-print makeandincludegraphics(python=s)
+execute(s)
 \end{python}
-\end{samepage}
 
 
 
 
-
-\begin{samepage}
+\newpage
 DFA/NFA:
 \begin{python}
 s = r"""
@@ -305,16 +326,15 @@ p += Line(x0=dfa.centerx(), y0=dfa.y1,
 p += Grid()
 print p
 """
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
-print makeandincludegraphics(python=s)
+execute(s)
 \end{python}
-\end{samepage}
 
 
 
 
-\begin{samepage}
+\newpage
 PDA:
 \begin{python}
 s = r"""
@@ -353,10 +373,9 @@ p += Line(x0=v[0].centerx(),y0=pda.centery(),x1=v[0].centerx(),y1=v[0].topy(),
 p += Grid()
 print p
 """
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import *
 print console(s.strip())
 print r'\newpage'
-print makeandincludegraphics(python=s)
+execute(s)
 \end{python}
-\end{samepage}
 

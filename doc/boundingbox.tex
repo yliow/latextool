@@ -1,0 +1,91 @@
+\section{Bounding nodes}
+
+Bounding box (rectangle) for a group of tikz nodes:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(0,0,1,1,name='a')
+p += Rect(2,0,3,1,name='b')
+p += ellipse(center=(5,2), width=2, height=1, name='c')
+p += r'\node [draw=black, fit=(a) (b) (c), line width=0.1cm, inner sep=0.0cm] {};'
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+Bounding ellipse for a group of tikz nodes:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(0,0,1,1,name='a')
+p += Rect(2,0,3,1,name='b')
+p += ellipse(center=(5,2), width=2, height=1, name='c')
+p += r'\node [ellipse, draw=black, fit=(a) (b) (c), line width=0.1cm, inner sep=0.0cm] {};'
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+Put a node below a group of nodes:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(0,0,1,1,name='a')
+p += Rect(2,0,3,1,name='b')
+p += ellipse(center=(5,2), width=2, height=1, name='c')
+p += r'\node [draw=black, fit=(a) (b) (c), inner sep=0.0cm, dashed] (X) {};'
+p += r'\node [draw=black, rectangle, minimum width=1cm, below=1cm  of X, minimum height=1cm, distance=2cm] (Y) {Y};'
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+fit function:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(0,0,1,1,name='a')
+p += Rect(2,0,3,1,name='b')
+p += ellipse(center=(5,2), width=2, height=1, name='c')
+p += fit(name='X', names=['a', 'b', 'c'], linecolor='red')
+print p'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+fit function with label:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(0,0,1,1,name='a')
+p += Rect(2,0,3,1,name='b')
+p += ellipse(center=(5,2), width=2, height=1, name='c')
+p += fit(name='X', names=['a', 'b', 'c'], linecolor='red', label='XYZ')
+print p'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+fit function with shape:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(0,0,1,1,name='a')
+p += Rect(2,0,3,1,name='b')
+p += ellipse(center=(5,2), width=2, height=1, name='c')
+p += fit(name='X', names=['a', 'b', 'c'], shape='ellipse', linecolor='red')
+print p'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}

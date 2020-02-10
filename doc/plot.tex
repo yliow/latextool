@@ -10,14 +10,14 @@ print p
 \end{console}
 or run in the \verb!execute! function in a python environment:
 \begin{console}
-from latextool_basic import execute
-
 s = r"""
 from latextool_basic import Plot, Circle
 p = Plot()
 p += Circle(x=1, y=1, r=1)
 print p
 """
+
+from latextool_basic import execute
 execute(s)
 \end{console}
 

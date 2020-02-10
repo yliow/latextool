@@ -1,0 +1,131 @@
+\subsection{Othello}
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+m = [['', '', '',''],
+     ['', '@', 'O',''],
+     ['', 'O', '@',''],
+     ['', '', '','']]
+board = othello(p=p, m=m)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+Specify row and column labels:
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+m = [['', '', '',''],
+     ['', '@', 'O',''],
+     ['', 'O', '@',''],
+     ['', '', '','']]
+board = othello(p=p, m=m,
+                rownames=range(4),
+                colnames=range(4),
+                )
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+No row, col labels:
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+m = [['', '', '',''],
+     ['', '@', 'O',''],
+     ['', 'O', '@',''],
+     ['', '', '','']]
+board = othello(p=p, m=m, rownames=[], colnames=[])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+Position:
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+X = r'$\times$'
+m = [['', X  , '',  ''],
+     [X , '@', 'O', ''],
+     ['', 'O', '@', X ],
+     ['', '' , X ,  '']]
+board0 = othello(p=p, m=m, x=0, y=0)
+m = [['', 'O', '',  ''],
+     ['', 'O', 'O', ''],
+     ['', 'O', '@', ''],
+     ['', '' , '' , '']]
+board1 = othello(p=p, m=m, x=6, y=0)
+x0,y0 = board0.right(); x0 += 1; p0 = (x0,y0)
+x1,y1 = board1.left(); x1 -= 1; p1 = (x1,y1)
+p += Line(points=[p0, p1], linewidth=0.2, endstyle='>')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+Highlighting a cell:
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+X = r'$\times$'
+m = [['', 'O', '',  ''],
+     ['', 'O', 'O', ''],
+     ['', 'O', '@', ''],
+     ['', '' , '' , '']]
+board = othello(p=p, m=m, x=6, y=0, do_not_plot=True)
+
+def highlight(p, row, col):
+    x0,y0 = board[row][col].bottomleft()
+    x1,y1 = board[row][col].topright()
+    p += Rect(x0=x0, y0=y0, x1=x1, y1=y1,
+         background='black!15',label='', linewidth=0)
+
+highlight(p, 2, 1)
+highlight(p, 3, 1)
+highlight(p, 2, 2)
+
+board = othello(p=p, m=m, x=6, y=0)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}

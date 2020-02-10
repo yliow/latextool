@@ -1,15 +1,275 @@
-\section{tree2}
+\subsection{Binary tree}
 
 \begin{python}
-s = '''
-from latextool_basic import Plot, tree2
+s = '''from latextool_basic import *
 
 p = Plot()
-p += tree2(edges={'A':['B','C','D'],
-                 },
-          )
-'''
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+     
+pos = bintreepositions(edges=edges)
 
-from latextool_basic import execute
+Graph.r = 0.3
+for k,(x,y) in pos.items():
+    p += Graph.node(x=x, y=y, name=k, label=k)
+
+for k,v in edges.items():
+    for x in v:
+        if x in [None,'']: continue
+        p += Graph.arc(names=[k,x])
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
 execute(s)
 \end{python}
+
+
+
+
+
+\newpage
+Changing separate between nodes:
+\begin{python}
+s = '''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+     
+pos = bintreepositions(edges=edges, node_hsep=1, node_vsep=1)
+
+Graph.r = 0.3
+for k,(x,y) in pos.items():
+    p += Graph.node(x=x, y=y, name=k, label=k)
+
+for k,v in edges.items():
+    for x in v:
+        if x in [None,'']: continue
+        p += Graph.arc(names=[k,x])
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+\end{python}
+
+
+
+
+\newpage
+Changing separate between nodes:
+\begin{python}
+s = '''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+     
+pos = bintreepositions(edges=edges, node_hsep=0.5, node_vsep=1)
+
+Graph.r = 0.3
+for k,(x,y) in pos.items():
+    p += Graph.node(x=x, y=y, name=k, label=k)
+
+for k,v in edges.items():
+    for x in v:
+        if x in [None,'']: continue
+        p += Graph.arc(names=[k,x])
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+\end{python}
+
+
+
+\newpage
+\subsection{bintree function}
+
+\begin{python}
+s = '''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+
+bintree(p, edges=edges)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+f = file('aaaaa.txt', 'w'); f.write(execute(s))
+\end{python}
+\input{aaaaa.txt}
+
+
+
+
+\newpage
+bintree function with edge function
+\begin{python}
+s = '''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+
+def edge(names):
+    if names==['A','B']:
+        return Graph.arc(names=names, linecolor='red')
+    else:
+        return Graph.arc(names=names)
+bintree(p, edges=edges, edge=edge)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+f = file('aaaaa.txt', 'w'); f.write(execute(s))
+\end{python}
+\input{aaaaa.txt}
+
+
+
+\newpage
+bintree function with node function
+\begin{python}
+s = '''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+
+def node(x, y, name, l):
+    if name in ['A', 'B']:
+        return Graph.node(x=x, y=y, r=0.3, name=name, label=l, background='red!10')
+    else:
+        return Graph.node(x=x, y=y, r=0.3, name=name, label=l)
+def edge(names):
+    if names==['A','B']:
+        return Graph.edge(names=names, linecolor='red')
+    else:
+        return Graph.edge(names=names)
+
+bintree(p, edges=edges, edge=edge, node=node)
+
+p += Graph.edge(names=['A', 'B'],
+     bend_right=30, 
+     endstyle='>', startstyle='>', linecolor='red', linewidth=0.07)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+f = file('aaaaa.txt', 'w'); f.write(execute(s))
+\end{python}
+\input{aaaaa.txt}
+
+
+
+
+
+\newpage
+\subsection{BinTree class}
+
+\begin{python}
+s = '''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+
+BinTree(edges=edges).run(p)
+     
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+f = file('aaaaa.txt', 'w'); f.write(execute(s))
+\end{python}
+\input{aaaaa.txt}
+
+
+
+\newpage
+Using the BinTree class with label function
+\begin{python}
+s = r'''from latextool_basic import *
+
+p = Plot()
+edges={'A':['B','C'],
+       'B':['E','F'],
+       'E':['G','H'],
+       'F':['I'],
+       'C':['K','L'],
+       'K':['M','N'],
+       'L':['','P']}
+def label(x): return r'{\footnotesize \texttt{%s}}' % x
+BinTree(edges=edges, label=label).run(p)
+     
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+f = file('aaaaa.txt', 'w'); f.write(execute(s))
+\end{python}
+\input{aaaaa.txt}
+
+
+
+
+

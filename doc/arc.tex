@@ -1,6 +1,8 @@
 \section{arc}
 
-%\begin{samepage}
+Draw part of a circle.
+The x, y is the starting point, NOT the center.
+{\small
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -11,12 +13,14 @@ p += Grid(x0=-1, y0=0, x1=1, y1=1)
 print p
 """, print_source=True)
 \end{python}
-%\end{samepage}
+}
 
 
 
-%\begin{samepage}
-Set linewidth:
+
+
+Linewidth:
+{\small
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -27,13 +31,13 @@ p += Grid(x0=-1, y0=0, x1=1, y1=1)
 print p
 """, print_source=True)
 \end{python}
-%\end{samepage}
+}
 
 
 
 
-\begin{samepage}
-Set color:
+Color:
+{\small
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -45,12 +49,12 @@ p += Grid(x0=-1, y0=0, x1=1, y1=1)
 print p
 """, print_source=True)
 \end{python}
-\end{samepage}
+}
 
 
 
-\begin{samepage}
-Set linestyle:
+Linestyle:
+{\small
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -62,13 +66,13 @@ p += Grid(x0=-1, y0=0, x1=1, y1=1)
 print p
 """, print_source=True)
 \end{python}
-\end{samepage}
+}
 
 
 
 
-\begin{samepage}
 Change starting point of arc:
+{\small
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -80,4 +84,121 @@ p += Grid(x0=-1, y0=0, x1=1, y1=1)
 print p
 """, print_source=True)
 \end{python}
-\end{samepage}
+}
+
+
+
+
+Arrow:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=0, angle1=45, 
+        linewidth=0.2, endstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=0, angle1=90, 
+        linewidth=0.2, endstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+
+
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=0, angle1=350, 
+        linewidth=0.2, endstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=0, angle1=360, 
+        linewidth=0.2, endstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+
+
+
+
+
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=90, angle1=360+80, 
+        linewidth=0.2, endstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+
+
+
+Start style
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=90, angle1=360+80, 
+        linewidth=0.2, startstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}
+
+
+
+Start and end style
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(x=1, y=0, r=1, angle0=10, angle1=350, 
+        linewidth=0.2, startstyle='>', endstyle='>')
+p += Grid(x0=-2, y0=-2, x1=2, y1=2)
+print p
+""", print_source=True)
+\end{python}
+
+
+With center:
+\begin{python}
+from latextool_basic import execute
+execute(r"""
+from latextool_basic import Plot, Grid, arc
+p = Plot()
+p += arc(center=(0,0), r=1, angle0=0, angle1=90, 
+        linewidth=0.2, endstyle='>')
+p += Grid(x0=-1, y0=0, x1=1, y1=1)
+print p
+""", print_source=True)
+\end{python}

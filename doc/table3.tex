@@ -1,0 +1,524 @@
+\subsection{table3}
+
+table3 ... TABLE OF 2d arrays of 2d arrays:
+
+Use this for truth tables.
+
+
+
+
+\newpage
+\subsubsection{Example: 2-by-2 case}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$']]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','','']]
+m01 = [['$f$','$g$'],
+      ]
+m11 =[['$1$',''],
+      ['',''],
+      ['',''],
+      ['',''],
+      ['','']]
+M = [[m00, m01],
+     [m10, m11]]
+N = table3(p, M, width=1, height=0.8)
+print p
+""".strip()
+
+from latextool_basic import *
+print '{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+
+
+\newpage
+\subsubsection{Example: 2-by-2 case with top and left for labels}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+rowlabels = ['A', 'B', 'C', 'D', 'E']
+collabels = ['a', 'b', 'c']
+data = [['00', '01', '02'], 
+        ['10', '11', '12'],
+        ['20', '21', '22'],
+        ['30', '31', '32'],
+        ['40', '41', '42']]
+
+m00 = [['']]              
+m10 = [[x] for x in rowlabels] 
+m01 = [collabels]
+m11 = data
+M = [[m00, m01],
+     [m10, m11]]
+N = table3(p, M, width=1, height=0.8)
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+
+
+
+\newpage
+\subsubsection{Example: 2-by-1 case}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$'],
+      ]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+      ]
+M = [[m00],
+     [m10]]
+N = table3(p, M, width=1, height=0.8)
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\subsubsection{Specify topleft coordinates}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$'],
+      ]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+      ]
+M = [[m00],
+     [m10]]
+table3(p, x0=0, y0=0, M=M, width=1, height=0.8)
+table3(p, x0=8, y0=1, M=M, width=1, height=0.8)
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\subsubsection{Example: 2-by-1 case with title}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$'],
+      ]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+      ]
+M = [[m00],
+     [m10]]
+table3(p, M, width=1, height=0.8, title='This is the title')
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\subsubsection{Example: 1-by-2 case}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$'],['$x$'],['$y$'],['$z$'],
+      ]
+m01 = [['0'],['1'],['2'],['3'],
+      ]
+M = [[m00, m01],
+     ]
+N = table3(p, M, width=1, height=0.8)
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+
+
+\newpage
+\subsubsection{table3: accessing cells}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$'],
+      ]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+      ]
+m01 = [['$f$','$g$'],
+      ]
+m11 =[['$1$',''],
+      ['',''],
+      ['',''],
+      ['',''],
+      ['',''],
+      ]
+M = [[m00, m01],
+     [m10, m11]]
+N = table3(p, M, width=1, height=0.8)
+p0 = x0,y0 = N[1][0][3][2].center()
+p1 = x1,y1 = x0 + 5, y0 + 1
+p += Line(points=[p1, p0], endstyle='>', linecolor='red', linewidth=0.1)
+x2,y2 = x1+0.5, y1+0.5
+p += Rect(x0=x2, y0=y0, x1=x2, y1=y2, s='look', linewidth=0)
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+\newpage
+\subsubsection{Coloring a cell under the table manually}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$'],
+      ]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+       ['','','',''],
+      ]
+M = [[m00],
+     [m10]]
+
+N = table3(p, M, width=1, height=0.8)
+
+r = N[1][0][2][3]
+x0,y0 = r.bottomleft()
+x1,y1 = r.topright()
+p += Rect(x0=x0, y0=y0, x1=x1, y1=y1, background='blue!20', label='42',
+          linewidth=0)
+
+N = table3(p, M, width=1, height=0.8)
+
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+
+\newpage
+\subsubsection{Coloring a cell under the table using table3}
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m00 = [['$w$','$x$','$y$','$z$'],
+      ]
+m10 = [['$0$','','',''],
+       ['','','',''],
+       ['','','','42'],
+       ['','','',''],
+       ['','','',''],
+      ]
+M = [[m00],
+     [m10]]
+
+N = table3(p, M, width=2, height=0.5,
+           background={(1,0,2,3):'blue!20'})
+
+print p
+""".strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\subsubsection{Cells of different widths (table2)}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+i = 0
+def rect(x):
+    global i
+    if i % 2 == 0:
+        i += 1
+        return Rect(x0=0, y0=0, x1=1, y1=0.7, s=x)
+    else:
+        i += 1
+        return Rect(x0=0, y0=0, x1=3, y1=0.7, s=x)
+
+m = [[0,1,2,3],
+     [4,5,6,7],
+     [8,9,10,11],
+     [12,13,14,15],
+     ]
+     
+table2(p, m, rect=rect)
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(p)
+\end{python}
+
+
+
+
+\newpage
+\subsubsection{Cells of different widths (table3)}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+i = 0
+def rect(x):
+    global i
+    if i in [0,3,6,8,10,13,16,19,21,23]:
+        i += 1; return Rect(x0=0, y0=0, x1=1, y1=0.7, label=x)
+    elif i in [1,4,7,9,11,14,17,20,22,24]:
+        i += 1; return Rect(x0=0, y0=0, x1=3, y1=0.7, label=x)
+    else:
+        i += 1; return Rect(x0=0, y0=0, x1=5, y1=0.7, label=x)
+
+m00 = [[0,1,2],
+       [3,4,5]]
+m01 = [[6,7],
+       [8,9]]
+m10 = [[10,11,12],
+       [13,14,15],
+       [16,17,18]]
+m11 = [[19,20],
+       [21,22],
+       [23,24]]
+M = [[m00, m01],
+     [m10, m11]]
+table3(p, M, rect=rect)
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+\newpage
+\subsubsection{ragged arrays (error - to fix)}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+i = 0
+def rect(x):
+    global i
+    if i in [0,3,6,8,10,13,16,19,21,23]:
+        i += 1; return Rect(x0=0, y0=0, x1=1, y1=0.7, label=x)
+    elif i in [1,4,7,9,11,14,17,20,22,24]:
+        i += 1; return Rect(x0=0, y0=0, x1=3, y1=0.7, label=x)
+    else:
+        i += 1; return Rect(x0=0, y0=0, x1=5, y1=0.7, label=x)
+
+m00 = [[0,1,2],
+       [3,4,5]]
+m01 = [[6,7],
+       [8,9]]
+m10 = [[10,11,12],
+       [13,14,15],
+       [16,17,18]]
+m11 = [[19,20],
+       [21,22],
+       [23,24]]
+M = [[m00, m01],
+     [m10, m11]]
+table3(p, M, rect=rect)
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+\newpage
+\subsubsection{Justification}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+i = 0
+def rect(x):
+    global i
+    if i in [0,3,6,8,10,13,16,19,21,23]:
+        i += 1; return Rect(x0=0, y0=0, x1=1, y1=0.7, label=x)
+    elif i in [1,4,7,9,11,14,17,20,22,24]:
+        i += 1; return Rect(x0=0, y0=0, x1=3, y1=0.7, label=x)
+    else:
+        i += 1; return Rect(x0=0, y0=0, x1=5, y1=0.7, label=x)
+
+m00 = [[0,1,2],
+       [3,4,5]]
+m01 = [[6,7],
+       [8,9]]
+m10 = [[10,11,12],
+       [13,14,15],
+       [16,17,18]]
+m11 = [[19,20],
+       [21,22],
+       [23,24]]
+M = [[m00, m01],
+     [m10, m11]]
+table3(p, M, rect=rect)
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+\newpage
+\subsubsection{title}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+i = 0
+def rect(x):
+    global i
+    i += 1
+    return Rect(x0=0, y0=0, x1=1.8, y1=0.8, label=x)
+
+m00 = [['A','B','C']]
+
+s = r"""
+1 2 3
+4 5 6
+7 8 9
+"""
+X = str_to_2darray(s)
+M = [[[X[0]]],
+     [X[1:]],
+     ]
+table3(p, M, rect=rect, title='This is a title')
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}
+
+
+
+
+\newpage
+\subsubsection{Title distance}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+i = 0
+def rect(x):
+    global i
+    i += 1
+    return Rect(x0=0, y0=0, x1=1.8, y1=0.8, label=x)
+
+m00 = [['A','B','C']]
+
+s = r"""
+1 2 3
+4 5 6
+7 8 9
+"""
+X = str_to_2darray(s)
+M = [[[X[0]]],
+     [X[1:]],
+     ]
+table3(p, M, rect=rect, title='This is a title', title_distance=0.8)
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\footnotesize %s}' % console(s)
+execute(s)
+\end{python}

@@ -1,5 +1,7 @@
-\section{Test mylist}
+\section{Enumerate}
 
+
+\subsection{Basic enumerate}
 For comparison, this is enumerate:
 \begin{enumerate}
 \li Line 1. 
@@ -26,52 +28,9 @@ A new paragraph after mylist.
 
 
 
-
-
 \newpage
+\subsection{tightlist}
 
-\verb!mylist! environment:
-Vertical spacing between items is set to 0.
-Also vertical and horizonal paragraph spacing in an item is set to 0. 
-
-Testing mylist:
-\begin{mylist}
-\li line 1
-\li line 2
-\li line 3
-\end{mylist}
-After mylist.
-Notice that there is no vertical spacing between items.
-However there is still vertical spacing before and after the mylist.
-
-This is with paragraphing within items:
-\begin{mylist}
-\li Line 1. 
-This is a test. This is a test. This is a test. This is a test. 
-This is a test. This is a test. This is a test. This is a test. 
-
-Next paragraph.
-\lipsum[1]
-
-\li line 2.
-\li line 3.
-\end{mylist}
-
-A new paragraph after above environment.
-The next environment is in a new paragraph.
-
-\begin{mylist}
-\li line 1
-\li line 2
-\li line 3
-\end{mylist}
-
-
-
-
-\newpage
-
-\verb!tightlist! environment: 
 This is the same as mylist except that the vertical spacing
 before and after the environment is removed.
 This does not work quite right is the environment is in a paragraph of its
@@ -106,3 +65,14 @@ The next environment is in a new paragraph.
 \li line 2
 \li line 3
 \end{tightlist}
+
+
+\newpage
+\subsection{axioms}
+
+The label horizontal spacing is larger.
+
+\begin{axioms}
+  \item[(GROUP-C)] $\forall g,g' \in G$, $gg' \in G$
+  \item[(GROUP-A)] $\forall g,g',g'' \in G$, 
+\end{axioms}

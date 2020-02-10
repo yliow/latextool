@@ -1,29 +1,59 @@
-\section{Singly Linked List}
+\newpage
+\subsection{Singly Linked List}
 
 \begin{python}
-from latextool_basic import execute
-execute(r'''
+s = r'''
+
+from latextool_basic import *
+p = Plot()
+
+SLLNode = SinglyLinkedListNode
+
+n5 = SLLNode(x=0, y=0, label=5)
+p += n5
+
+n6 = SLLNode(x=5, y=0, label=6, next=None)
+p += n6
+
+p += Pointer(points = [n5[1].center(), n6[0].left()])
+
+print p
+
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+\end{python}
+
+\newpage
+
+\begin{python}
+s = r'''
 
 from latextool_basic import *
 p = Plot()
 
 DLLNode = DoublyLinkedListNode
 
-x = DLLNode(x=0, y=0, prev=None, label=5)
-p += x
+n5 = DLLNode(x=0, y=0, prev=None, label=5)
+p += n5
 
-y = DLLNode(x=5, y=0, label=6, next=None)
-p += y
+n6 = DLLNode(x=5, y=0, label=6, next=None)
+p += n6
 
-p += Pointer(points = [x[2].center(), y[0].left()])
+p += Pointer(points = [n5[2].center(), n6[0].left()])
 
-p0 = y[0].center()
-p1 = x[1].top()
+p0 = n6[0].center()
+p1 = n5[1].top()
 p2 = p0[0], p0[1] + 0.5
 p3 = p1[0], p2[1]
 p += Pointer(points = [p0, p2, p3, p1])
 print p
 
-''')
-\end{python}
+'''.strip()
 
+from latextool_basic import *
+print console(s)
+execute(s)
+\end{python}

@@ -1,0 +1,114 @@
+\subsection{Orthogonal lines; organization chart}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+points = get_points(0, 0, 3, 2, 'vbroom')
+p += Line(points = points)
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+With adjustment:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+x = 0
+points = get_points(x, 0, x+3, 2, 'vbroom', delta=0.5)
+p += Line(points = points)
+
+x = 5
+points = get_points(x, 0, x+3, 2, 'vbroom', delta=-0.5)
+p += Line(points = points)
+
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+points = get_points(0, 0, 3, 2, 'hbroom')
+p += Pointer(points = points)
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+With adjustment:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+x = 0
+points = get_points(x, 0, x+3, 2, 'hbroom', delta=-0.5)
+p += Pointer(points = points)
+
+x = 5
+points = get_points(x, 0, x+3, 2, 'hbroom', delta=+0.5)
+p += Pointer(points = points)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+d = positions(r'''
+    A
+    
+B   C   D
+
+     E  F  G
+''')
+label = {'A':'CC TT Club',    'B':'RPPC',       'C':'Columbia',
+         'D':'CC TT Academy', 'E':'Elementary', 'F':'Middle', 'G':'High'}
+WIDTH = 2.6; HEIGHT = 0.5
+rect = {}
+for lab, pos in d.items():
+    x, y = pos
+    rect[lab] =  Rect(x0=x-WIDTH/2, y0=y-HEIGHT/2,
+                 x1=x+WIDTH/2, y1=y+HEIGHT, label=r'{\scriptsize{%s}}' % label[lab],
+                 linewidth=0.05)
+    p += rect[lab]
+
+for lab0, lab1s in [('A', ('B','C','D')),
+                    ('D', ('E','F','G')),
+                    ]:
+    x0,y0 = rect[lab0].bottom()
+    for lab1 in lab1s:
+        x1,y1 = rect[lab1].top()
+        points = get_points(x0,y0,x1,y1,'vbroom')
+        p += Line(points=points, linewidth=0.05)
+        
+print p
+"""
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}

@@ -1,0 +1,693 @@
+\section{ER diagrams}
+
+\subsection{Attribute}
+
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.attrib(center=(0,0), name='sid', label=r'\texttt{sid}')
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.attrib(center=(0,0), name='sid', label=r'\texttt{sid}',
+               double=True)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.attrib(center=(0,0), name='sid', label=r'\texttt{sid}', linestyle='dashed')
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+\subsection{Entity}
+
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(6,0), name='Student')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+Entity with double lines:
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(6,0), name='Student', double=True)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+Entity with double lines:
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(6,0), name='Student', double=['Student'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+Entity name is a tikz node name:
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(6,0), name='Student')
+p += Rect(0,0,4,1,name='r',label='this is an entity')
+p += ER.line(names=['r', 'Student'], endstyle='>')
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+Entity name can be difference from label:
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(6,0), name='s', label='Student')
+p += Rect(0,0,4,1,name='r',label='this is an entity')
+p += Line(names=['r', 's'], endstyle='>')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+p += ER.attrib(center=(4,2), name='sid', label=r'\texttt{\underline{sid}}')
+p += ER.attrib(center=(8,2), name='name', label=r'\texttt{name}')
+p += ER.entity(center=(6,0), name='Student', label=r'\texttt{Student}')
+
+p += Line(names=['sid', 'Student'])
+p += Line(names=['name', 'Student'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+Attribs on north (odd number):
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(0,0),
+               name='Student',
+               attribs=['sid'],
+               keys=['sid'])
+p += Grid(-2,-1,2,3)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa'], keys=['sid'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender'],
+          keys=['sid'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+Entity with attribs on north (even number):
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name'], keys=['sid'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+\begin{python}
+s = r'''
+from latextool_basic import *; p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age'], keys=['sid'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+Even number of attributes on south:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age'],
+          keys=['sid'],
+          anchor={'sid':'south', 'name':'south','gpa':'south','age':'south'})
+p += Grid(-5,-3,5,1)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+Odd number of attributes on south:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender'],
+          keys=['sid'],
+          anchor={'sid':'south', 'name':'south','gpa':'south','age':'south','gender':'south'})
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender'],
+          keys=['sid'],
+          anchor={'name':'south', 'gender':'south'})
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+Attributes on east:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender'],
+          keys=['sid'],
+          anchor={'sid':'east', 'name':'east', 'gpa':'east',
+                  'age':'east',
+                  'gender':'east'})
+p += Grid(-1, -3, 5, 3)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+Attributes on west:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender'],
+          keys=['sid'],
+          anchor={'sid':'west', 'name':'west', 'gpa':'west',
+                  'age':'west', 'gender':'west'})
+p += Grid(-4, -3, 2, 3)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+All directions:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender', 'dob'],
+          keys=['sid'],
+          double=['name'],
+          anchor={'name':'east', 'gpa':'west',
+                  'age':'west', 'gender':'south'})
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+All directions and double:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender', 'dob'],
+          keys=['sid'],
+          double=['name', 'gpa', 'Student'],
+          anchor={'name':'east', 'gpa':'west',
+                  'age':'west', 'gender':'south'})
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+All directions and double and derived
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+ER.attrib_dist = 1.5
+p += ER.entity(center=(0,0),
+          name='Student',
+          attribs=['sid', 'name', 'gpa', 'age', 'gender', 'dob', 'a', 'b', 'c', 'd'],
+          keys=['sid'],
+          derived=['age', 'a', 'b', 'c'],
+          double=['name', 'gpa', 'Student', 'd'],
+          anchor={'name':'east', 'gpa':'west', 'b':'east', 'c':'south',
+                  'age':'west', 'gender':'south'})
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+\subsection{Relation}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.relation(center=(0,0), name='Registers', label='')
+p += Grid(-3, -2, 3, 2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.relation(center=(0,0), name='Registers', label='Registers')
+p += Grid(-3, -2, 3, 2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.relation(center=(0,0), name='Registers', label='a very long string')
+p += Grid(-3, -2, 3, 2)
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.relation(center=(4,0), double=True,
+                 name='Registers', label='Registers')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.relation(center=(0,0),
+                 name='Registers',
+                 attribs=['date','a','b','c','d'])
+p += Grid(-6, -1, 6, 3)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.relation(center=(4,0),
+                 name='Registers',
+                 attribs=['date','a','b','c','d'],
+                 anchor={'date':'south', 'c':'south'})
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+\subsection{Entity and relation with different arrows}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.line(names=['A', 'B'],
+             linewidth=ER.boldlinewidth)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.line(names=['A', 'B'],
+             linewidth=ER.boldlinewidth, endstyle='>')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.line(names=['A', 'B'],
+             linewidth=ER.boldlinewidth, endstyle='>',
+             arrowstyle='triangle')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.edge(names=['A', 'B'])
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.boldedge(names=['A', 'B'])
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.arc(names=['A', 'B'])
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0), name='A')
+p += ER.relation(center=(4,0), name='B')
+p += ER.boldarc(names=['A', 'B'])
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+\subsection{Entity and relation with attributes}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.entity(center=(0,0),
+               name='Student',
+               attribs=['sid', 'name', 'gpa'], keys=['sid'])
+ER.attrib_width = 3
+p += ER.entity(center=(8,0),
+               name='Section',
+               attribs=['sectionid', 'instructor'], keys=['sectionid'])
+ER.attrib_width = 1.5
+p += ER.relation(center=(4,0), name='Registers',
+                 attribs=['date'],
+                 anchor={'date':'south'})
+p += ER.line(names=['Student', 'Registers'])
+p += ER.line(names=['Section', 'Registers'])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+\subsection{Associative entity}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.associative_entity_only(center=(0,0), name='a')
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.associative_entity_only(center=(0,0), name='a', label='a')
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ER.associative_entity_only(center=(0,0), name='a', label='long string')
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+\subsection{Crow's foot}
+
+\VerbatimInput[frame=single]{crowfoot.py}
+
+\begin{python}
+from crowfoot import *
+\end{python}

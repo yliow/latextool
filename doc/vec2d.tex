@@ -1,9 +1,72 @@
-\section{2d vector diagram}
+\section{2D vector diagram}
 
 \begin{python}
+s = r'''
 from latextool_basic import *
 p, q = (-1,-1), (-4,-3)
 print plot(vector=[p,q])
 v = vec(p, q)
 print answer(answer='')
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+plot = Plot()
+p, q = (-1,-1), (-4,-3); vector = [p, q]; vectors = [vector]
+vec2dplot(plot, vectors=[vector])
+print plot
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+Without axes:
+\begin{python}
+s = r'''
+from latextool_basic import *
+plot = Plot()
+p, q = (-1,-1), (-4,-3); vector = [p, q]; vectors = [vector]
+vec2dplot(plot, vectors=[vector], draw_axes=False)
+print plot
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\newpage
+Without axes and vector with non integer endpoints:
+\begin{python}
+s = r'''
+from latextool_basic import *
+plot = Plot()
+p, q = (-1.5, 4.2), (-4.1, -3.8); vector = [p, q]; vectors = [vector]
+vec2dplot(plot, vectors=[vector], draw_axes=False)
+print plot
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+With axes and vector with non integer endpoints:
+\begin{python}
+s = r'''
+from latextool_basic import *
+plot = Plot()
+p, q = (-1.5, 4.2), (-4.1, -3.8); vector = [p, q]; vectors = [vector]
+vec2dplot(plot, vectors=[vector])
+print plot
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
 \end{python}

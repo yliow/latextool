@@ -1,0 +1,222 @@
+\section{Code}
+
+The \verb!code! function creates a table based on the string passed in.
+The linewidths of the cells are set to 0.
+
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+    
+code(p, M)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Cell size}
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+    
+code(p, M, width=0.3, height=1)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{border linewidth}
+
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+    
+code(p, M, border_linewidth=0.05)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{distance of border to rect}
+
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+    
+code(p, M, border_linewidth=0.05, innersep=0.8)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{coderect}
+
+The return of \verb!code! is just a rect.
+\verb!coderect! takes in a \verb!code! rect and
+starting row and column indices and
+ending row and column indices and returns a rect.
+The linecolor of this rect is red.
+
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42
+
+
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+    
+N = code(p, M)
+r0 = coderect(N, 0, 0, 0, 4)
+p += r0
+r1 = coderect(N, 3, 0, 3, 27)
+r1.linecolor='blue'
+p += r1
+
+p0 = r0.bottom()
+p1 = r1.top(); p1 = (p0[0], p1[1])
+p += Line(points=[p0,p1], endstyle='>', linecolor='red')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Substitution}
+
+If you want to print $\rho$ which takes more than
+one character, you can use an unused character in the string and then
+pass in a dictionary to replace the character to the actual
+string that you need.
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42    #
+
+
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+
+code(p, M, d={'#':r'\textred{$\rho$}'})
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\newpage
+\subsection{Long division example}
+
+\verb!linebelow! is used to draw lines in code.
+\verb!divlinebelow! is used for long division line.
+
+\begin{Verbatim}[frame=single]
+from latextool_basic import *
+p = Plot()
+    
+M = r"""
+.    01
+1101 101010101010
+    -0000
+     10101
+     -1101
+      10000
+       1101
+""".strip()
+
+N = code(p, M)
+divlinebelow(p, N, 0, 5, 16)
+linebelow(p, N, 2, 4, 8)
+linebelow(p, N, 4, 5, 9)
+print p
+\end{Verbatim}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+    
+M = r"""
+.    01
+1101 101010101010
+    -0000
+     10101
+     -1101
+      10000
+       1101
+""".strip()
+
+N = code(p, M)
+divlinebelow(p, N, 0, 5, 16)
+linebelow(p, N, 2, 4, 8)
+linebelow(p, N, 4, 5, 9)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=False)
+\end{python}

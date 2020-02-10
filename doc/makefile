@@ -1,16 +1,11 @@
-
 pdf:
-	rm -f tmp/*.log 
-	rm -f tmp/*.aux
-	pdflatex --shell-escape main.tex 
-	pdflatex --shell-escape main.tex 
-	make cleantmp
+	pdflatex --shell-escape main.tex
 
 view:
-	gnome-open main.pdf
+	xdg-open main.pdf
 
 v:
-	gnome-open main.pdf
+	xdg-open main.pdf
         
 plain:
 	python ../setstyle.py main.tex --style=plain
@@ -51,8 +46,15 @@ cleantmp:
 
 clean:
 	rm -rf 'main.pdf'
-	rm tmp/*
+	make cleantmp
+        
+c:
+	rm -rf 'main.pdf'
 	make cleantmp
     
 mail:
 	sendgmail --attach=main.pdf
+
+g:
+	cp *.pdf /mnt/hgfs/yliow/Google\ Drive/toprint/
+

@@ -1,0 +1,34 @@
+\section{Ellipse}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+p += Grid(-2,-2,2,2)
+p += ellipse(-2,-1,2,1)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+p += Grid(-2,-2,2,2)
+p += ellipse(-2,-1,2,1,double=True)
+print p
+'''.strip()
+
+
+from latextool_basic import *
+print console(s)
+execute(s, print_source=True)
+\end{python}
+
+

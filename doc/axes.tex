@@ -1,0 +1,48 @@
+\section{Axes}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+axes(p, x0=0, y0=0, x1=10, y1=3)
+print p'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Grid(x0=0, y0=0, x1=10, y1=3)
+axes(p, x0=0, y0=0, x1=10, y1=3)
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+p += Grid(x0=0, y0=0, x1=10, y1=3, label_axes=False)
+axes(p, x0=0, y0=0, x1=10, y1=3)
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+p += Grid(x0=-2, y0=-1, x1=8, y1=2, label_axes=False)
+axes(p, x0=-2, y0=-1, x1=8, y1=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}

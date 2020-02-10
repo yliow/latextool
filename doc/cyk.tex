@@ -1,0 +1,88 @@
+\subsection{CYK}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+m = [['?','$A$','$B$','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ]
+p = Plot()
+cyk(p, m)
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\subsubsection{Word being parsed}
+\begin{python}
+s = r'''
+from latextool_basic import *
+m = [['?','$A$','$B$','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ]
+p = Plot()
+cyk(p, m, w='baaaab')
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\subsubsection{Backgound}
+You can set the background using the (row, col)
+index values.
+If it's set, the cell is also drawn with a larger
+linewidth.
+\begin{python}
+s = r'''
+from latextool_basic import *
+m = [['?','$A$','$B$','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ]
+p = Plot()
+cyk(p, m, background={(0,0):'blue!10',
+                      (0,1):'red!10',})
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\subsubsection{Height and width}
+\begin{python}
+s = r'''
+from latextool_basic import *
+m = [['?','$A$,$B$,$C$,$D$,$E$,$F$,$G$,$H$,$I$,$J$,$K$,$L$','$B$','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ]
+p = Plot()
+cyk(p, m, height=2)
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+

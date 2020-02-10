@@ -1,0 +1,208 @@
+\subsection{UML: sequence diagram}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+klsnames = ['main:Main', ':DiceGame', 'die1:Die', 'die2:Die']
+
+messages = [(':DiceGame','play()'),
+            ('die1:Die', 'roll()'),
+            ('return',''),
+            ('die1:Die', 'getFaceValue()'),
+            ('return','faceValue'),
+            ('die2:Die', 'roll()'),
+            ('return',''),
+            ('die2:Die', 'getFaceValue()'),
+            (None,''), # no return line
+            ('return',''),
+            (None,''), 
+           ]
+
+X,Y = 0,0
+dY = -1
+width = 2.5
+hsep = 1.5
+worldlinelength = 5
+activationbarwidth = 0.4
+
+def kls(p, x, y, s):
+    return uml_class(p, x, y, width=width, classname=s, showempty=False)
+
+k = {}
+x = X
+for klsname in klsnames:
+    k[klsname] = kls(p, x, Y, klsname)
+    x += width + hsep
+    
+def activationbar(klsname, y0, y1):
+    p0 = k[klsname].bottom()
+    x0 = p0[0] - activationbarwidth / 2.0
+    x1 = p0[0] + activationbarwidth / 2.0 
+    return Rect(x0=x0, y0=y0, x1=x1, y1=y1, background='white')
+
+Y = k.values()[0].bottom()[1] # start y coordinate at the bottom of the class
+                              # boxes
+Y += dY
+
+f = 'main:Main'
+stack = [(f, Y)]
+activationbars = [] # to be drawn AFTER the timeline
+display_return = True
+
+for x in messages:
+    if x[0] == 'return':
+        Y += dY
+        s = x[1]
+        g, Y1 = stack.pop()
+        if s != '' or display_return:
+            a, b = uml_functioncall(k, klsname0=f, klsname1=g, y=Y, s=s,
+                   activationbarwidth=activationbarwidth,
+                   linestyle='dashed')
+        p += a; p += b
+        activationbars.append((f, Y, Y1))
+        f = g
+    elif x[0] == None:
+        Y += dY
+        s = x[1]
+        g, Y1 = stack.pop()
+        #if s != '' or display_return:
+        #    a, b = uml_functioncall(k, klsname0=f, klsname1=g, y=Y, s=s,
+        #           activationbarwidth=activationbarwidth,
+        #           linestyle='dashed')
+        #p += a; p += b
+        activationbars.append((f, Y, Y1))
+        f = g
+    else:
+        Y += dY
+        g, s = x
+        a, b = uml_functioncall(k, klsname0=f, klsname1=g, y=Y, s=s,
+               activationbarwidth=activationbarwidth)
+        p += a; p += b
+        stack.append((f, Y))
+        f = g
+
+Y -= 0.5
+# timelines
+for klsname in ['main:Main', ':DiceGame', 'die1:Die', 'die2:Die']:
+    p0 = k[klsname].bottom()
+    p1 = (p0[0], Y)
+    p += Line(points=[p0,p1], linestyle='dashed')
+
+# activation bars must be drawn after worldline
+for a, b, c in activationbars:
+    p += activationbar(a, b, c)
+    
+#p += Grid()
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print '{\scriptsize %}' % console(s)
+\end{python}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+klsnames = ['main:Main', ':DiceGame', 'die1:Die', 'die2:Die']
+
+messages = [(':DiceGame','play()'),
+            ('die1:Die', 'roll()'),
+            ('return',''),
+            ('die1:Die', 'getFaceValue()'),
+            ('return','faceValue'),
+            ('die2:Die', 'roll()'),
+            ('return',''),
+            ('die2:Die', 'getFaceValue()'),
+            (None,''), # no return line
+            ('return',''),
+            (None,''), 
+           ]
+
+X,Y = 0,0
+dY = -1
+width = 2.5
+hsep = 1.5
+worldlinelength = 5
+activationbarwidth = 0.4
+
+def kls(p, x, y, s):
+    return uml_class(p, x, y, width=width, classname=s, showempty=False)
+
+k = {}
+x = X
+for klsname in klsnames:
+    k[klsname] = kls(p, x, Y, klsname)
+    x += width + hsep
+    
+def activationbar(klsname, y0, y1):
+    p0 = k[klsname].bottom()
+    x0 = p0[0] - activationbarwidth / 2.0
+    x1 = p0[0] + activationbarwidth / 2.0 
+    return Rect(x0=x0, y0=y0, x1=x1, y1=y1, background='white')
+
+Y = k.values()[0].bottom()[1] # start y coordinate at the bottom of the class
+                              # boxes
+Y += dY
+
+f = 'main:Main'
+stack = [(f, Y)]
+activationbars = [] # to be drawn AFTER the timeline
+display_return = True
+
+for x in messages:
+    if x[0] == 'return':
+        Y += dY
+        s = x[1]
+        g, Y1 = stack.pop()
+        if s != '' or display_return:
+            a, b = uml_functioncall(k, klsname0=f, klsname1=g, y=Y, s=s,
+                   activationbarwidth=activationbarwidth,
+                   linestyle='dashed')
+        p += a; p += b
+        activationbars.append((f, Y, Y1))
+        f = g
+    elif x[0] == None:
+        Y += dY
+        s = x[1]
+        g, Y1 = stack.pop()
+        #if s != '' or display_return:
+        #    a, b = uml_functioncall(k, klsname0=f, klsname1=g, y=Y, s=s,
+        #           activationbarwidth=activationbarwidth,
+        #           linestyle='dashed')
+        #p += a; p += b
+        activationbars.append((f, Y, Y1))
+        f = g
+    else:
+        Y += dY
+        g, s = x
+        a, b = uml_functioncall(k, klsname0=f, klsname1=g, y=Y, s=s,
+               activationbarwidth=activationbarwidth)
+        p += a; p += b
+        stack.append((f, Y))
+        f = g
+
+Y -= 0.5
+# timelines
+for klsname in ['main:Main', ':DiceGame', 'die1:Die', 'die2:Die']:
+    p0 = k[klsname].bottom()
+    p1 = (p0[0], Y)
+    p += Line(points=[p0,p1], linestyle='dashed')
+
+# activation bars must be drawn after worldline
+for a, b, c in activationbars:
+    p += activationbar(a, b, c)
+    
+#p += Grid()
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s)
+\end{python}

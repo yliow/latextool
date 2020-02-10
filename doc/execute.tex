@@ -24,6 +24,7 @@ TODO: Need to figure a way to remove the whitespace.
 The following does the same except that it first prints
 the python source in a framed verbatim box:
 \begin{console}
+Result:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -36,6 +37,7 @@ If \verb!debug! is set to \verb!True!, there are three
 outputs: the python source, the stderr, and the stdout, all
 in framed verbatim boxes.
 \begin{console}
+Result:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
@@ -47,27 +49,60 @@ If there's an error in the python source, the output will be the same as if
 \verb!debug! is set to \verb!True!.
 
 
+
+
 TEST: debug=True
+\begin{console}
+from latextool_basic import execute
+execute("print 'hello world'", debug=True)
+\end{console}
+Result:
 \begin{python}
 from latextool_basic import execute
 execute("print 'hello world'", debug=True)
 \end{python}
 
 
-TEST: debug=False
 
+
+
+\newpage
+TEST: debug=False
+\begin{console}
+from latextool_basic import execute
+execute("print 'hello world'", debug=False)
+\end{console}
+Result:
 \begin{python}
 from latextool_basic import execute
 execute("print 'hello world'", debug=False)
 \end{python}
 
+
+
+
+\newpage
 TEST: print source=True, debug=False
+\begin{console}
+from latextool_basic import execute
+execute("print 'hello world'", print_source=True, debug=False)
+\end{console}
+Result:
 \begin{python}
 from latextool_basic import execute
 execute("print 'hello world'", print_source=True, debug=False)
 \end{python}
 
+
+
+
+\newpage
 TEST: Error in source
+\begin{console}
+from latextool_basic import execute
+execute("print hello world")
+\end{console}
+Result:
 \begin{python}
 from latextool_basic import execute
 execute("print hello world")

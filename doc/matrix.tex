@@ -1,0 +1,76 @@
+\section{Matrix}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+
+m = Matrix([[1,2],[3,4]])
+
+print r'\[ %s \]' % latex_bmatrix(m)
+""".strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+m = Matrix([[1,2],[3,4]])
+n = Matrix([[1,-2],[3,4]])
+p = m*n
+
+print "\[%s %s = %s \]" % \
+(latex_bmatrix(m), latex_bmatrix(n), latex_bmatrix(p))
+'''.strip()
+
+from latextool_basic import *
+print '{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+m = Matrix([[1,2],[3,4]])
+n = Matrix([[1,-2],[3,4]])
+
+print latex_mult(m,n)
+'''.strip()
+
+from latextool_basic import *
+print '{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+m = Matrix([[1,2],[3,4]])
+
+print latex_inverse(m)
+'''.strip()
+
+from latextool_basic import *
+print '{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+\begin{python}
+from latextool_basic import *
+
+m = Matrix([[1,2],[3,4]])
+
+print latex_inverse(m)
+\end{python}
+
+??? What's wrong with this???
+Check again CISS380.

@@ -1,4 +1,4 @@
-\section{array}
+\subsection{array}
 
 \begin{python}
 s = r"""
@@ -8,16 +8,16 @@ s = array(x0=0.5, y0=0.5, width=1, height=1, xs=[1,2,3,4,5,6])
 p.add(s)
 p.add(grid, x0=0, y0=0, x1=7, y1=2)
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 
-
+\newpage
 \begin{python}
 s = r"""
 from latextool_basic import Plot, array
@@ -25,16 +25,16 @@ p = Plot()
 s = array(x0=0.5, y0=0.5, width=1, height=0.6, xs=[1,2,3,4,5,6])
 p.add(s)
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 
-
+\newpage
 Array of characters:
 \begin{python}
 s = r"""
@@ -44,16 +44,16 @@ s = array(x0=0.5, y0=0.5, width=1, height=0.6,
           xs=["'h'","'e'","'l'","'l'","'o'"])
 p.add(s)
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 
-
+\newpage
 array with arraylinewidth
 \begin{python}
 s = r"""
@@ -64,15 +64,17 @@ s = array(x0=0.5, y0=0.5, width=1, height=0.6,
           arraylinewidth=0.2)
 p.add(s)
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 
+
+\newpage
 array with celllinewidth
 \begin{python}
 s = r"""
@@ -83,13 +85,17 @@ s = array(x0=0.5, y0=0.5, width=1, height=0.6,
           celllinewidth=0.1)
 p.add(s)
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
+
+
+
+\newpage
 new array2
 \begin{python}
 s = r"""
@@ -100,11 +106,11 @@ s = array2(x0=0.5, y0=0.5, width=1, height=0.6,
            celllinewidth=0.04)
 p.add(s)
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 

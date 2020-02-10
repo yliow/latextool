@@ -1,0 +1,388 @@
+\subsection{\texttt{table2} function}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+m = [['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ['','','','','',''],
+     ]
+
+table2(p, m, width=0.7, height=0.7, rowlabel='x', collabel='y')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+\subsubsection{Change row and column index values/names}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m = [['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ['','','','','',''],
+     ]
+
+table2(p, m, width=0.7, height=0.7, rowlabel='x', collabel='y',
+       rownames=[r'\texttt{%s}' % _ for _ in "ABCDE"],
+       colnames=[r'\texttt{%s}' % _ for _ in "abcdef"])
+print p
+""".strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+\subsubsection{No row and column indices/values}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m = [['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ['','','','','',''],
+     ]
+
+table2(p, m, width=0.7, height=0.7, rowlabel='x', collabel='y',
+       rownames=[],
+       colnames=[])
+print p
+""".strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+\subsubsection{Change row/column names}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+
+p = Plot()
+
+m = [[0,1,1,0],
+     [0,1,0,1],
+     [1,0,1,1],
+     [0,1,1,1],
+     ]
+
+table2(p, m, width=0.7, height=0.7,
+       rownames=['00','01','11','10'],
+       colnames=['00','01','11','10'],
+       rowlabel='$WX$', collabel='$YZ$')      
+print p
+""".strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+\newpage
+\subsubsection{No row and no column names}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m = [['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ['','','','','',''],
+     ]
+
+table2(p, m, width=0.7, height=0.7,
+       rownames=[],
+       colnames=[],
+       rowlabel=None, collabel=None)
+print p
+""".strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage\subsubsection{\texttt{border\_linewidth}}
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+
+m = [['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ['','','','','',''],
+     ]
+
+table2(p, m, x=0, y=0, width=0.7, height=0.7,
+       rownames=[],
+       colnames=[],
+       rowlabel=None, collabel=None, border_linewidth=0)
+table2(p, m, x=8, y=0, width=0.7, height=0.7,
+       rownames=[],
+       colnames=[],
+       rowlabel=None, collabel=None, border_linewidth=0.5)
+print p
+""".strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+\newpage
+\subsubsection{Adding things beneath table2: background}
+
+The \verb!do_not_plot! can be used to compute the coordinate of the cells.
+\verb!table2! will then return the RectContainer object but the table is not drawn.
+So one way to change the background is to do \verb!do_not_plot!
+to get the coordinates, draw a rect with background color,
+then call \verb!table2! to draw the contents of the table.
+(Also, see rect parameter later.)
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+m = [['','','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ['0','',''],           # OK to have jagged arrays
+     ]
+
+p = Plot()
+C = table2(p, m, rowlabel='x', collabel='y', do_not_plot=True)
+
+# Draw over C[1][4]
+x0,y0 = C[1][4].bottomleft()
+x1,y1 = C[1][4].topright()
+p += Rect(x0=x0, y0=y0, x1=x1, y1=y1,
+          background='blue!20',label='A', linewidth=0)
+
+# Draw table one more time to get border of C[1][4] correct
+table2(p, m, rowlabel='x', collabel='y')
+
+p += Line(points=[C[0][1].center(), C[2][3].center()], endstyle='>')
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+
+
+
+
+\newpage
+\subsubsection{Using cells}
+
+Drawing arrows between cells using \texttt{shorten} function for arrows
+using a shortening factor:
+
+\begin{python}
+s = r"""
+x = "     "
+y = "      "
+m = [['' for i in range(len(y))] for j in range(len(x))]
+m[3][2] = 15
+m[2][1] = 26
+from latextool_basic import *
+p = Plot()
+C = table2(p, m, width=0.7, height=0.7,
+           rowlabel=r'\texttt{x}', collabel=r'\texttt{y}')
+           
+p0 = C[3][2].center()
+p1 = C[2][1].center()
+p0, p1 = shorten(p0, p1, factor=0.5)
+p += Line(points=[p0, p1], endstyle='>')
+
+p0 = C[3][2].center()
+p1 = C[2][2].center()
+p0, p1 = shorten(p0, p1, factor=0.5)
+p += Line(points=[p0, p1], endstyle='>')
+
+p0 = C[3][2].center()
+p1 = C[3][1].center()
+p0, p1 = shorten(p0, p1, factor=0.5)
+p += Line(points=[p0, p1], endstyle='>')
+
+print p
+""".strip()
+
+from latextool_basic import *
+exec(s)
+print console(s)
+\end{python}
+
+
+
+
+
+\newpage
+Drawing arrows between cells using \texttt{shorten} function for arrows
+using a shortening amount:
+
+\begin{python}
+s = r"""
+x = "     "
+y = "      "
+m = [['' for i in range(len(y))] for j in range(len(x))]
+from latextool_basic import *
+p = Plot()
+C = table2(p, m, width=0.7, height=0.7,
+           rowlabel=r'\texttt{x}', collabel=r'\texttt{y}')
+           
+p0 = C[1][1].center()
+p1 = C[3][1].center()
+p += Line(points=[p0, p1], endstyle='>', linecolor='red')
+
+p0 = C[1][2].center()
+p1 = C[3][2].center()
+p0, p1 = shorten(p0, p1, start_by=0.5)
+p += Line(points=[p0, p1], endstyle='>', linecolor='green')
+
+p0 = C[1][3].center()
+p1 = C[3][3].center()
+p0, p1 = shorten(p0, p1, end_by=0.5)
+p += Line(points=[p0, p1], endstyle='>', linecolor='blue')
+
+print p
+""".strip()
+
+from latextool_basic import *
+exec(s)
+print console(s)
+\end{python}
+
+
+
+
+
+\newpage
+\subsubsection{Rect for cells}
+
+You can specify a rect function of your own:
+\begin{python}
+s = r"""
+from latextool_basic import *
+
+c = RectContainer(x=0, y=0)
+xs = 'ABA'; shadedbackground='black!10'
+for i,x in enumerate(xs):
+    if i in [1,2]:
+        c += Rect2(x0=0, y0=0, x1=0.4, y1=0.4,
+             background=shadedbackground,
+             linewidth=0.01, label=r'{\texttt{%s}}' % x)
+    else:
+        c += Rect2(x0=0, y0=0, x1=0.4, y1=0.4,
+                   background='white',
+                   linewidth=0.01, label=r'{\texttt{%s}}' % x)
+q = Plot(); q += c
+m = [[str(q),'','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ]
+
+p = Plot()
+
+def rect(x):
+    return Rect(x0=0, y0=0, x1=2, y1=2, radius=0.2, innersep=0.2,
+    linecolor='red!30!white', linewidth=0.1,
+    background='blue!20!white!', foreground='blue!90!white',
+    s='%s' % x, align='t')
+
+table2(p, m, width=0.7, height=0.7, rowlabel='x', collabel='y', rect=rect)
+print p
+""".strip()
+
+from latextool_basic import *
+exec(s)
+print r'''
+{\scriptsize
+%s
+}
+''' % console(s)
+\end{python}
+
+
+
+
+\newpage
+\subsubsection{Using rect to change the background}
+
+You can use the rect to for instance change
+the background.
+In the following, the rects at column 2
+are given larger width and a different background,
+and the contents are placed in a minipage with tiny fontsize.
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+m = [['1','primes: 2, 3, 5, 7, 11, 13, 19, ...','','','',''],
+     ['','','','','',''],
+     ['','','','','',''],
+     ['','','','','3',''],
+     ]
+def get_rect():
+    i = [0]
+    def rect(x):
+        if i[0] % 6 == 1:
+            i[0] += 1
+            return Rect(x0=0, y0=0, x1=2, y1=1,
+                        background='blue!20!white!',
+                        innersep=0.1,
+                        s=r'{\tiny %s}' % x, align='t')
+        else:
+            i[0] += 1                
+            return Rect(x0=0, y0=0, x1=1, y1=1, label=x)
+    return rect
+p = Plot()
+table2(p, m, rowlabel='x', collabel='y', rect=get_rect())
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}

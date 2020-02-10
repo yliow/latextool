@@ -1,0 +1,108 @@
+\section{Relative node placement}
+
+Temporary fix to relative node placement: use the \verb!next_to! function.
+
+
+\url{http://tex.stackexchange.com/questions/69439/how-can-i-achieve-relative-positioning-in-tikz}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ellipse(1, 1, 4, 2, name='a', label='a')
+b = str(ellipse(5, 2, 7, 3, name='b', label='b'))
+p += b
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ellipse(1, 1, 4, 2, name='a', label='a')
+b = str(ellipse(5, 2, 7, 3, name='b', label='b'))
+b = next_to(b, name='a', directions=('right', 0))
+p += b
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ellipse(1, 1, 4, 2, name='a', label='a')
+b = str(ellipse(5, 2, 7, 3, name='b', label='b'))
+b = next_to(b, name='a', directions=('left', 1))
+p += b
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += ellipse(1, 1, 4, 2, name='a', label='a')
+
+x = str(ellipse(5, 2, 7, 3, name='b', label='b'))
+x = next_to(x, name='a', directions=('right', 1))
+p += x
+
+x = str(ellipse(5, 2, 7, 3, name='c', label='c'))
+x = next_to(x, name='b', directions=('right', 1))
+p += x
+
+x = str(ellipse(5, 2, 7, 3, name='d', label='d'))
+x = next_to(x, name='c', directions=('right', 1))
+p += x
+
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+Example that uses both =of and anchor:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += r'\node[minimum width=5cm, draw, rectangle] (basis) {};'
+p += r'\node[above=of basis.north west, anchor=south west, draw, rectangle, minimum width=1cm] (a) {A};'
+p += r'\node[above=of basis, draw, rectangle,minimum width=1cm] (b) {B};'
+p += r'\node[above=of basis.north east, anchor=south east, draw, rectangle, minimum width=1cm] (c) {C};'
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\newpage
+Example that uses both =of and anchor and labeling a rect.
+Basically flushing left on two nodes.
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += r'\node[minimum width=5cm, draw, rectangle] (basis) {};'
+p += r'\node[above=0.2cm of basis.north west, anchor=south west, rectangle, minimum width=1cm, inner sep=0cm] (a) {This is the title};'
+print p
+'''
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+

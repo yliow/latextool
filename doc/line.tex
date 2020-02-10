@@ -1,20 +1,4 @@
-\section{Line}
-
-API:
-\begin{python}
-s = r'''
-from latextool_basic import Line, verbatim
-print verbatim(Line.__doc__)
-'''
-
-from latextool_basic import execute
-execute(s, print_source=True)
-\end{python}
-
-
-
-\newpage
-TEST 1. Test linecolor, linewidth, startstyle, endstyle
+\subsection{linecolor and linewidth}
 
 \begin{python}
 s = r"""
@@ -26,18 +10,19 @@ p += Line(x0=6, y0=0, x1=9, y1=2, linecolor='red', linewidth=0.2,
                                   linestyle='dashed')
 p += Grid()
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
 print console(s.strip())
-print makeandincludegraphics(python=s)
+
+exec(s)
 \end{python}
 
 
 
 
 \newpage
-TEST 2.
+\subsection{startstyle and endstyle}
 
 \begin{python}
 s = r"""
@@ -55,18 +40,18 @@ p += Line(x0=12, y0=0, x1=15, y1=2, linecolor='blue', linewidth=0.05,
                                    startstyle='>>', endstyle='>>')
 p += Grid()
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 
 
 \newpage
-TEST 3. Test \verb!arrowstyle=triangle!.
+\verb!arrowstyle=triangle!.
 
 \begin{python}
 s = r"""
@@ -81,18 +66,18 @@ p += Line(x0=6, y0=0, x1=9, y1=2, linecolor='red', linewidth=0.2,
                                   arrowstyle='triangle')
 p += Grid()
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 
 
 \newpage
-TEST 4: Test \verb!startstyle='dot'!.
+\verb!startstyle='dot'!.
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -107,15 +92,16 @@ p += Line(x0=6, y0=0, x1=9, y1=2, linecolor='black', linewidth=0.05,
                                   endstyle='->',  arrowstyle='triangle')
 p += Grid()
 print p
-"""
+""".strip()
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
 \newpage
-TEST 5: Test \verb!points!:
+\subsection{\texttt{points} parameter}
+
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -125,39 +111,17 @@ p += Line(points=[(1,4), (0,0), (5,0), (6,3)],
           startstyle='->', arrowstyle='triangle', endstyle='dot')
 p += Grid()
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
-
 \newpage
-Test 6. Testing spacing. 
+\subsection{boundary points}
 
-\lipsum[1]
-\begin{python}
-s = r"""
-from latextool_basic import *
-p = Plot()
-p += Line(points=[(1,4), (0,0), (5,0), (6,3)], 
-          linecolor='blue', linewidth=0.1, 
-          startstyle='->', arrowstyle='triangle', endstyle='dot')
-p += Grid()
-print p
-"""
-
-from latextool_basic import console, makeandincludegraphics
-#print console(s.strip())
-print makeandincludegraphics(python=s)
-\end{python}
-\lipsum[1]
-
-
-\newpage
-TEST 7. Test boundary points
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -177,17 +141,16 @@ p += Circle(center=aline.bottomleft(), r=0.25, background='red')
 p += Circle(center=aline.bottomright(), r=0.25, background='red')
 p += Grid()
 print p
-"""
+""".strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print console(s)
+exec(s)
 \end{python}
 
 
-
 \newpage
-TEST 8. Test points
+Test points
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -202,23 +165,43 @@ for point in aline.points:
 p += aline
 p += Grid()
 print p
-"""
+""".strip()
+
+from latextool_basic import console
+print console(s)
+exec(s)
+\end{python}
 
 
+\newpage
+\subsection{Midpoints}
 
-from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+Test midpoint (can be useful for weighted graphs and network flows.
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+points = [(0,-1), (10,3)]
+aline = Line(points=points, endstyle='>', linewidth=0.1)    
+p += aline
+
+p += Circle(center=aline.midpoint(), r=0.4, 
+            background='white', label=r'{\texttt{%s}}' % 42)
+p += Grid()
+print p
+""".strip()
+
+from latextool_basic import console
+print console(s)
+exec(s)
 \end{python}
 
 
 
 
 
-
-
 \newpage
-TEST 9. Test midpoint for 1 segment.
+Test midpoint with different ratios.
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -240,11 +223,11 @@ linewithpoints(p, [(11, -7), (11, 0)], 'green', 'red!20')
 linewithpoints(p, [(12, 0), (12, -7)], 'green', 'red!20')
 p += Grid()
 print p
-"""
+""".strip()
 
-from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+from latextool_basic import console
+print console(s)
+exec(s)
 \end{python}
 
 
@@ -252,7 +235,8 @@ print makeandincludegraphics(python=s)
 
 
 \newpage
-TEST 10. Test midpoint for 1 segment.
+
+Test midpoint for 1 segment.
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -266,16 +250,16 @@ for i in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
                 background='red!20', label=r'{\texttt{%s}}' % i)
 p += Grid()
 print p
-"""
+""".strip()
 
-from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+from latextool_basic import console
+print console(s)
+exec(s)
 \end{python}
 
 
 \newpage
-TEST 11. Test short line with arrow tip (basically to test arrow tip).
+Test short line with arrow tip (basically to test arrow tip).
 \begin{python}
 s = r"""
 from latextool_basic import *
@@ -287,11 +271,275 @@ for i, x in enumerate([0.2, 0.15, 0.1, 0.05, 0.01]):
               endstyle='->', arrowstyle='triangle')    
 #p += Grid()
 print p
-"""
+""".strip()
 
-from latextool_basic import console, makeandincludegraphics
+from latextool_basic import console
 print console(s.strip())
-print makeandincludegraphics(python=s)
+exec(s)
 \end{python}
 
 For arrows with line width x, it seems enough to have a length of x.
+
+
+
+\newpage
+\subsection{tikz names}
+line from tikz name to tikz name:
+
+\begin{python}
+s = r"""
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=1, y0=0, x1=2, y1=1, label='a', name='a')
+p += Rect(x0=5, y0=1, x1=6, y1=2, label='b', name='b')
+
+p += Line(names=['a', 'b'], endstyle='>')
+
+print p
+""".strip()
+
+from latextool_basic import console, makeandincludegraphics
+print console(s)
+exec(s)
+\end{python}
+
+
+
+\newpage
+\subsection{bend}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+p += Circle(x=0, y=0, r=1, name='a', label='a')
+p += Circle(x=4, y=0, r=1, name='b', label='b')
+p += Circle(x=8, y=3, r=1, name='c', label='c')
+
+p += Line(names=['a','b','c'], bend_left=30, endstyle='>', linewidth=0.1)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+exec(s)
+\end{python}
+
+
+
+
+\newpage
+\subsection{label and anchor}
+
+anchor = below
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=0.3, name='a', label='a')
+p += Circle(x=10, y=0, r=0.3, name='b', label='b')
+p += Line(names=['a', 'b'], anchor='below', label='hello')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+anchor = below with bend
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=0.3, name='a', label='a')
+p += Circle(x=10, y=0, r=0.3, name='b', label='b')
+p += Line(names=['a', 'b'], bend_left=30, anchor='below', label='hello')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+anchor = above
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=0.3, name='a', label='a')
+p += Circle(x=10, y=0, r=0.3, name='b', label='b')
+p += Line(names=['a', 'b'], bend_left=30, anchor='above', label='hello')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+anchor = above with bend
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=0.3, name='a', label='a')
+p += Circle(x=10, y=0, r=0.3, name='b', label='b')
+p += Line(names=['a', 'b'], bend_left=30, anchor='above', label='hello')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+anchor = left with bend
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=0.3, name='a', label='a')
+p += Circle(x=0, y=3, r=0.3, name='b', label='b')
+p += Line(names=['a', 'b'], bend_left=30, anchor='left', label='hello')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+anchor = right with bend
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Circle(x=0, y=0, r=0.3, name='a', label='a')
+p += Circle(x=0, y=3, r=0.3, name='b', label='b')
+p += Line(names=['a', 'b'], bend_left=30, anchor='right', label='hello')
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+\newpage
+\subsection{Using midpoint to place labels}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+aline = Line(points=[(0,0), (3,0)])
+p += aline
+x,y = aline.midpoint(ratio=0.2)
+
+from latexcircuit import *
+p += Circle(x=x, y=y, r=0.05, background='red')
+X = POINT(x=x, y=y, label='$abcde$', anchor='south')
+p += str(X)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+\newpage
+\subsection{Two control points}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+L = 0.03
+C = 'blue!50'
+
+p += Circle(x=2, y=2, r=0.2, background=C, name='a', linewidth=L)
+p += Circle(x=1, y=1.5, r=0.05, background='black')
+p += Circle(x=1.5, y=1, r=0.05, background='black')
+
+p += Line(names=['a','a'], controls=[(1,1.5),(1.5,1)], linewidth=L)
+p += Grid(0, 0, 3, 3)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+\newpage
+\subsection{One control point}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+C = 'blue!50'
+
+p += Circle(x=2, y=2, r=0.2, background=C, name='22', linewidth=L)
+p += Circle(x=0, y=0, r=0.2, background=C, name='00', linewidth=L)
+
+p += Circle(x=0, y=2, r=0.05, background='black')
+
+p += Line(names=['22','00'], controls=[(0,2)], linewidth=0.03)
+p += Grid(x0=-1,y0=-1,x1=3,y1=3)
+
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+
+\newpage
+1 control point and label
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+L = 0.03
+C = 'blue!50'
+
+p += Circle(x=2, y=2, r=0.2, background=C, name='22', linewidth=L)
+p += Circle(x=0, y=0, r=0.2, background=C, name='00', linewidth=L)
+
+p += Circle(x=0, y=2, r=0.05, background='black')
+
+p += Line(names=['22','00'], controls=[(0,2)], linewidth=L, label='test', anchor='below')
+
+p += Grid(x0=-1,y0=-1,x1=3,y1=3)
+print p
+'''.strip()
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+

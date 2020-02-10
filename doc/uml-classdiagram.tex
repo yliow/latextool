@@ -1,0 +1,390 @@
+\subsection{UML: class diagram}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+    
+uml_class(p, 1, 1,
+             classname='Student',
+             attributes=['- firstName:\ String',
+                         '- lastName:\ String'],
+             methods=['+ getFirstName():\ String',
+                      '+ getLastName():\ String'])
+
+uml_class(p, 8, 1,
+             width=4,
+             classname='Student')
+
+uml_class(p, 13, 1,
+             width=4,
+             classname='Student',
+             showempty=False)
+
+p += Grid()
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+
+exec(s)
+\end{python}
+
+
+\newpage
+Relevant arrow tips:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+    
+#p += r'\draw[->>] (1,-5) -- (10,-5);'
+#p += r'\draw[->] (1,-5.5) -- (10,-5.5);'
+#p += r'\draw[-diamond] (1,-6) -- (10,-6);'
+#p += r'\draw[-open diamond] (1,-6.5) -- (10,-6.5);'
+#p += r'\draw[-open triangle 45] (1,-7) -- (10,-7);'
+
+
+p += Line(points=[(0,0),(2,0)], endstyle='diamond', linewidth='0.02')
+p += Line(points=[(0,-1),(2,-1)], endstyle='open diamond', linewidth='0.02')
+p += Line(points=[(0,-2),(2,-2)], endstyle='>', linewidth='0.02')
+p += Line(points=[(0,-3),(2,-3)], endstyle='>>', linewidth='0.02')
+p += Line(points=[(0,-4),(2,-4)], endstyle='open triangle 45', linewidth='0.02')
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+\newpage
+Associations:
+
+Go right:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, 7, 0, width=3, classname='B')
+association(p, p0=A.right(), p1=B.left(), s='plays', c0='a', c1='b')
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+Go left:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 7, 0, width=3, classname='A')
+B = uml_class(p, 0, 0, width=3, classname='B')
+association(p, p0=A.left(), p1=B.right(), s='plays', c0='a', c1='b')
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+Go down:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 3, width=3, classname='A')
+B = uml_class(p, 0, 0, width=3, classname='B')
+association(p, p0=A.bottom(), p1=B.top(), s='plays', c0='a', c1='b')
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+Go up:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, -3, width=3, classname='A')
+B = uml_class(p, 0, 0, width=3, classname='B')
+association(p, p0=A.top(), p1=B.bottom(), s='plays', c0='a', c1='b')
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+\newpage
+Go right-up (long-short):
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, 5, 1, width=3, classname='B')
+p0 = A.right()
+p1 = B.bottom()
+association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
+            moves=[('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+Go right-up (short-long):
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, 2, 4, width=3, classname='B')
+p0 = A.right()
+p1 = B.bottom()
+association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
+            moves=[('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+
+
+
+\newpage
+Go right-down (long-short):
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, 5, -1, width=3, classname='B')
+p0 = A.right()
+p1 = B.top()
+association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
+            moves=[('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+Go right-down (short-long):
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, 2, -4, width=3, classname='B')
+p0 = A.right()
+p1 = B.top()
+association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
+            moves=[('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+Go left-down (long-short):
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, -5, -1, width=3, classname='B')
+p0 = A.left()
+p1 = B.top()
+association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
+            moves=[('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+Go left-down (short-long):
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+A = uml_class(p, 0, 0, width=3, classname='A')
+B = uml_class(p, -2, -4, width=3, classname='B')
+p0 = A.left()
+p1 = B.top()
+association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
+            moves=[('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+    
+player = uml_class(p, 0, 0, width=3, classname='Player')
+die = uml_class(p, 7, 0, width=3, classname='Die')
+dicegame = uml_class(p, 0, -4, width=3, classname='DiceGame')
+test = uml_class(p, 10, 3, width=3, classname='Test')
+
+association(p, p0=player.bottom(), p1=dicegame.top(), s='plays',
+            c0='1', c1='1', layout='n')
+association(p, p0=player.right(), p1=die.left(), s='rolls',
+                c0='1', c1='2', layout='e')
+association(p, p0=dicegame.right(), p1=die.bottom(), s='includes',
+                   c0='1', c1='2', layout='en')
+association(p, p0=die.top(), p1=test.left(), s='this is a test',
+                   c0='1..2', c1='2..*', layout='ne')
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+exec(s)
+\end{python}
+
+
+\newpage
+Reflexive associations:
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+player = uml_class(p, 0, 0, width=3, classname='', showempty=False)
+p0 = player.left()
+p1 = player.top()
+association(p, p0=p0, p1=p1, s='test',
+               c0='1..2', c1='foo', moves=['w','n',('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+player = uml_class(p, 0, 0, width=3, classname='Player', showempty=False)
+p0 = player.right()
+p1 = player.top()
+association(p, p0=p0, p1=p1, s='test',
+            c0='1..2', c1='2..*', moves=['e','n',('x',p1),('y',p1)])
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+player = uml_class(p, 0, 0, width=3, classname='Player', showempty=False)
+association(p, p0=player.left(), p1=player.top(), s='test',
+               c0='1..2', c1='2..*', layout='wnes',
+               dn=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+person = uml_class(p, 0, 0, width=3, classname='Person', showempty=False)
+room = uml_class(p, 5, 0, width=3, classname='Room', showempty=False)
+knife = uml_class(p, 2.5, -2, width=3, classname='Knife', showempty=False)
+
+association(p, p0=person.right(), p1=room.left(), s='in',
+               c0='*', c1='1', layout='e')
+association(p, p0=person.left(), p1=person.top(), s='talks to',
+               c0='1', c1='1', layout='wnes')
+
+p0 = knife.right()
+p1 = room.bottom()
+association(p, p0=p0, p1=p1, s='in',
+               c0='0', c1='*', moves=[('x',p1),('y',p1)])
+
+p0 = person.bottom()
+p1 = knife.left()
+association(p, p0=p0, p1=p1, s='holds',
+               c0='*', c1='0', moves=[('y', p1), ('x', p1)])
+              
+print p
+'''.strip()
+
+from latextool_basic import *
+print r'{\small %s }' % console(s)
+exec(s)
+\end{python}
+
+

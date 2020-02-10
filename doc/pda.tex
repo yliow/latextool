@@ -1,0 +1,233 @@
+\subsection{PDA}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+pda(p,
+    stackvalues = ['a','\$'],
+    tape = ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+    state = r'$q_0$',
+    head_index = 0,
+    body_w = 3,
+    body_h = 2,
+    vsep = 1,
+    hsep = 1,
+    input_tape_str=True,
+    stack_str=True,
+    )
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+\subsection{PDA: bounding rect}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r = pda(p,
+    stackvalues = ['a','\$'],
+    tape = ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+    state = r'$q_0$',
+    head_index = 0,
+    body_w = 3,
+    body_h = 2,
+    vsep = 1,
+    hsep = 1,
+    input_tape_str=True,
+    stack_str=True,
+    )
+x0,y0 = r.bottomleft()
+x1,y1 = r.topright()
+p += Rect(x0=x0,y0=y0,x1=x1,y1=y1,linecolor='red')
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+
+
+
+\newpage
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+pda_computation(p,
+    data = [(r'$q_0$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             0,
+             []),
+            (r'$q_1$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             1,
+             ['a',]), # 'b','c', 'd', 'e', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             ['a', r'\$']),
+            (r'$q_3$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             3,
+             ['b', 'a', r'\$']),
+             (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             ['a', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            ]
+    )
+
+print p'''.strip()
+from latextool_basic import *
+print '''
+{\small %s }
+''' % console(s)
+\end{python}
+
+\newpage
+\subsection{Sequence of PDA}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+def rect(index, p, x0, y0, no_draw=False):
+    data = [(r'$q_0$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             0,
+             []),
+            (r'$q_1$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             1,
+             ['a',]), # 'b','c', 'd', 'e', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             ['a', r'\$']),
+            (r'$q_3$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             3,
+             ['b', 'a', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             ['a', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            ]
+    
+    if index < len(data):
+        state, tape, head_index, stackvalues = data[index]    
+        return pda(p,
+               x0=x0,y0=y0,
+               stackvalues = stackvalues,
+               tape= tape,
+               state = state,
+               head_index = head_index,
+               vsep=0.5, hsep=0.25,
+               body_w=1, body_h=0.7, w=0.4,
+               no_draw=no_draw,
+               )
+    else:
+        return None
+
+sequence(p, rect=rect)
+print p
+'''.strip()
+from latextool_basic import *
+print r'{\scriptsize %s } ' % console(s)
+\end{python}
+\begin{python}
+from latextool_basic import *
+p = Plot()
+
+def rect(index, p, x0, y0, no_draw=False):
+    data = [(r'$q_0$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             0,
+             []),
+            (r'$q_1$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             1,
+             ['a',]), 
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             ['a', r'\$']),
+            (r'$q_3$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             3,
+             ['b', 'a', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             ['a', r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            (r'$q_2$',
+             ['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
+             2,
+             [r'\$']),
+            ]
+    if index < len(data):
+        state, tape, head_index, stackvalues = data[index]    
+        return pda(p,
+               x0=x0,y0=y0,
+               stackvalues = stackvalues,
+               tape= tape,
+               state = state,
+               head_index = head_index,
+               vsep=0.5, hsep=0.25,
+               body_w=1, body_h=0.7, w=0.4,
+               no_draw=no_draw,
+               )
+    else:
+        return None
+
+sequence(p, rect=rect)
+print p
+\end{python}
+
+

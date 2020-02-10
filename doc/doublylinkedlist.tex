@@ -1,4 +1,5 @@
-\section{Doubly linked list}
+\newpage
+\subsection{Doubly linked list}
 
 \begin{python}
 s = r"""
@@ -60,9 +61,11 @@ c.next = d; d.prev = c; d.next = e; e.prev = d
 p = Plot()
 p += str(c); p += str(d); p += str(e)
 print p
-"""
-from latextool_basic import console, makeandincludegraphics
-#print console(s.strip())
-print makeandincludegraphics(python=s)
+""".strip()
+
+from latextool_basic import *
+
+print r'{\scriptsize %s }' % console(s)
+execute(s)
 \end{python}
 

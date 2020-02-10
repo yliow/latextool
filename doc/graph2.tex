@@ -1,0 +1,101 @@
+\subsection{The \texttt{graph2} function}
+
+graph2 is an improvement and extension of graph.
+
+\begin{console}
+from latextool_basic import *
+p = Plot()
+
+s = graph2(yscale=1, xscale=1,
+layout="""
+    A 
+  B   C 
+ D E F G
+H I
+""",
+minimum_size='8mm',
+edges='A-B,A-C,B-D,B-E,C-G,C-F,D-H,D-I',
+A=r'label=\texttt{12}',
+B=r'label=\texttt{9}',
+C=r'label=\texttt{8}',
+D=r'label=\texttt{5}',
+E=r'label=\texttt{3}',
+F=r'label=\texttt{0}',
+G=r'label=\texttt{7}',
+H=r'label=\texttt{2}',
+I=r'label=\texttt{1}',
+fill_dict={'A':'blue!10'},
+)
+
+p += s
+
+p += r'\path[<->,dashed] (A) edge [bend left] (B);
+
+print p
+\end{console}
+
+
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+
+s = graph2(yscale=1, xscale=1,
+layout="""
+    A 
+  B   C 
+ D E F G
+H I
+""",
+minimum_size='8mm',
+edges='A-B,A-C,B-D,B-E,C-G,C-F,D-H,D-I',
+A=r'label=\texttt{3}',
+B=r'label=\texttt{9}',
+C=r'label=\texttt{8}',
+D=r'label=\texttt{5}',
+E=r'label=\texttt{3}',
+F=r'label=\texttt{0}',
+G=r'label=\texttt{7}',
+H=r'label=\texttt{2}',
+I=r'label=\texttt{1}',
+fill_dict={'A':'blue!10', 'B':'blue!10'},
+)
+
+p += s
+p += r'\path[triangle 60-triangle 60,dashed] (A) edge [bend left] (B);'
+p += Rect(0,0,1,1)
+print p
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+
+s = graph2(xoffset=2, yoffset=2, yscale=1, xscale=1,
+layout="""
+    A 
+  B   C 
+ D E F G
+H I
+""",
+minimum_size='8mm',
+edges='A-B,A-C,B-D,B-E,C-G,C-F,D-H,D-I',
+A=r'label=\texttt{3}',
+B=r'label=\texttt{9}',
+C=r'label=\texttt{8}',
+D=r'label=\texttt{5}',
+E=r'label=\texttt{3}',
+F=r'label=\texttt{0}',
+G=r'label=\texttt{7}',
+H=r'label=\texttt{2}',
+I=r'label=\texttt{1}',
+fill_dict={'A':'blue!10', 'B':'blue!10'},
+)
+
+p += s
+p += r'\path[triangle 60-triangle 60,dashed] (A) edge [bend left] (B);'
+p += Rect(2-0.1,2-0.1,2+0.1,2+0.1,background='black')
+p += Grid(x0=0,y0=-2,x1=8,y1=3)
+print p
+\end{python}

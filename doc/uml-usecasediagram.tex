@@ -1,0 +1,34 @@
+\subsection{UML: use case diagram}
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+uml_usecase_man(p)
+print p
+\end{python}
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+uml_usecase_man(p, x0=0, y0=0, w=1.5)
+print p
+\end{python}
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+uml_usecase_man(p, x0=0, y0=0, w=2)
+print p
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+rect = uml_usecase_man(p, x0=0, y0=0, w=2)
+p += ellipse(x0=5, y0=3, x1=8, y1=5)
+p += Rect(x0=5, y0=3, x1=8, y1=5, label='play a game', linewidth=0)
+q = rect.topright(); q[1] -= 1
+p += Line(points=[q, (5,3)])
+print p 
+\end{python}

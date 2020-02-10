@@ -1,0 +1,148 @@
+\subsection{Heap file}
+
+\begin{python}
+from latextool_basic import *
+
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = []
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0,12)]
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0, 12), (12, 11), (23, 10)]
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0,12), (12,5), (17,5), (22,5), (27,5), (32,5), (37,5)]
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+Test with holes:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0,12), (15, 7)]
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+\verb!free_offset!:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0,12), (15, 7)]
+free_offset = 30
+
+heapfilepage(p, nrows, ncols, slots, free_offset)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+\newpage
+deleted records:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0,12), (15, 7), (-1, 5), (30, 6), (-1, 3), (42, 10)]
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+deleted records:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+nrows = 5
+ncols = 20
+slots = [(0,12), (15, 7), (-1, 5), (30, 6), (-1, 3), (42, 10)]
+
+heapfilepage(p, nrows, ncols, slots)
+print p
+'''.strip()
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}

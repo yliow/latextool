@@ -1,0 +1,33 @@
+\section{vphantom}
+
+no vphantom:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=0, y0=0, x1=1, y1=1,
+          label=r'{\textsf{%s}}' % "b")
+p += Rect(x0=1, y0=0, x1=2, y1=1,
+          label=r'{\textsf{%s}}' % "g")
+print p
+'''
+from latextool_basic import *
+exec(s)
+print r'{\small %s}' % console(s.strip())
+\end{python}
+
+with vphantom:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+p += Rect(x0=0, y0=0, x1=1, y1=1,
+          label=r'{\vphantom{bg}\textsf{%s}}' % "b")
+p += Rect(x0=1, y0=0, x1=2, y1=1,
+          label=r'{\vphantom{bg}\textsf{%s}}' % "g")
+print p
+'''
+from latextool_basic import *
+exec(s)
+print r'{\small %s }' % console(s.strip())
+\end{python}

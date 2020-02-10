@@ -1,0 +1,321 @@
+\subsection{Adjacency list}
+
+
+Even number of linked lists:
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0],[4,5],[1,2,3],[1,4], [5],[7,7,7]],
+                                   nodevspace=0.5, nodehspace=0.7,
+                                   nodewidth=1, nodeheight=0.8)
+
+p += r
+
+for k,v in crosses.items():
+    for _ in v: p += _
+
+for k,v in nodes.items():
+    for _ in v: p += _
+
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0],[4,5],[1,2,3],[1,4], [5],[7,7,7]],
+                                   nodevspace=0.5, nodehspace=0.3,
+                                   nodewidth=0.7, nodeheight=0.4)
+
+p += r
+
+for k,v in crosses.items():
+    for _ in v: p += _
+
+for k,v in nodes.items():
+    for _ in v: p += _
+
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[1,2,3],[1,4],],
+                                   nodevspace=0.2, nodehspace=0.3,
+                                   nodewidth=1, nodeheight=1)
+
+p += r
+
+for k,v in crosses.items():
+    for _ in v: p += _
+
+for k,v in nodes.items():
+    for _ in v: p += _
+
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0],[4,5],[], [1,4], [5],[]])
+p += r
+
+r0 = r[1] # redraw r[1] with 'blue!20'
+r0.background = 'blue!20'
+r0.linecolor = 'blue'
+p += r0
+
+for k,v in crosses.items():
+    for _ in v: p += _
+
+for k,v in nodes.items():
+    for _ in v: p += _
+
+# redraw nodes[1]
+for _ in nodes[1]:
+    _[0].background = 'blue!20'
+    _[0].linecolor = 'blue'
+    p += _[0]
+
+for k,v in lines.items():
+    for _ in v: p += _
+
+# redraw lines[1]
+for _ in lines[1]:
+    _.linecolor = 'blue'
+    p += _
+    
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+
+
+
+
+
+Test odd number of pointers
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0,5,4]],
+                                   nodevspace=0.2, nodehspace=0.3,
+                                   nodewidth=1, nodeheight=1)
+
+p += r
+for k,v in crosses.items():
+    for _ in v: p += _
+for k,v in nodes.items():
+    for _ in v: p += _
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0,5,4],[1,2,3],[1,2,3]],
+                                   nodevspace=0.2, nodehspace=0.3,
+                                   nodewidth=1, nodeheight=1)
+
+p += r
+for k,v in crosses.items():
+    for _ in v: p += _
+for k,v in nodes.items():
+    for _ in v: p += _
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0,5,4]],
+                                   nodevspace=0.2, nodehspace=0.3,
+                                   nodewidth=1, nodeheight=2)
+
+p += r
+for k,v in crosses.items():
+    for _ in v: p += _
+for k,v in nodes.items():
+    for _ in v: p += _
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0,5,4]],
+                                   nodevspace=0.2, nodehspace=0.3,
+                                   nodewidth=1, nodeheight=1)
+)
+p += r
+for k,v in crosses.items():
+    for _ in v: p += _
+for k,v in nodes.items():
+    for _ in v: p += _
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+
+
+
+
+
+
+\begin{python}
+from latextool_basic import *
+
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+r, crosses, nodes, lines = adjlist(xs=[[0,5,4],[4,5,3,4],[1, 2, 3], [1,4,2], [5,7,6]])
+p += r
+for k,v in crosses.items():
+    for _ in v: p += _
+for k,v in nodes.items():
+    for _ in v: p += _
+for k,v in lines.items():
+    for _ in v: p += _
+
+print p
+'''
+s = s.strip()
+
+print console(s)
+exec(s)
+\end{python}
+

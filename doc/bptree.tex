@@ -1,0 +1,276 @@
+\section{B+ tree}
+
+\subsection{Node}
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+widths= [0.15, 0.4]; height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0 = f([5, 10])
+
+Y = 0
+N0 = bpt_node(x=4.5, y=Y, M=M0, widths=widths, height=height)
+
+p += N0
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+Key width:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+widths= [0.15, 2]; height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0 = f([5, 10])
+
+Y = 0
+N0 = bpt_node(x=4.5, y=Y, M=M0, widths=widths, height=height)
+
+p += N0
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+\subsection{Directed edge}
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+widths= [0.15, 0.4]; height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0, M1, M2, M3 = f([5, 10]), f([0, 1]), f([5, 6]), f([7, 8])
+
+N0 = bpt_node(x=4.5, y=0, M=M0, widths=widths, height=height)
+N1 = bpt_node(x=0, y=-2, M=M1, widths=widths, height=height)
+N2 = bpt_node(x=5, y=-2, M=M2, widths=widths, height=height)
+N3 = bpt_node(x=10, y=-2, M=M3, widths=widths, height=height)
+
+arc0 = bpt_arc(N0, N1, 0);
+arc1 = bpt_arc(N0, N2, 1, linecolor='red')
+arc2 = bpt_arc(N0, N3, 2, linecolor='blue')
+
+p += N0; p += N1; p += N2; p += N3
+p += arc0; p += arc1; p += arc2
+
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+\newpage
+Changing height of the bend.
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+widths= [0.15, 0.4]; height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0, M1, M2, M3 = f([5, 10]), f([0, 1]), f([5, 6]), f([7, 8])
+
+N0 = bpt_node(x=4.5, y=0, M=M0, widths=widths, height=height)
+N1 = bpt_node(x=0, y=-2, M=M1, widths=widths, height=height)
+N2 = bpt_node(x=5, y=-2, M=M2, widths=widths, height=height)
+N3 = bpt_node(x=10, y=-2, M=M3, widths=widths, height=height)
+
+arc0 = bpt_arc(N0, N1, 0);
+arc1 = bpt_arc(N0, N2, 1, linecolor='red', delta=0.2)
+arc2 = bpt_arc(N0, N3, 2, linecolor='blue', delta=0.4)
+
+p += N0; p += N1; p += N2; p += N3
+p += arc0; p += arc1; p += arc2
+
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+Labels
+
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+widths= [0.15, 0.4]; height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0 = f([5, 10]); M1 = f([0, 1]); M2 = f([5, 6])
+
+Y = 0
+N0 = bpt_node(x=4.5, y=Y, M=M0, widths=widths, height=height)
+
+Y = -2
+N1 = bpt_node(x=0, y=Y, M=M1, widths=widths, height=height)
+N2 = bpt_node(x=5, y=Y, M=M2, widths=widths, height=height)
+
+arc0 = bpt_arc(N0, N1, 0); arc1 = bpt_arc(N0, N2, 1, linecolor='red')
+
+p += N0; p += N1; p += N2
+p += arc0; p += arc1
+
+from latexcircuit import *
+x,y = arc0.midpoint()
+p += Circle(x=x, y=y, r=0.05, background='red')
+X = POINT(x=x, y=y, label='$(-\infty,5)$', anchor='south')
+p += str(X)
+
+x,y = arc1.midpoint(ratio=0.7)
+p += Circle(x=x, y=y, r=0.05, background='blue')
+X = POINT(x=x, y=y, label='$[5, 10)$', anchor='west')
+p += str(X)
+
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+{\small
+\VerbatimInput[frame=single]{bptree5.py}
+}
+\begin{python}
+from bptree5 import *
+\end{python}
+
+
+
+\newpage
+Width is 0 for pointers:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+widths= [0, 0.4]
+height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0 = f([5, 10, 17, 22])
+M1 = f([0, 1, 3, 4])
+M2 = f([6, 7, 8, 9])
+M3 = f([12, 13, 14, 15])
+M4 = f([17, 18, 19, 20])
+M5 = f([22, 30, 50, 60])
+
+N0 = bpt_node(x=5, y=0, M=M0, widths=widths, height=height)
+
+N1 = bpt_node(x=0, y=-2, M=M1, widths=widths, height=height)
+N2 = bpt_node(x=2.5, y=-2, M=M2, widths=widths, height=height)
+N3 = bpt_node(x=5, y=-2, M=M3, widths=widths, height=height)
+N4 = bpt_node(x=7.5, y=-2, M=M4, widths=widths, height=height)
+N5 = bpt_node(x=10, y=-2, M=M5, widths=widths, height=height)
+p += N0; p += N1; p += N2; p += N3; p += N4; p+= N5
+
+p += bpt_arc(N0, N1, 0, delta=0.2, r=0)
+p += bpt_arc(N0, N2, 1, r=0)
+p += bpt_arc(N0, N3, 2, r=0)
+p += bpt_arc(N0, N4, 3, r=0)
+p += bpt_arc(N0, N5, 4, delta=0.2, r=0)
+
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+Width for keys is 0.
+Might be easier to read (when width of pointer is 0) if
+the linewidth of rects is thicker:
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+
+widths= [0, 0.4]
+height = 0.4
+
+def f(M):
+    return [r'{{\scriptsize\texttt{%s}}}' % _ for _ in M]
+
+M0,M1,M2,M3,M4,M5 = (f([5, 10, 17, 22]), f([0, 1, 3, 4]), f([6, 7, 8, 9]),
+          f([12, 13, 14, 15]), f([17, 18, 19, 20]), f([22, 30, 50, 60]))
+
+def bpt_node_(x, y, M):
+    return bpt_node(x=x, y=y, M=M, widths=widths, height=height,
+                    linewidth=0.04)
+    
+N0 = bpt_node_(x=5, y=0, M=M0)
+N1 = bpt_node_(x=0, y=-2, M=M1)
+N2 = bpt_node_(x=2.5, y=-2, M=M2)
+N3 = bpt_node_(x=5, y=-2, M=M3)
+N4 = bpt_node_(x=7.5, y=-2, M=M4)
+N5 = bpt_node_(x=10, y=-2, M=M5)
+p += N0; p += N1; p += N2; p += N3; p += N4; p+= N5
+
+p += bpt_arc(N0, N1, 0, delta=0.2, r=0)
+p += bpt_arc(N0, N2, 1, r=0)
+p += bpt_arc(N0, N3, 2, r=0)
+p += bpt_arc(N0, N4, 3, r=0)
+p += bpt_arc(N0, N5, 4, delta=0.2, r=0)
+
+print p
+
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
+

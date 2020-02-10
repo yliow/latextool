@@ -1,0 +1,170 @@
+\subsection{Tic-tac-toe}
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+X = 'X'; O = 'O'; s = ''
+
+m = [[X, s, s, s],
+     [s, X, O, s],
+     [s, O, O, s],
+     [s, s, s, s]]
+board = ttt(p=p, m=m)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+no row and column labels:
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+X = 'X'; O = 'O'; s = ''
+
+m = [[X, s, s, s],
+     [s, X, O, s],
+     [s, O, O, s],
+     [s, s, s, s]]
+board = ttt(p=p, m=m,
+            rownames=['','','',''], colnames=['','','',''])
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+position:
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+X = 'X'; O = 'O'; s = ''
+
+m = [[X, s, s, s],
+     [s, X, O, s],
+     [s, O, O, s],
+     [s, s, s, s]]
+board = ttt(p=p, x=0, y=0,
+            m=m,
+            rownames=['','','',''], colnames=['','','',''])
+board = ttt(p=p, x=5, y=1,
+            m=m,
+            rownames=['','','',''], colnames=['','','',''])
+p += Grid(x0=-1, y0=-4, x1=9, y1=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+cell size:
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+X = 'X'; O = 'O'; s = ''
+
+m = [[X, s, s, s],
+     [s, X, O, s],
+     [s, O, O, s],
+     [s, s, s, s]]
+board = ttt(p=p, x=0, y=0,
+            m=m,
+            rownames=['','','',''], colnames=['','','',''],
+            width=0.4)
+board = ttt(p=p, x=5, y=1,
+            m=m,
+            rownames=['','','',''], colnames=['','','',''])
+p += Grid(x0=-1, y0=-3, x1=9, y1=2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+
+
+
+\newpage
+border:
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+
+X = 'X'; O = 'O'; s = ''
+
+m = [[X, s, s, s],
+     [s, X, O, s],
+     [s, O, O, s],
+     [s, s, s, s]]
+board = ttt(p=p, x=0, y=0,
+            m=m,
+            rownames=['','','',''], colnames=['','','',''],
+            border_linewidth=0.2)
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
+\newpage
+using the board
+\begin{python}
+s = r'''from latextool_basic import *
+from latexcircuit import *
+
+p = Plot()
+
+X = 'X'; O = 'O'; s = ''
+
+m = [[X, s, s, s],
+     [s, X, O, s],
+     [s, O, O, s],
+     [s, s, s, s]]
+board0 = ttt(p=p, x=0, y=0,
+            m=m,
+            rownames=['','','',''], colnames=['','','',''])
+x,y = board0.topleft()
+X = POINT(x=x, y=y, r=0, label='Tic-tac-toe', anchor='south west')
+p += str(X)
+
+m[0][1] = 'X'
+board1 = ttt(p=p, x=6, y=0,
+             m=m,
+             rownames=['','','',''], colnames=['','','',''])
+
+p += Line(points=[board0.right(), board1.left()], endstyle='>', linewidth=0.4)
+
+p += Line(points=[board0[0][1].center(),
+                  board1[0][1].left()], endstyle='>', linewidth=0.1)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+print console(s)
+execute(s)
+#execute(s, print_source=True)
+\end{python}
+
