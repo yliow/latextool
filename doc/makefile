@@ -43,6 +43,14 @@ cleantmp:
 	rm -rf 'main.snm'
 	rm -rf 'main.nav'
 	rm -rf 'abc.output'
+	rm -rf main.py*
+	rm -rf tmp
+	rm -rf aaaaa.txt
+	rm -rf *.pyc
+	rm -rf latex.py
+	rm -rf stderr.txt
+	rm -rf stdout.txt
+	rm -rf auto
 
 clean:
 	rm -rf 'main.pdf'
