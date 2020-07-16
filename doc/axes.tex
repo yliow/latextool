@@ -46,3 +46,31 @@ print p
 from latextool_basic import *
 execute(s, print_source=True)
 \end{python}
+
+\newpage
+NEW VERSION
+
+\begin{python}
+s = r'''from latextool_basic import *
+p = Plot()
+xaxis = XAxis(x0=0, y0=0,
+              start=5.0, end=20.0,
+              xscale=1.0,          
+              start_tick=0.2, end_tick=12.25, 
+              tick_gap=0.25,                 
+              tick_len=0.05,
+              start_label=6.0, end_label=18.0,
+              label_gap=1,                      
+              label_anchor_gap=0,               
+              label_fontsize=r'\small',
+              arrowhead=None)
+
+p += Circle(x=0, y=0, r=0.1, background='red')
+p += Circle(x=1, y=0, r=0.1, background='blue')
+p += str(xaxis)              
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}

@@ -99,7 +99,6 @@ print makeandincludegraphics(python=s)
 
 \newpage
 Auto adjust node position
-
 \begin{python}
 s = r'''
 from latextool_basic import positions
@@ -109,27 +108,25 @@ d = positions(r"""
 E F G H   I J  
 K L M N O P
 """, xscale=0.7)
-
 edges = {'A':['B','C','D'], 'B':['E', 'F', 'G'],
          'C':['H','I'],     'D':['J'],
          'E':['K', 'L'],    'F':['M', 'N', 'O'],
          'I':['P'],
 }
-
 from latextool_basic import Plot, tree
 p = Plot()
-p.add(tree(d,
-           hor_sep=0.1,
+p.add(tree(d, hor_sep=0.1,
            width=1, height=0.5, 
-           node_label={'A':'a'},
-           node_shape='rect',
+           node_label={'A':'a'}, node_shape='rect',
            edges=edges,
            autoadjust=True))
 print p
 '''
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
+print r'''{\small
+%s
+}''' % console(s.strip())
 print makeandincludegraphics(python=s)
 \end{python}
 
@@ -181,45 +178,12 @@ for k,v in edges.items():
     for _ in v:
         p += Line(points=[rects[k].bottom(), rects[_].top()])
 print p
-'''
+'''.strip()
 
 from latextool_basic import *
-print console(s)
-exec(s)
-\end{python}
-
-
-\begin{python}
-s = r'''
-from latextool_basic import *
-d = positions(r"""
-   A
-   B
-C  D  E
-F   G H I
-    J   L
-    K   M
-""", xscale=0.7)
-edges = {'A':['B'],          'B':['C', 'D', 'E'], 'C':['F'],
-         'E':['G','H','I'],  'G':['J'],           'J':['K'],
-         'I':['L'],          'L':['M'],
-        }
-        
-p = Plot()
-labels = {'A':r'\texttt{<expr>}',   'B':r'\texttt{<factor>}',
-          'C':r'\texttt{<bin>}',    'D':r'\texttt{*}',
-          'E':r'\texttt{<expr>}',   'F':r'\texttt{1}',
-          'G':r'\texttt{<factor>}', 'H':r'\texttt{+}',
-          'I':r'\texttt{<factor>}', 'J':r'\texttt{<bin>}',
-          'K':r'\texttt{1}',        'L':r'\texttt{<bin>}',
-          'M':r'\texttt{0}',
-        }
-rects = parse_tree(p=p, d=d, edges=edges, labels=labels)
-print p
-'''
-
-from latextool_basic import *
-print console(s)
+print r'''{\small
+%s
+}''' % console(s)
 exec(s)
 \end{python}
 
@@ -241,8 +205,7 @@ F   G H I
 """, xscale=0.7)
 edges = {'A':['B'],          'B':['C', 'D', 'E'], 'C':['F'],
          'E':['G','H','I'],  'G':['J'],           'J':['K'],
-         'I':['L'],          'L':['M'],
-        }
+         'I':['L'],          'L':['M']}
 p = Plot()
 labels = {'A':r'\texttt{<expr>}',   'B':r'\texttt{<factor>}',
           'C':r'\texttt{<bin>}',    'D':r'\texttt{*}',
@@ -250,8 +213,7 @@ labels = {'A':r'\texttt{<expr>}',   'B':r'\texttt{<factor>}',
           'G':r'\texttt{<factor>}', 'H':r'\texttt{+}',
           'I':r'\texttt{<factor>}', 'J':r'\texttt{<bin>}',
           'K':r'\texttt{1}',        'L':r'\texttt{<bin>}',
-          'M':r'\texttt{0}',
-        }
+          'M':r'\texttt{0}'}
 rects = parse_tree(p=p, d=d, edges=edges, labels=labels)
 for v in 'DFHKM':
     r = rects[v]
@@ -260,7 +222,7 @@ for v in 'DFHKM':
     p += Rect(x0=x0, y0=y0, x1=x1, y1=y1, background='blue!10',
               label=labels[v])
 print p
-'''
+'''.strip()
 
 from latextool_basic import *
 print console(s)

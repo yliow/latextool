@@ -36,7 +36,7 @@ execute(s)
 
 
 \newpage
-Changing separate between nodes:
+Changing separation between nodes:
 \begin{python}
 s = '''from latextool_basic import *
 
@@ -72,7 +72,7 @@ execute(s)
 
 
 \newpage
-Changing separate between nodes:
+Changing separation between nodes:
 \begin{python}
 s = '''from latextool_basic import *
 
@@ -185,9 +185,9 @@ edges={'A':['B','C'],
 
 def node(x, y, name, l):
     if name in ['A', 'B']:
-        return Graph.node(x=x, y=y, r=0.3, name=name, label=l, background='red!10')
+        return Graph.node(x=x, y=y, r=0.25, name=name, label=l, background='red!10')
     else:
-        return Graph.node(x=x, y=y, r=0.3, name=name, label=l)
+        return Graph.node(x=x, y=y, r=0.25, name=name, label=l)
 def edge(names):
     if names==['A','B']:
         return Graph.edge(names=names, linecolor='red')
@@ -229,7 +229,7 @@ edges={'A':['B','C'],
        'K':['M','N'],
        'L':['','P']}
 
-BinTree(edges=edges).run(p)
+BinTree.run(p, edges=edges)
      
 print p
 '''.strip()
@@ -257,7 +257,7 @@ edges={'A':['B','C'],
        'K':['M','N'],
        'L':['','P']}
 def label(x): return r'{\footnotesize \texttt{%s}}' % x
-BinTree(edges=edges, label=label).run(p)
+BinTree.run(p, edges=edges, label=label)
      
 print p
 '''.strip()

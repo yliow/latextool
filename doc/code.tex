@@ -22,6 +22,30 @@ from latextool_basic import *
 execute(s, print_source=True)
 \end{python}
 
+\newpage
+Position:
+\begin{python}
+s = '''
+from latextool_basic import *
+p = Plot()
+
+M = r"""
+twice (fun x -> x * x) 42
+(fun f -> (fun x -> f(f x))) (fun x -> x * x) 42
+""".strip()
+
+p += Circle(x=0, y=0, r=0.5)
+code(p, M, x=0, y=0)
+
+p += Circle(x=2, y=2, r=0.5, linecolor='red')
+code(p, M, x=2, y=2)
+
+print p
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
 
 
 

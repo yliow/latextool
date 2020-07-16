@@ -17,6 +17,15 @@ from math import *
 import traceback
 import string
 
+def to_string(s):
+    """ IMPORTANT: Some strings are returned as bytes. Call this to
+    convert to strings.
+    This has been done in the shell function. """
+    if isinstance(s, bytes):
+        return "".join( chr(x) for x in bytearray(s))
+    else:
+        return str(s)
+
 def myround(points):
     ''' rounding to prevent overflow of accuracy '''
     #print points, type(points)
@@ -185,26 +194,26 @@ def center(s):
 
 
 def do_latex_example(s, center=True):
-    print console(s.strip())
+    print (console(s.strip()))
     if center:
-        print r"""\begin{center}
+        print (r"""\begin{center}
 %s
-\end{center}""" % s
+\end{center}""" % s)
     else:
-        print r"""\begin{center}
+        print (r"""\begin{center}
 %s
-\end{center}""" % s
+\end{center}""" % s)
         
 
 
 def do_tikz_example(s):
-    print console(s.strip())
-    print r"""\begin{center}
+    print (console(s.strip()))
+    print (r"""\begin{center}
 \begin{tikzpicture}
 %s
 \end{tikzpicture}
 \end{center}
-""" % s
+""" % s)
 
 #==============================================================================
 # verbatim
@@ -528,7 +537,7 @@ def execute(source,
             s = stdout
         
     if print_result:
-        print s
+        print (s)
     else:
         return s
 
@@ -606,8 +615,10 @@ class Plot:
         fragment.
 
         TODO: Add objects instead
-        """            
-        if karg.has_key('name'):
+        """
+
+        # Python3 change
+        if 'name' in karg: # OLD: karg.has_key('name'):
             name = karg['name']
         else:
             name = self.auto_inc; self.auto_inc += 1
@@ -1707,7 +1718,7 @@ class RectContainer(BaseNode):
             s += str(rect)
         x0 = min(x0s); x1 = max(x1s)
         y0 = min(y0s); y1 = max(y1s)
-        #print "self.name:", self.name
+        #print "(self.name: %s" % self.name)
         if self.name != None:
             s += ';\n'
             s0 = str(Rect(x0=x0, y0=y0, x1=x1, y1=y1,
@@ -1834,6 +1845,7 @@ def line(x0=0, y0=0, x1=0, y1=0,
          #s=None,
          anchor=None,
          controls=None,
+         loop=None, # 2020/06/03: note: only when names are the same
          ):
     if color != '': linecolor = color
     if color == '' and linecolor != '': color=linecolor
@@ -1843,6 +1855,10 @@ def line(x0=0, y0=0, x1=0, y1=0,
                       linestyle=linestyle,
                       arrowstyle=arrowstyle,
                       endstyle=endstyle)
+
+    # 2020/06/03: If the two names in names are the same, use loop
+    #             But would need "loop left", "loop right", "loop above"
+    #
     
     if points == None:
         points = [(x0,y0),(x1,y1)]
@@ -1865,9 +1881,15 @@ def line(x0=0, y0=0, x1=0, y1=0,
         if bend_left == None and bend_right == None:
             bend_left = 0
         if bend_left:
-            s = (" to [bend left=%s] %s " % (bend_left, label)).join(s)
+            if loop:
+                s = (" to [bend left=%s, %s] %s " % (bend_left, loop, label)).join(s)
+            else:
+                s = (" to [bend left=%s] %s " % (bend_left, label)).join(s)
         elif bend_right:
-            s = (" to [bend right=%s] %s " % (bend_right, label)).join(s)
+            if loop:
+                s = (" to [bend left=%s, %s] %s " % (bend_right, loop, label)).join(s)
+            else:
+                s = (" to [bend right=%s] %s " % (bend_right, label)).join(s)
         else:        
             s = (" to %s " % (label,)).join(s)
     else: # use control points
@@ -1915,10 +1937,10 @@ def line(x0=0, y0=0, x1=0, y1=0,
 def midpoint(p0, p1, ratio=0.5):
     if ratio < 0: ratio = 0.0
     if ratio > 1: ratio = 1.0
-    #print "midpoint ... p0:", p0
-    #print "midpoint ... p1:", p1
+    #print ("midpoint ... p0: %s" % p0)
+    #print ("midpoint ... p1: %s" % p1)
     v = [p1[0] - p0[0], p1[1] - p0[1]]
-    #print "v:", v
+    #print ("v:" % v)
     #l = length(p0, p1)
     v = [v[0] * ratio, v[1] * ratio]
     p2 = [p0[0] + v[0], p0[1]+ v[1]]
@@ -1961,9 +1983,11 @@ class Line(BaseNode):
                  bend_right=None,
                  anchor=None,
                  label=None,
-                 controls=None):
+                 controls=None,
+                 loop=None, # 2020/06/03
+    ):
         points = myround(points) # WARNING: rounding ... need to test more
-        #print "points:", points
+        #print ("points: %s" % points)
         if points not in [None, []]:
             x0 = min([i for i,j in points])
             x1 = max([i for i,j in points])
@@ -1988,6 +2012,7 @@ class Line(BaseNode):
         self.label = label
         self.anchor = anchor
         self.controls = controls
+        self.loop = loop
     def __length(self):
         startpoints = self.points[:-1]
         endpoints = self.points[1:]
@@ -2020,27 +2045,27 @@ class Line(BaseNode):
         prevp = self.points[0]
         prevq = self.points[1]
         s = 0.0
-        #print "totallength:", totallength
+        #print ("totallength:" % totallength)
         for p,q in zip(startpoints, endpoints):
-            #print 
-            #print "p:", p
-            #print "q:", q
+            #print ()
+            #print ("p:" % p)
+            #print ("q:" % q)
             prevsum = s
-            #print "prevsum:", prevsum
+            #print ("prevsum:" % prevsum)
             s += length(p,q)
-            #print "s:", s
+            #print ("s:" % s)
             if s / totallength > ratio:
-                #print "break"
+                #print ("break")
                 break
             prevp = p
             prevq = q
-        #print "p:", p
-        #print "q:", q
-        #print "ratio:", ratio
-        #print "totallength:", totallength
-        #print "prevsum:", prevsum
-        #print "length(p,q):", length(p, q)
-        #print "new ratio:", (ratio*totallength - prevsum) / length(p,q)
+        #print ("p: %s" % p)
+        #print ("q: %s" % q)
+        #print ("ratio: %s" % ratio)
+        #print ("totallength: %s" % totallength)
+        #print ("prevsum: %s" % prevsum)
+        #print ("length(p,q): %s" % length(p, q))
+        #print ("new ratio: %s" % (ratio*totallength - prevsum) / length(p,q))
         return midpoint(p, q,
                         ratio=(ratio*totallength - prevsum) / length(p,q)
                         )
@@ -2060,6 +2085,7 @@ class Line(BaseNode):
         anchor = self.anchor
         label = self.label
         controls = self.controls
+        loop = self.loop
         r = self.r
         names = self.names
         bend_left = self.bend_left
@@ -2080,7 +2106,8 @@ class Line(BaseNode):
                     bend_right=bend_right,
                     anchor=anchor,
                     label=label,
-                    controls=controls)
+                    controls=controls,
+                    loop=loop)
         return ret
 
 class vector(Line):
@@ -2310,7 +2337,7 @@ def tree2(edges=[],
         for x in v:
             if x not in vertices: vertices.append(x)
         
-    #print "vertices:", vertices
+    #print ("vertices: %s" % vertices)
 
     for v in vertices:
         if v not in edges.keys():
@@ -2645,10 +2672,14 @@ def pdflatex(filename):
     return stdout, stderr, returncode
 
 def pdfcrop(filename):
+    """
+    dnf install -y texlive-pdfcrop
+    """
     if not filename.endswith('.pdf'): filename += '.pdf'
     d = {'filename':filename}
     cmd = 'pdfcrop %(filename)s %(filename)s' % d
     stdout, stderr, returncode = myexec(cmd)
+    return stdout, stderr, returncode
     
 #==============================================================================
 # The function shell executes a linux shell command and returns the stdout
@@ -2729,6 +2760,11 @@ def shell(cmd,
         else:
             stdout = stderr = ''
 
+        # Python3 upgrade: Popen returns bytes.
+        # Need to convert to string
+        stdout = to_string(stdout)
+        stderr = to_string(stderr)
+        
         if not include_stderr: stderr = ''
         t = "%s %s\n%s%s" % (prompt, c, stdout, stderr)
         t = t.replace(cwd, CWD)
@@ -2746,7 +2782,7 @@ def shell(cmd,
         s = verbatim(s)
     os.chdir(cwd)
 
-    return s
+    return to_string(s)
 
 
 #==============================================================================
@@ -2773,7 +2809,8 @@ B C
         symbols = [_ for _ in s.split(' ') if _ != '']
         for symbol in symbols:
             col = line.index(symbol)
-            if d.has_key(symbol):
+            # Python3 change
+            if symbol in d: # d.has_key(symbol)
                 raise ValueError("repeat symbols %s" % symbols)
             d[symbol] = [col*xscale, -row*yscale]
     return d
@@ -3006,6 +3043,7 @@ def frame(env, top='', W=1.2, H=0.6):
 #==============================================================================
 def makepdf(latex,
             ahash=None,
+            filename=None, # example: 'main'
             ):
     if ahash==None: ahash = hash(latex)
     latex = latex.strip()
@@ -3062,7 +3100,8 @@ def makepdf(latex,
         os.makedirs(TMP)
     os.chdir(TMP)
 
-    filename = ahash
+    if not filename:
+        filename = ahash
     writefile("%s.tex" % filename, s)
 
     stdout, stderr, returncode = pdflatex(filename)
@@ -3080,7 +3119,6 @@ def hash(s):
 
     
 def includegraphics(filename, include_filename=False):
-    #print "includegraphics ..."
     if include_filename:
         return r"""\begin{center}
 \includegraphics{%s}
@@ -3428,7 +3466,7 @@ def automata(
     ):
     pos = positions(layout,xscale,yscale)
     node = {}
-    #print "pos:", pos
+    #print ("pos: %s" % pos)
     for k,v in pos.items():
         node[k] = {'pos':v}
         node[k]['initial'] = ""
@@ -3437,7 +3475,7 @@ def automata(
 
     e = {}
     for v in [_ for _ in edges.split(separator) if _ != '']:
-        #print "v:", v
+        #print ("v:" % v)
         q1,v = v.split(',',1)
         v,q2 = v.rsplit(',',1)
         e[(q1,q2)] = v
@@ -3466,7 +3504,7 @@ def automata(
         try:
             d['pos'] = "(%3s,%3s)" % (v['pos'][0], v['pos'][1])
         except:
-            print "v[pos]:", v['pos']
+            print ("v[pos]: %s" % v['pos'])
             raise
         if minimum_size == None:
             node_str += r"\node[state%(initial)s%(accept)s] (%(name)s) at %(pos)s {%(label)s};" % d
@@ -3499,7 +3537,7 @@ def automata(
             if p not in [q0,q1]:
                 if between(p0,node[p]['pos'],p1):
                     count += 1
-	#print "p0,p1,count:", p0,p1,count
+	#print ("p0,p1,count: %s %s %s" % (p0,p1,count))
         if count == 0:
             if (q1,q0) in e.keys(): angle = 10
             else: angle = 0
@@ -3516,7 +3554,7 @@ def automata(
             # THIS IS WRONG WHEN TARGET NODE IS BELOW SOURCE 
             return "[bend left=%s,pos=0.5]" % angle
     edge_str = ""
-    #print "e:", e
+    #print ("e: %s" % e)
     e2 = e.items()
     e2.sort()
     for k, v in e2:
@@ -3555,20 +3593,20 @@ if __name__ == '__main__':
                  linecolor='blue', linewidth=0.1, 
                  startstyle='dot', arrowstyle='triangle', endstyle='->')
     
-    print bline.midpoint(ratio=0.2)
+    print (bline.midpoint(ratio=0.2))
     '''
 
     '''
-    print table([('',  2, 5,  8),
+    print (table([('',  2, 5,  8),
              ('', '', 3,  6),
             ],
             col_headings = ['0', '2', '5', '8'],
             row_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
-           )
+           ))
     '''
 
-    print consolegrid(2)
+    print (consolegrid(2))
 
 #==============================================================================
 # Matrix
@@ -3964,7 +4002,7 @@ class Matrix:
                 augmat.rowaddmultiple(k, r, r1)
                 computations.append(('addmult', (k, r, r1), copy.deepcopy(augmat)))
 
-            #print augmat
+            #print (augmat)
 
         # extract the inverse
         xs = []
@@ -4178,11 +4216,12 @@ class FunctionPlot:
             tick_label_style = r"tick label style={%s}" % tick_label_style
         else:
             tick_label_style = ""
-        "legend pos=outer north east,"
+            "legend pos=outer north east,"
         self.pre = r"""
 \begin{center}
 \begin{tikzpicture}[line width=%(line_width)s]
 \begin{axis}[width=%(width)s, height=%(height)s,
+             scatter/classes={a={mark=*,draw=black}},
              xlabel={\mbox{}},
              xlabel style={name=xlabel}, 
              ylabel={\mbox{}}, %(tick_label_style)s
@@ -4206,7 +4245,7 @@ class FunctionPlot:
             **argdict):
         """
         LINE GRAPH BY POINTS
-        obj.add((1,1),(2,2),(3,3),line_width='1',color='black')
+        obj.add(((1,1),(2,2),(3,3)),line_width='1',color='black')
 
         LINE GRAPH BY LATEX FUNCTION
         obj.add("x**2 + 1",line_width='1',color='black')
@@ -4230,7 +4269,8 @@ class FunctionPlot:
             if d['num_points'] <= 2: d['num_points'] = 3 # FIXIT
             d['vars'] = argdict.get('vars', self.vars)
             d['legend'] = argdict.get('legend', None)
-                                      
+            d['mark size'] = argdict.get('mark_size', '1')
+
             if isinstance(arglist[0], str):
                 if not d['python']:
                     d['function'] = arglist[0]
@@ -4250,12 +4290,12 @@ class FunctionPlot:
                             # in case for log function the x is not in domain
                             # can be a problem if the expression is written
                             # wrongly
-                            #print "---> expr:", d['expr']
+                            #print ("---> expr: %s" % d['expr'])
                             y = eval(d['expr'])
                             points.append("(%s,%s)" % (x,y))
-                        except Exception, e1: # don't use e ... conflicts with math.e
+                        except Exception as e1: # don't use e ... conflicts with math.e
                             pass
-                            #print e
+                            #print (e)
                         x += dx; exec('%s = x' % d['vars'][0])
                     
                     try:
@@ -4263,21 +4303,30 @@ class FunctionPlot:
                         x = maxx; exec('%s = x' % d['vars'][0])
                         y = eval(d['expr'])
                         points.append("(%s,%s)" % (x,y))
-                    except Exception, e1:
+                    except Exception as e1:
                         pass
                     
                     d['points'] = '\n'.join(points)
                             
             elif isinstance(arglist[0], (list, tuple)):
-                d['points'] = "\n".join([str(_) for _ in arglist[0]]) 
-
+                if d['style'] != 'scatter':
+                    d['points'] = "\n".join([str(_) for _ in arglist[0]]) 
+                else:
+                    d['points'] = "\n".join(["%s %s a" % (x,y) for (x,y) in arglist[0]])
             if d['style'] == '':
                 partbody = r"""\addplot[draw=%(color)s, line width=%(line_width)s] coordinates {%(points)s};""" % d
-                self.body += partbody
             elif d['style'] == 'step':
                 partbody = r"""\addplot[const plot, draw=%(color)s, line width=%(line_width)s] coordinates {%(points)s};""" % d
-                self.body += partbody
-
+            elif d['style'] == 'scatter':
+                partbody = r"""\addplot[scatter,only marks,mark size=%(mark size)s,scatter src=explicit symbolic]
+table[meta=label] {
+x y label
+%(points)s
+};"""
+                partbody = partbody % d
+            
+            self.body += partbody
+            
             # pin
             pin = ''
             if d['pin']:
@@ -4307,13 +4356,14 @@ class FunctionPlot:
 
             self.body += legend
     
-        except Exception, e:
+        except Exception as e:
             str_e = str(e)
             f = file('traceback.txt', 'w')
             traceback.print_exc(file=f)
             f.close()
             str_tb = file('traceback.txt', 'r').read()
             self.exception = '%s\n\n%s' % (str_tb, str_e)
+            raise
     def __str__(self):
         if self.exception:
             return self.exception
@@ -4440,7 +4490,8 @@ def graph(shape='circle',
                 if search.group()[0] == ' ': ind += 1
                 shape = node_dict[node]['shape']
 
-                if node_dict[node].has_key('graph coloring'):
+                # Python3 change
+                if 'graph coloring' in node_dict[node]: # OLD: node_dict[node].has_key('graph coloring')
                     label = node_dict[node]['label']
                     label = graph_coloring_label(eval(label))
                 else:
@@ -4450,14 +4501,17 @@ def graph(shape='circle',
                 if node_dict[node]['fill']:
                     size += ',fill=%s' % node_dict[node]['fill']
                 if shape=='rectangle':
-                    if node_dict[node].has_key('minimum width'):
+                    # Python3
+                    if 'minimum width' in node_dict[node]: # OLD: node_dict[node].has_key('minimum width')
                         size += ',minimum width=%s' % node_dict[node]['minimum width']
-                    if node_dict[node].has_key('minimum height'):
+                    # Python3 change
+                    if 'minimum height' in node_dict[node]:
                         size += ',minimum height=%s' % node_dict[node]['minimum height']
                 if shape=='tree':
-                    if node_dict[node].has_key('minimum height'):
+                    # Python3 change
+                    if 'minimum height' in node_dict[node]:
                         size += ',minimum height=%s' % node_dict[node]['minimum height']
-                if node_dict[node].has_key('text width'):
+                if 'text width' in node_dict[node]:
                     size += ',text width=%s' % node_dict[node]['text width']
 
                 if shape=='tree':
@@ -4484,7 +4538,7 @@ def graph(shape='circle',
                     
                 s += '\n'
 
-    #print "s:",
+    #print ("s:",)
     
     # now add edges
     for edge in [_.strip() for _ in edges.strip().split(',') if _.strip() != '']:
@@ -4494,7 +4548,7 @@ def graph(shape='circle',
                 start = node
                 break
         if start == None:
-            print "\nERROR: UNKNOWN START NODE IN", edge, "\n"
+            print ("\nERROR: UNKNOWN START NODE IN %s" % edge)
             continue
         
         end = None
@@ -4503,7 +4557,7 @@ def graph(shape='circle',
                 end = node
                 break
         if end == None:
-            print "\nERROR: UNKNOWN START NODE IN", edge, "\n"
+            print ("\nERROR: UNKNOWN START NODE IN %s" % edge)
             continue
 
         linetype = edge[len(start):][:-len(end)]
@@ -4514,13 +4568,14 @@ def graph(shape='circle',
         elif linetype == '->': pass
         elif linetype == 'dashed': linetype='dashed' #????
         else:
-            print
-            print "ERROR: UNKNOWN LINE TYPE", linetype
-            print
+            print ()
+            print ("ERROR: UNKNOWN LINE TYPE %s" % linetype)
+            print ()
             continue
 
-        if args.has_key('edge_label') \
-               and args['edge_label'].has_key((start,end)):
+        # Python3 change
+        if 'edge_label' in args \
+               and (start,end) in args['edge_label']:
             s += r'\draw [%s,thick] (%s) -- (%s) node[%s]{%s}  ;' % \
                  (linetype, start, end,
                   args['edge_label'][(start,end)].get('style','auto,pos=0.5'), 
@@ -4822,8 +4877,10 @@ def table5(p,
                   title=title, title_distance=title_distance)
     
            
-def shorten((x0, y0), (x1, y1), factor=0.5,
+def shorten(p0, p1, factor=0.5,
             start_by=None, end_by=None, by=None):
+    x0, y0 = p0
+    x1, y1 = p1
     """
     shorten a vector about the midpoint
     (x0, y0) --------*-------> (x1, y1)
@@ -4882,13 +4939,11 @@ def code(p, M, width=0.2, height=0.4, d={'':' ', '.':' '},
     numcols = max([len(line) for line in M])
     M = [line + ['' for _ in range(numcols - len(line))] \
         for line in M]
-    #for r in M: print r
     def f(c):
         if c in d.keys():
             c = d[c]
         return r'\texttt{%s}' % c
     M = [[f(_) for _ in line] for line in M]
-    #for r in M: print r
     def rect(x, width=width, height=height):
         return Rect(x0=0, y0=0, x1=width, y1=height, label=x,
                     linewidth=0)
@@ -5244,22 +5299,19 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
             for i in range(length):
                 rect = groups[size][i]
                 (r0,r1),(c0,c1),_ = rect
-                #print "rect:", rect
                 for j in range(i + 1, length):
                     RECT = groups[size][j]
-                    #print "rect,RECT:", rect,RECT
                     if rect == RECT: continue
                     # combine is total size if power of 2 and
                     # the two rect groups share a common edge
                     (r0,r1),(c0,c1),_ = rect
                     (R0,R1),(C0,C1),_ = RECT
-                    #print "R0,R1,r0,r1:", R0,R1,r0,r1
                     if (c1 + 1) % colsize == C0 and r0==R0 and r1==R1:
                         # right of rect meets left of RECT
                         if C1 + 1 == c0:
                             c0 = 0; C1 = colsize - 1
                         if [(r0,r1),(c0,C1),False] not in groups[2*size]:
-                            if debug: print "1 --->", [(r0,r1),(c0,C1),False]
+                            if debug: print ("1 ---> %s" % [(r0,r1),(c0,C1),False])
                             groups[2*size].append([(r0,r1),(c0,C1),False])
                         rect[2] = True
                         RECT[2] = True
@@ -5268,7 +5320,7 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
                         if c1 + 1 == C0:
                             C0 = 0; c1 = colsize - 1
                         if [(r0,r1),(C0,c1),False] not in groups[2*size]:
-                            if debug: print "2 --->", [(r0,r1),(C0,c1),False]
+                            if debug: print ("2 ---> %s" % [(r0,r1),(C0,c1),False])
                             groups[2*size].append([(r0,r1),(C0,c1),False])
                         rect[2] = True
                         RECT[2] = True
@@ -5277,7 +5329,7 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
                         if R1 + 1 == r0:
                             r0 = 0; R1 = rowsize - 1
                         if [(r0,R1),(c0,c1),False] not in groups[2*size]:
-                            if debug: print "3 --->", [(r0,R1),(c0,c1),False] 
+                            if debug: print ("3 ---> %s" % [(r0,R1),(c0,c1),False]) 
                             groups[2*size].append([(r0,R1),(c0,c1),False])
                         rect[2] = True
                         RECT[2] = True
@@ -5286,15 +5338,15 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
                         if r1 + 1 == R0:
                             R0 = 0; r1 = rowsize - 1
                         if [(R0,r1),(c0,c1),False] not in groups[2*size]:
-                            if debug: print "4 --->", [(R0,r1),(c0,c1),False]
+                            if debug: print ("4 ---> %s" % [(R0,r1),(c0,c1),False])
                             groups[2*size].append([(R0,r1),(c0,c1),False])
                         rect[2] = True
                         RECT[2] = True
             if debug:
-                print "groups[%s]:" % size
-                for x in groups[size]: print "   ", x
-                print "groups[%s]:" % (2*size)
-                for x in groups[2*size]: print "   ", x
+                print ("groups[%s]:" % size)
+                for x in groups[size]: print ("   %s" % x)
+                print ("groups[%s]:" % (2*size))
+                for x in groups[2*size]: print ("   %s" % x)
             if groups[2*size] == []: break
             size = 2*size
             
@@ -5315,14 +5367,14 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
         # Does this greedy method works?
         #'''
         def add_rows_cols(rows_cols, r0,r1,c0,c1):
-            if debug: print "rows_cols:", rows_cols
-            if debug: print "r0,r1,c0,c1:", r0,r1,c0,c1
+            if debug: print ("rows_cols: %s" % rows_cols)
+            if debug: print ("r0,r1,c0,c1: %s" % str(r0,r1,c0,c1))
             r = r0
             while 1:
-                #if debug: print "r0:", r0
+                #if debug: print ("r0: %s" % r0)
                 c = c0
                 while 1:
-                    #if debug: print "c0:", c0
+                    #if debug: print ("c0: %s" % c0)
                     if (r,c) not in rows_cols:
                         rows_cols.append((r,c))
                     if c == c1: break
@@ -5332,9 +5384,9 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
             return rows_cols
 
         if debug:
-            print "before removal of nonessentials"
+            print ("before removal of nonessentials")
             for k,v in groups.items():
-                print k,v
+                print (k,v)
 
         # In the above, the 'covered' flag was set to true if an implicant was combined.
         # Now we need to take care of implicants which are covered by two other
@@ -5352,7 +5404,7 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
         size = 1
         nonessential_prime = {}
         while groups[size] != []:
-            if debug: print "\nsize:", size
+            if debug: print ("\nsize: %s" % size)
             change = False
             nonessential_prime[size] = []
             for x in groups[size]:
@@ -5361,26 +5413,26 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
                 # DOES NOT WORK ... CHECK
                 if ((r0,r1),(c0,c1)) in donotremove: continue
                 x_rows_cols = add_rows_cols([], r0,r1,c0,c1)
-                if debug: print "x_rows_cols:", x_rows_cols
+                if debug: print ("x_rows_cols: %s" % x_rows_cols)
                 
                 # compute (row,col)s covered by all groups[size] except for x    
                 rows_cols = []
                 _ = 1
                 while groups[_] != []:
                     for y in groups[_]:
-                        if debug: print "x:", x
-                        if debug: print "y:", y
+                        if debug: print ("x: %s" % x)
+                        if debug: print ("y: %s" % y)
                         if y == x:
-                            if debug: print "same ... skip"
+                            if debug: print ("same ... skip")
                             continue
                         (_r0,_r1),(_c0,_c1),_f = y
                         if _f:
-                            if debug: print "already combined ... skip"
+                            if debug: print ("already combined ... skip")
                             continue
                         rows_cols = add_rows_cols(rows_cols, _r0,_r1,_c0,_c1)
                     _ = 2 * _
 
-                if debug: print "rows_cols:", rows_cols
+                if debug: print ("rows_cols: %s" % rows_cols)
                 def issubset(xs,ys):
                     for x in xs:
                         if x not in ys: return False
@@ -5395,9 +5447,9 @@ def get_kmap_data(m, circle_terms=[1, '1','d'], donotremove=None, debug=False):
                 size *= 2 
         #'''
         if debug:
-            print "after removal of nonessentials"
+            print ("after removal of nonessentials")
             for k,v in groups.items():
-                print k,v
+                print (k,v)
 
     size = 1
     nonprime = {}
@@ -5447,9 +5499,9 @@ def kmap(p, m=None,
          debug=False):
     
     import random; random.seed()
-    def default_linewidth_selector(((r0,r1),(c0,c1))):
+    def default_linewidth_selector(_):
         return 0.1
-    def default_linecolor_selector(((r0,r1),(c0,c1))):
+    def default_linecolor_selector(_):
         colors = ['red',
                   'yellow',
                   'magenta',
@@ -5458,7 +5510,7 @@ def kmap(p, m=None,
                   'cyan',
                   ]
         return random.choice(colors)
-    def default_d_selector(((r0,r1),(c0,c1))):
+    def default_d_selector(_):
         return d
     default_style_selector = {'linecolor': default_linecolor_selector,
                               'linewidth': default_linewidth_selector,
@@ -5483,14 +5535,15 @@ def kmap(p, m=None,
 
     if circle:        
         kmap_data = get_kmap_data(m, circle_terms=circle_terms, donotremove=donotremove)
-        if debug: print kmap_data
+        if debug: print (kmap_data)
 
         size = 1
         while 1:
-            if not kmap_data['essential-prime'].has_key(size): break
+            # Python 3
+            if not size in kmap_data['essential-prime']: break
 
             for (r0,r1),(c0,c1) in kmap_data['essential-prime'][size]:
-                if debug: print (r0,r1),(c0,c1)
+                if debug: print ((r0,r1),(c0,c1))
 
                 # Choose linecolor
                 try:
@@ -5836,7 +5889,9 @@ def association(p, p0, p1, s='', c0='', c1='', dx=0, dy=0, starttip='', endtip='
         t = '--'.join(['(%s,%s)' % (x,y) for (x,y) in ps])
         p += r'\draw[%s-%s] %s;' % (starttip, endtip, t)
 
-        def ddd((x0,y0), (x1,y1)):
+        def ddd(p0, p1):
+            x0,y0 = p0
+            x1,y1 = p1
             if x0 == x1:
                 if y0 < y1: return 'N'
                 else: return 'S'
@@ -6101,9 +6156,104 @@ def chess(p, x=0, y=0,
     return C
 
 
+
+
+class XAxis:
+    '''
+      A. In PGF
+     x0
+      o-------------------------------------------------------------o
+          |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+          |        |        |        |        |        |        |
+          0        1        2        3        4        5        6
+          < label >
+             gap
+
+
+      B. Rewrite labels to this:
+    
+   start
+      o-------------------------------------------------------------o
+          |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+          |        |        |        |        |        |        |
+        0x10^2   5x10^2  10x10^2  15x10^2  20x10^2  25x10^2  30x10^2
+          < label >
+             gap
+
+     User specifies in terms of B but without the "x10^2".
+    
+    USEFUL:
+       xaxis = XAxis(...)
+       p = xaxis(2.57) return the pgf coordinate of x = 2.57 on axis
+
+       What about large graphs where axis label is 0, 10^2, 10^4, 10^6, etc.
+       Maybe call parameter units
+    '''
+    def __init__(self,
+                 x0=0, y0=0,                      # where to start drawing x-axis
+                 start=0.0, end=10.0,             # axes is [0.0, 10.0]
+                 xscale=1.0,                      # if 0.5, then 0 to 0.5 is marked 1
+                 start_tick=0.2, end_tick=12.25,  # 1st and last tick marks
+                 tick_gap=0.25,                   # distance between ticks
+                 tick_len=0.1,
+                 start_label=None, end_label=None,# start label, end label
+                                                  # if none, then label 0.0 and
+                                                  # grow both ways
+                 label_gap=1,                     # label between gaps
+                 label_anchor_gap=0,              # anchor point from axes
+                                                  # where anchor is used for label
+                 label_fontsize=r'\small',
+                 linewidth=0.1,
+                 linecolor='black',
+                 arrowhead=None):
+        self.x0 = x0
+        self.y0 = y0
+        self.start = start
+        self.end = end
+        self.xscale = xscale
+        self.start_tick = start_tick
+        self.end_tick = end_tick
+        self.tick_gap = tick_gap
+        self.tick_len = tick_len
+        self.start_label = start_label
+        self.end_label = end_label
+        self.label_gap = label_gap
+        self.label_anchor_gap = label_anchor_gap
+        self.linecolor = linecolor
+        self.label_fontsize = label_fontsize
+        self.arrowhead = arrowhead
+    def x(self):
+        return 0.0
+    def graph_to_pgf(x, y):
+        """ convert graph x,y to pgf x,y """
+        x0, y0 = self.x0, self.y0
+        pgf_x = x - x0 - self.start
+        pgf_y = y - y0
+        return (pgf_x, pgf_y)
+    def __str__(self):
+        x0 = self.x0
+        y0 = self.y0
+        linecolor = self.linecolor
+        length = self.end - self.start
+        s = ""
+        s += str(Line(x0=x0, y0=y0, x1=x0+length, y1=y0, linecolor=linecolor))
+
+        # ticks
+        tick = self.start_tick
+        while tick <= self.end_tick:
+            x0_pgf_tick = x0 + tick - self.start
+            y0_pgf_tick = y0
+            x1_pgf_tick = x0_pgf_tick
+            y1_pgf_tick = y0 - self.tick_len
+            s += str(Line(x0=x0_pgf_tick, y0=y0_pgf_tick, x1=x1_pgf_tick, y1=y1_pgf_tick, linecolor=linecolor))  
+            tick += self.tick_gap
+        return s
+
 def axes(p, x0=0, y0=0, x1=1, y1=1, linewidth=None, linecolor='black!30'):
     """
     Draws axes into plot p
+    TODO: Separate x- and y-axis. For each axes, API is
+    See x_axis function
     """
     if linewidth==None:
         p += Line(points=[(x0, 0), (x1, 0)], endstyle='>', linecolor=linecolor) # x axis
@@ -6346,7 +6496,7 @@ def cyclegraph(p=None,
             except: pass
             tnames[k] = v
     names = tnames
-    #print "names:", names
+    #print ("names:", names)
 
     tlabels=dict([(i,'') for i in range(num)])
     if labels!=None:
@@ -6355,17 +6505,17 @@ def cyclegraph(p=None,
     labels = tlabels
     
     for i in range(num):
-        #print "i:", i
+        #print ("i:", i)
         radians = deg * pi / 180.0
         x0, y0 = x + radius * cos(radians), y + radius * sin(radians)
         x0, y0 = round(x0, 2), round(y0, 2)
         name = str(names[i])
-        #print "name:", name
+        #print ("name:", name)
         p += Circle(x=x0, y=y0, r=r,
                     label=labels[i],
                     linewidth=linewidth, background=background, name=name)
         deg += diffdeg
-        #print p
+        #print (p)
         
     if drawline:
         ns = []
@@ -6445,7 +6595,7 @@ def graphnode(p=None,
               background='blue!20',
               anchor=None,
               name=None):
-    #print "----- r:", r
+    #print ("----- r:", r)
     if name == None:
         c = Circle(x=x, y=y, r=r,
                    label=label,
@@ -6559,7 +6709,8 @@ class Graph:
              endstyle='',
              bend_left=None, bend_right=None,
              label=None, anchor=None,
-             names=None):
+             names=None,
+             loop=None):
         if linestyle==None: linestyle = Graph.linestyle
         if linewidth==None: linewidth = Graph.linewidth
         if linecolor==None: linecolor = Graph.linecolor
@@ -6567,7 +6718,7 @@ class Graph:
                  bend_left=bend_left, bend_right=bend_right,
                  label=label, anchor=anchor,
                  startstyle=startstyle, endstyle=endstyle,
-                 linewidth=linewidth, linecolor=linecolor)
+                 linewidth=linewidth, linecolor=linecolor, loop=loop)
         if p != None: p += x
         return x
     
@@ -6580,7 +6731,8 @@ class Graph:
             bend_left=None,
             bend_right=None,
             label=None, anchor=None,
-            names=None):
+            names=None,
+            loop=None):
         if linestyle==None: linestyle = Graph.linestyle
         if linewidth==None: linewidth = Graph.linewidth
         if linecolor==None: linecolor = Graph.linecolor        
@@ -6589,7 +6741,7 @@ class Graph:
                  bend_left=bend_left, bend_right=bend_right,
                  label=label, anchor=anchor,
                  linewidth=linewidth, linecolor=linecolor, linestyle=linestyle,
-         )
+                 loop=loop)
         if p != None: p += x
         return x
 
@@ -7715,8 +7867,8 @@ def bptree_get_root(y=0, keys=[], children=[], widths=[], height=[]):
 
 # number of bends or levels in the arcs
 def bptree_get_arcs(root, children, vsep, height):
-    #print "root:", root
-    #print "children:", children
+    #print ("root:", root)
+    #print ("children:", children)
     if len(children) % 2 == 1:
         num_arc_levels = len(children) / 2 + 1
         deltas = [(num_arc_levels - _ - 1) * float(vsep)/(num_arc_levels) - height for _ in range(num_arc_levels)]
@@ -7783,10 +7935,10 @@ def bptree(p,
     # nodes = {'A':[0,1,2,3],...
     #
     flattened_values = reduce(lambda x,y:x+y, edges.values())
-    #print "flattened:", flattened_values
+    #print ("flattened:", flattened_values)
     roots = [key for key in edges.keys() if key not in flattened_values]
     if len(roots) > 1:
-        #print "more than one root: roots =", roots
+        #print ("more than one root: roots =", roots)
         return
     # Print bottom up.
     # Print leaves first. A parent is placed based on centering it above children.
@@ -7850,16 +8002,16 @@ def bptree(p,
     stack = [root]
     while stack != []:
         x, stack = stack[0], stack[1:]
-        #print "x:", x
+        #print ("x:", x)
         children = edges.get(x, None)
-        #print "children:", children
+        #print ("children:", children)
         if children == None:
             leaves.append(x)
         else:
             stack = children + stack
-        #print "stack:", stack
+        #print ("stack:", stack)
         
-    #print "leaves:", leaves
+    #print ("leaves:", leaves)
 
     # Place leaves:
     # max depth at y = 0
@@ -7869,13 +8021,13 @@ def bptree(p,
     #                  
     # xxxxx xxxxx xxxxx                   xxxxx xxxxx xxxxx <--- max depth
     maxdepth = max(depth.values())
-    #print "maxdepth:", maxdepth
+    #print ("maxdepth:", maxdepth)
     rect = {} # dictionary of bpt_nodes
     for i,leaf in enumerate(leaves):
         max_num_keys = len(nodes[leaf])
         node_width = max_num_keys * widths[1] + (max_num_keys + 1) * widths[0]
-        #print node_width
-        #print node_sep
+        #print (node_width)
+        #print (node_sep)
         x = i * (node_width + node_sep)
         y = -10 + (maxdepth - depth[leaf]) * (height + vsep)
         r = bpt_node(x=x, y=y, M=nodes[leaf], widths=widths, height=height)
@@ -7884,13 +8036,13 @@ def bptree(p,
     # Place non-leaf. Can do post order tranversal. Or iterate from maxdepth to 0
     done = leaves[:]
     for d in range(maxdepth, -1, -1):
-        #print "d:", d
+        #print ("d:", d)
         todo = [_ for _ in nodes.keys() if depth[_] == d and _ not in done]
-        #print "todo:", todo
+        #print ("todo:", todo)
         for n in todo:
             max_num_keys = len(nodes[n])
             node_width = max_num_keys * widths[1] + (max_num_keys + 1) * widths[0]
-            #print "n:", n 
+            #print ("n:", n) 
             children = edges[n]
             xs = [rect[_].top()[0] for _ in children]
             xs.sort()
@@ -7905,7 +8057,7 @@ def bptree(p,
     # Arcs
     arcs = {}
     for k,v in edges.items():
-        #print "k,v:", k,v
+        #print ("k,v:", k,v)
         parent = rect[k]
         children = [rect[_] for _ in v]
         arcs[k] = bptree_get_arcs(parent, children, vsep, height)
@@ -8019,7 +8171,7 @@ def bintreepositions(edges, node_width=0.8, node_vsep=1.0, node_hsep=0.2):
         for x in edges[k]:
             if x not in [None, '']:
                 if x not in rhs: rhs.append(x)
-    nodes = keys[:]
+    nodes = list(keys)
     roots = [x for x in keys if x not in rhs]
     root = roots[0]
     for x in edges.values():
@@ -8051,9 +8203,9 @@ def bintreepositions(edges, node_width=0.8, node_vsep=1.0, node_hsep=0.2):
  
 def bintree(p=None,
             edges=[],
-            node_width=0.8,
+            node_width=0.3,
             node_vsep=1.0,
-            node_hsep=0.2,
+            node_hsep=0.3,
             node=None,
             edge=None,
             label=None):
@@ -8095,12 +8247,13 @@ class BinTree:
     node = None
     edge = None
     label = None
-    node_width = 0.8
+    node_width = 0.4
     node_vsep = 1.0
-    node_hsep = 0.2
+    node_hsep = 0.4
     
     @staticmethod
-    def run(p, edges):
+    def run(p, edges, label=None):
+        if label==None: label=None
         return bintree(p=p,
                        edges=edges,
                        node_width=BinTree.node_width,
@@ -8108,7 +8261,7 @@ class BinTree:
                        node_hsep=BinTree.node_hsep,
                        node=BinTree.node,
                        edge=BinTree.edge,
-                       label=BinTree.label)
+                       label=label)
 
 
 def drawheap(p, edges, node=None, node_hsep=None, include_array=True):
@@ -8155,7 +8308,7 @@ def array_to_edges(xs):
     n = len(xs)
     while len(todo) > 0:
         i,todo = todo[0],todo[1:]
-        #print "i:", i, left(i), right(i), xs[left(i)], xs[right(i)]
+        #print ("i:", i, left(i), right(i), xs[left(i)], xs[right(i)])
         if right(i) <= n - 1:
             edges[xs[i]] = [xs[left(i)], xs[right(i)]]
             todo.append(left(i))
