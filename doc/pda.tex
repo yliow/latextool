@@ -17,7 +17,7 @@ pda(p,
     input_tape_str=True,
     stack_str=True,
     )
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)
@@ -48,7 +48,7 @@ r = pda(p,
 x0,y0 = r.bottomleft()
 x1,y1 = r.topright()
 p += Rect(x0=x0,y0=y0,x1=x1,y1=y1,linecolor='red')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)
@@ -102,11 +102,11 @@ pda_computation(p,
             ]
     )
 
-print p'''.strip()
+print(p)'''.strip()
 from latextool_basic import *
-print '''
+print('''
 {\small %s }
-''' % console(s)
+''' % console(s))
 \end{python}
 
 \newpage
@@ -168,10 +168,10 @@ def rect(index, p, x0, y0, no_draw=False):
         return None
 
 sequence(p, rect=rect)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print r'{\scriptsize %s } ' % console(s)
+print(r'{\scriptsize %s } ' % console(s))
 \end{python}
 \begin{python}
 from latextool_basic import *
@@ -227,7 +227,7 @@ def rect(index, p, x0, y0, no_draw=False):
         return None
 
 sequence(p, rect=rect)
-print p
+print(p)
 \end{python}
 
 

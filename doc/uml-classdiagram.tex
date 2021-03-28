@@ -22,11 +22,11 @@ uml_class(p, 13, 1,
              showempty=False)
 
 p += Grid()
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 
 exec(s)
 \end{python}
@@ -52,11 +52,11 @@ p += Line(points=[(0,-2),(2,-2)], endstyle='>', linewidth='0.02')
 p += Line(points=[(0,-3),(2,-3)], endstyle='>>', linewidth='0.02')
 p += Line(points=[(0,-4),(2,-4)], endstyle='open triangle 45', linewidth='0.02')
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -72,11 +72,11 @@ p = Plot()
 A = uml_class(p, 0, 0, width=3, classname='A')
 B = uml_class(p, 7, 0, width=3, classname='B')
 association(p, p0=A.right(), p1=B.left(), s='plays', c0='a', c1='b')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -88,11 +88,11 @@ p = Plot()
 A = uml_class(p, 7, 0, width=3, classname='A')
 B = uml_class(p, 0, 0, width=3, classname='B')
 association(p, p0=A.left(), p1=B.right(), s='plays', c0='a', c1='b')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -104,11 +104,11 @@ p = Plot()
 A = uml_class(p, 0, 3, width=3, classname='A')
 B = uml_class(p, 0, 0, width=3, classname='B')
 association(p, p0=A.bottom(), p1=B.top(), s='plays', c0='a', c1='b')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -120,11 +120,11 @@ p = Plot()
 A = uml_class(p, 0, -3, width=3, classname='A')
 B = uml_class(p, 0, 0, width=3, classname='B')
 association(p, p0=A.top(), p1=B.bottom(), s='plays', c0='a', c1='b')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -140,11 +140,11 @@ p0 = A.right()
 p1 = B.bottom()
 association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
             moves=[('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -159,11 +159,11 @@ p0 = A.right()
 p1 = B.bottom()
 association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
             moves=[('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -186,11 +186,11 @@ p0 = A.right()
 p1 = B.top()
 association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
             moves=[('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -205,11 +205,11 @@ p0 = A.right()
 p1 = B.top()
 association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
             moves=[('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -236,11 +236,11 @@ p0 = A.left()
 p1 = B.top()
 association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
             moves=[('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -255,11 +255,11 @@ p0 = A.left()
 p1 = B.top()
 association(p, p0=p0, p1=p1, s='plays', c0='a', c1='b',
             moves=[('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -290,11 +290,11 @@ association(p, p0=dicegame.right(), p1=die.bottom(), s='includes',
                    c0='1', c1='2', layout='en')
 association(p, p0=die.top(), p1=test.left(), s='this is a test',
                    c0='1..2', c1='2..*', layout='ne')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -311,11 +311,11 @@ p0 = player.left()
 p1 = player.top()
 association(p, p0=p0, p1=p1, s='test',
                c0='1..2', c1='foo', moves=['w','n',('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -329,11 +329,11 @@ p0 = player.right()
 p1 = player.top()
 association(p, p0=p0, p1=p1, s='test',
             c0='1..2', c1='2..*', moves=['e','n',('x',p1),('y',p1)])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -345,11 +345,11 @@ player = uml_class(p, 0, 0, width=3, classname='Player', showempty=False)
 association(p, p0=player.left(), p1=player.top(), s='test',
                c0='1..2', c1='2..*', layout='wnes',
                dn=2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 
@@ -379,11 +379,11 @@ p1 = knife.left()
 association(p, p0=p0, p1=p1, s='holds',
                c0='*', c1='0', moves=[('y', p1), ('x', p1)])
               
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\small %s }' % console(s)
+print(r'{\small %s }' % console(s))
 exec(s)
 \end{python}
 

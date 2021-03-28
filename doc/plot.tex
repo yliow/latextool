@@ -6,7 +6,7 @@ The following should be in a python environment:
 from latextool_basic import Plot, Circle
 p = Plot()
 p += Circle(x=1, y=1, r=1)
-print p
+print(p)
 \end{console}
 or run in the \verb!execute! function in a python environment:
 \begin{console}
@@ -14,7 +14,7 @@ s = r"""
 from latextool_basic import Plot, Circle
 p = Plot()
 p += Circle(x=1, y=1, r=1)
-print p
+print(p)
 """
 
 from latextool_basic import execute
@@ -29,7 +29,7 @@ from latextool_basic import Plot, Circle
 p = Plot()
 p += Circle(x=1, y=1, r=1)
 p.add("\draw ...")
-print p
+print(p)
 \end{console}
 
 You can create and store a pdf image in the \verb!tmp/! subdirectory.

@@ -55,4 +55,4 @@ nodes = {'A':f([0,1,2,3]),
          }
 bptree(p, edges=edges, nodes=nodes)    
 
-print p
+print(p)

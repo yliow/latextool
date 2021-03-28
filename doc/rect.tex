@@ -10,10 +10,10 @@ p = Plot()
 p += Rect(x0=0.5, y0=0.5, x1=1.5, y1=1.5)
 p += Rect(x0=0.75, y0=0.75, x1=1.75, y1=1.75)
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -28,10 +28,10 @@ p = Plot()
 p += Rect(x0=0.5, y0=0.5, x1=1.5, y1=1.5, background='white')
 p += Rect(x0=0.75, y0=0.75, x1=1.75, y1=1.75, background='white')
 p += Grid()
-print p
+print(p)
 """.strip()
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -58,10 +58,10 @@ p += Rect(x0=11, y0=1, x1=15, y1=3,
           background='blue!20!white!', foreground='blue!90!white', 
           s='hello world! hello world!', align='b')
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -88,11 +88,11 @@ p.env['linewidth'] = 0.2
 p += RectAdaptor(env=p.env, x0= 13, y0=1, x1= 16, y1=3, s='hello world!')
 
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -112,11 +112,11 @@ p += Rect(x0=3.25, y0=0.25, x1=4.75, y1=1.75, s='abc', align='c',
 p += Rect(x0=6.25, y0=0.25, x1=7.75, y1=1.75, s='abc', align='b', 
           linecolor='red')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -136,11 +136,11 @@ p += Rect(x0=11, y0=0, x1=14, y1=2, linecolor='red', linewidth=0.2,
           background='green',
           innersep=0.5, s='hello')
 p += Grid()
-print p
+print(p)
 """
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -167,11 +167,11 @@ p += Rect(x0=6.5, y0=0.5, x1=10, y1=3,
           innersep=0.01, radius=0.01,
           s=r'{\tiny this is a test ... this is a test ...}')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -186,11 +186,11 @@ p += Rect(x0=1, y0=1, x1=3, y1=3,
           linewidth=0.1, linecolor='red',
           radius=0.5, linestyle='dashed')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -209,11 +209,11 @@ p += Rect(x0=6, y0=0, x1=12, y1=4,
           foreground='blue',
           radius=0.5, linestyle='dashed', label='hello')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -231,10 +231,10 @@ p += Rect(x0=5, y0=1, x1=6, y1=2, label='b', name='b')
 
 p += r"\draw[->,line width=2] (a) -- (b);"
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}

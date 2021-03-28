@@ -7,11 +7,11 @@ p = Plot()
 s = array(x0=0.5, y0=0.5, width=1, height=1, xs=[1,2,3,4,5,6])
 p.add(s)
 p.add(grid, x0=0, y0=0, x1=7, y1=2)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -24,11 +24,11 @@ from latextool_basic import Plot, array
 p = Plot()
 s = array(x0=0.5, y0=0.5, width=1, height=0.6, xs=[1,2,3,4,5,6])
 p.add(s)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -43,11 +43,11 @@ p = Plot()
 s = array(x0=0.5, y0=0.5, width=1, height=0.6, 
           xs=["'h'","'e'","'l'","'l'","'o'"])
 p.add(s)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -63,11 +63,11 @@ s = array(x0=0.5, y0=0.5, width=1, height=0.6,
           xs=[1,2,3,4,5,6],
           arraylinewidth=0.2)
 p.add(s)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -84,11 +84,11 @@ s = array(x0=0.5, y0=0.5, width=1, height=0.6,
           xs=[1,2,3,4,5,6],
           celllinewidth=0.1)
 p.add(s)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -105,11 +105,11 @@ s = array2(x0=0.5, y0=0.5, width=1, height=0.6,
            vs=[1,2,3,4,5,6],
            celllinewidth=0.04)
 p.add(s)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 

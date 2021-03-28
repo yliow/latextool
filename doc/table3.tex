@@ -30,11 +30,11 @@ m11 =[['$1$',''],
 M = [[m00, m01],
      [m10, m11]]
 N = table3(p, M, width=1, height=0.8)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print '{\footnotesize %s}' % console(s)
+print('{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -64,11 +64,11 @@ m11 = data
 M = [[m00, m01],
      [m10, m11]]
 N = table3(p, M, width=1, height=0.8)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -95,11 +95,11 @@ m10 = [['$0$','','',''],
 M = [[m00],
      [m10]]
 N = table3(p, M, width=1, height=0.8)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -123,11 +123,11 @@ M = [[m00],
      [m10]]
 table3(p, x0=0, y0=0, M=M, width=1, height=0.8)
 table3(p, x0=8, y0=1, M=M, width=1, height=0.8)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -150,11 +150,11 @@ m10 = [['$0$','','',''],
 M = [[m00],
      [m10]]
 table3(p, M, width=1, height=0.8, title='This is the title')
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -173,11 +173,11 @@ m01 = [['0'],['1'],['2'],['3'],
 M = [[m00, m01],
      ]
 N = table3(p, M, width=1, height=0.8)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -217,11 +217,11 @@ p1 = x1,y1 = x0 + 5, y0 + 1
 p += Line(points=[p1, p0], endstyle='>', linecolor='red', linewidth=0.1)
 x2,y2 = x1+0.5, y1+0.5
 p += Rect(x0=x2, y0=y0, x1=x2, y1=y2, s='look', linewidth=0)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -255,11 +255,11 @@ p += Rect(x0=x0, y0=y0, x1=x1, y1=y1, background='blue!20', label='42',
 
 N = table3(p, M, width=1, height=0.8)
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -287,11 +287,11 @@ M = [[m00],
 N = table3(p, M, width=2, height=0.5,
            background={(1,0,2,3):'blue!20'})
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -321,11 +321,11 @@ m = [[0,1,2,3],
      ]
      
 table2(p, m, rect=rect)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(p)
 \end{python}
 
@@ -363,11 +363,11 @@ m11 = [[19,20],
 M = [[m00, m01],
      [m10, m11]]
 table3(p, M, rect=rect)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -404,11 +404,11 @@ m11 = [[19,20],
 M = [[m00, m01],
      [m10, m11]]
 table3(p, M, rect=rect)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -444,11 +444,11 @@ m11 = [[19,20],
 M = [[m00, m01],
      [m10, m11]]
 table3(p, M, rect=rect)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -479,11 +479,11 @@ M = [[[X[0]]],
      [X[1:]],
      ]
 table3(p, M, rect=rect, title='This is a title')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}
 
@@ -515,10 +515,10 @@ M = [[[X[0]]],
      [X[1:]],
      ]
 table3(p, M, rect=rect, title='This is a title', title_distance=0.8)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\footnotesize %s}' % console(s)
+print(r'{\footnotesize %s}' % console(s))
 execute(s)
 \end{python}

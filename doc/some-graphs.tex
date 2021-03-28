@@ -19,10 +19,10 @@ for i in [1,2,3]:
 
 p += Graph.arc(names=['c3', 'b4'])
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -39,11 +39,11 @@ p += Graph.node(x=0, y=0, label='a', name='0')
 p += Graph.node(x=5, y=0, label='b', name='1')
 p += Graph.edge(names=['0','1'], label='d', anchor='above')
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s, print_source=True)
 \end{python}
 
@@ -66,10 +66,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 cyclegraph(p, num=3, radius=1)
-print p'''.strip()
+print(p)'''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -79,10 +79,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 cyclegraph(p, num=7, radius=2, drawline=False)
-print p'''.strip()
+print(p)'''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -111,10 +111,10 @@ p += Circle(x=5, y=2, r=0.25, background='red', name='A')
 p += Circle(x=0, y=-2, r=0.25, background='blue', name='B')
 p += Line(names=['A', '0'])
 p += Line(names=['B', '3'])
-print p'''.strip()
+print(p)'''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -137,10 +137,10 @@ p += Circle(x=5, y=2, r=0.25, background='red', name='A')
 p += Circle(x=0, y=-2, r=0.25, background='blue', name='B')
 p += Line(names=['A', 'a'])
 p += Line(names=['B', 'd'])
-print p'''.strip()
+print(p)'''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -153,11 +153,11 @@ By default, the starting degree is 0.
 s = r'''from latextool_basic import *
 p = Plot()
 cyclegraph(p, num=4, radius=1)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
   
@@ -165,11 +165,11 @@ exec(s)
 s = r'''from latextool_basic import *
 p = Plot()
 cyclegraph(p, num=4, radius=1, startdegree=45)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
   
@@ -178,11 +178,11 @@ exec(s)
 s = r'''from latextool_basic import *
 p = Plot()
 cyclegraph(p, num=6, radius=2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -196,11 +196,11 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 petersen(p)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -216,10 +216,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completegraph(p, num=4)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -228,10 +228,10 @@ $K_4$:
 s = r'''from latextool_basic import *
 p = Plot()
 completegraph(p, num=4, startdegree=45)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -242,10 +242,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completegraph(p, num=5)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
   
@@ -255,10 +255,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completegraph(p, num=6, radius=1.5)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
   
@@ -275,10 +275,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 stargraph(p, num=5)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -288,10 +288,10 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 stargraph(p, num=4)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -303,10 +303,10 @@ from latextool_basic import *
 p = Plot()
 stargraph(p, x=0, y=0, num=4, radius=1, names={'center':'c0'})
 stargraph(p, x=2, y=0, num=4, radius=1, names={'center':'c1'})
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -323,12 +323,12 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completebipartite(p=p, num1=3, num2=3)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 exec(s)
-print console(s)
+print(console(s))
 \end{python}
 
 
@@ -338,11 +338,11 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completebipartite(p=p, num1=3, num2=3, drawline=False)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -352,11 +352,11 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completebipartite(p=p, num1=3, num2=4, horsep=2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -367,11 +367,11 @@ s = r'''
 from latextool_basic import *
 p = Plot()
 completebipartite(p=p, num1=3, num2=4, versep=2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 

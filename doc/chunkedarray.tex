@@ -12,7 +12,7 @@ s = chunkedarray(cellwidth=0.6,
                  arr=[[2],[1,0],[5,3],[4,6]])
 p.add(s)
 p.add(grid, x0=0, y0=0, x1=7, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -27,7 +27,7 @@ s = chunkedarray(cellwidth=0.6,
                  pipeheight=1,
                  arr=[[2,2,2,2],[1,0],[5,3],[4,6]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -43,7 +43,7 @@ s = chunkedarray(cellwidth=0.6,
                  cellheight=0.6,
                    arr=[[],[1,0],[3,5],[4,6]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -59,7 +59,7 @@ s = chunkedarray(cellwidth=1,
                  cellheight=0.6,
                    arr=[[],[],[1,0],[3,5],[4,6]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -76,7 +76,7 @@ s = chunkedarray(cellwidth=1.6,
                  cellheight=0.6,
                  arr=[[],[],[],[1,0],[3,5],[4,6]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -92,7 +92,7 @@ s = chunkedarray(cellwidth=0.6,
                  cellheight=0.6,
                  arr=[[2],[1,0],[],[4,6]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -108,7 +108,7 @@ s = chunkedarray(cellwidth=0.6,
                  cellheight=0.6,
                  arr=[[2,3],[1,0],[4,5],[]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -124,7 +124,7 @@ s = chunkedarray(cellwidth=0.6,
                  cellheight=0.6,
                  arr=[[2,3],[1,0],[4,5],[], []])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -140,7 +140,7 @@ s = chunkedarray(cellwidth=0.6,
                  cellheight=0.6,
                  arr=[[],[],[2,3],[1,0],[4,5],[],[]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -156,7 +156,7 @@ s = chunkedarray(cellwidth=0.6,
                  cellheight=0.6,
                  arr=[[],[],[],[2,3],[1,0],[4,5],[], [],[]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -179,7 +179,7 @@ s = chunkedarray(cellwidth=1.2,
                  cellheight=0.6,
                  arr=[[2,3],[6,7],[],[],[1,0],[4,5]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -195,7 +195,7 @@ s = chunkedarray(cellwidth=1.2,
                  cellheight=0.6,
                  arr=[[2,3],[6,7],[],[],[],[1,0],[4,5]])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -214,7 +214,7 @@ s = chunkedarray(cellwidth=0.6,
                  arr=[[2],[1,0],[5,3],[4,6]],
                  swaps=[(0,1,1),(0,2,2), (0,3,3),(2,4,-1)])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -233,7 +233,7 @@ s = chunkedarray(cellwidth=0.6,
                  arr=[[2],[1,0],[5],[],[3,4,6],[0,3,2]],
                  chunklabels=['a', '', 'b', 'c','d'])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -251,7 +251,7 @@ s = chunkedarray(x=2, y=2,
                  chunklabels=['a', '', 'b', 'c','d'])
 p.add(s)
 p += Grid(x0=-1,y0=-1,x1=10,y1=4)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -269,7 +269,7 @@ s = chunkedarray(cellwidth=0.6,
                  arr=[[2],[1,0],[5],[],[3,4,6],[0,3,2]],
                  chunklabels=['a', '', 'b', ('c',2),('d',-1)])
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -288,7 +288,7 @@ s = chunkedarray(cellwidth=0.6,
                  swaps=[(0,3,1), (1,2,0.75), (2,5,-1)]
 )
 p.add(s)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 

@@ -6,7 +6,7 @@ and the stdout is inserted into the latex file:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
-print "hello world"
+print("hello world")
 """)
 \end{python}
 \end{console}
@@ -14,7 +14,7 @@ Here's the result:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
-print "hello world"
+print("hello world")
 """)
 \end{python}
 
@@ -28,7 +28,7 @@ Result:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
-print "hello world"
+print("hello world")
 """, print_source=True)
 \end{python}
 \end{console}
@@ -41,7 +41,7 @@ Result:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
-print "hello world"
+print("hello world")
 """, debug=True)
 \end{python}
 \end{console}
@@ -54,12 +54,12 @@ If there's an error in the python source, the output will be the same as if
 TEST: debug=True
 \begin{console}
 from latextool_basic import execute
-execute("print 'hello world'", debug=True)
+execute("print('hello world')", debug=True)
 \end{console}
 Result:
 \begin{python}
 from latextool_basic import execute
-execute("print 'hello world'", debug=True)
+execute("print('hello world')", debug=True)
 \end{python}
 
 
@@ -70,12 +70,12 @@ execute("print 'hello world'", debug=True)
 TEST: debug=False
 \begin{console}
 from latextool_basic import execute
-execute("print 'hello world'", debug=False)
+execute("print('hello world')", debug=False)
 \end{console}
 Result:
 \begin{python}
 from latextool_basic import execute
-execute("print 'hello world'", debug=False)
+execute("print('hello world')", debug=False)
 \end{python}
 
 
@@ -85,12 +85,12 @@ execute("print 'hello world'", debug=False)
 TEST: print source=True, debug=False
 \begin{console}
 from latextool_basic import execute
-execute("print 'hello world'", print_source=True, debug=False)
+execute("print('hello world')", print_source=True, debug=False)
 \end{console}
 Result:
 \begin{python}
 from latextool_basic import execute
-execute("print 'hello world'", print_source=True, debug=False)
+execute("print('hello world')", print_source=True, debug=False)
 \end{python}
 
 
@@ -100,10 +100,10 @@ execute("print 'hello world'", print_source=True, debug=False)
 TEST: Error in source
 \begin{console}
 from latextool_basic import execute
-execute("print hello world")
+execute("print(hello world)")
 \end{console}
 Result:
 \begin{python}
 from latextool_basic import execute
-execute("print hello world")
+execute("print(hello world)")
 \end{python}

@@ -12,7 +12,7 @@ p = Plot()
 p += ellipse(1, 1, 4, 2, name='a', label='a')
 b = str(ellipse(5, 2, 7, 3, name='b', label='b'))
 p += b
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s, print_source=True)
@@ -26,7 +26,7 @@ p += ellipse(1, 1, 4, 2, name='a', label='a')
 b = str(ellipse(5, 2, 7, 3, name='b', label='b'))
 b = next_to(b, name='a', directions=('right', 0))
 p += b
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s, print_source=True)
@@ -40,7 +40,7 @@ p += ellipse(1, 1, 4, 2, name='a', label='a')
 b = str(ellipse(5, 2, 7, 3, name='b', label='b'))
 b = next_to(b, name='a', directions=('left', 1))
 p += b
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s, print_source=True)
@@ -64,7 +64,7 @@ x = str(ellipse(5, 2, 7, 3, name='d', label='d'))
 x = next_to(x, name='c', directions=('right', 1))
 p += x
 
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s, print_source=True)
@@ -82,7 +82,7 @@ p += r'\node[minimum width=5cm, draw, rectangle] (basis) {};'
 p += r'\node[above=of basis.north west, anchor=south west, draw, rectangle, minimum width=1cm] (a) {A};'
 p += r'\node[above=of basis, draw, rectangle,minimum width=1cm] (b) {B};'
 p += r'\node[above=of basis.north east, anchor=south east, draw, rectangle, minimum width=1cm] (c) {C};'
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s, print_source=True)
@@ -97,7 +97,7 @@ from latextool_basic import *
 p = Plot()
 p += r'\node[minimum width=5cm, draw, rectangle] (basis) {};'
 p += r'\node[above=0.2cm of basis.north west, anchor=south west, rectangle, minimum width=1cm, inner sep=0cm] (a) {This is the title};'
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s, print_source=True)

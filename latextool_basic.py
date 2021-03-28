@@ -1,4 +1,5 @@
 
+
 """
 All measures in cm by default!!!
 
@@ -37,8 +38,8 @@ def myround(points):
         return tuple(myround(x) for x in points)
     elif isinstance(points, list):
         return list(myround(x) for x in points)
-    elif points == None:
-        return None
+    #elif points == None:
+    #    return None
     else:
         return points # no casting
 
@@ -56,7 +57,7 @@ def removedup(xs):
 def randstr():
     s = ''
     for i in range(16):
-        s += random.choice(string.letters)
+        s += random.choice(string.ascii_letters)
     return s
 #==============================================================================
 # Convenience function to convert multiline string to 2d array
@@ -124,8 +125,8 @@ def floor(x):
     if int(x) == x: return int(x)
     else: return IFELSE(x >= 0, int(x), int(x) - 1)
 
-def readfile(filename): return file(filename, 'r').read()
-def writefile(filename, s): return file(filename, 'w').write(s)
+def readfile(filename): return open(filename, 'r').read()
+def writefile(filename, s): return open(filename, 'w').write(s)
 
 #==============================================================================
 # The following function will remove extraneous character in the stdout
@@ -511,7 +512,7 @@ def execute(source,
     source = source.strip()
 
     # Get source filename
-    randstr = ''.join([random.choice(string.lowercase) for _ in range(8)])
+    randstr = ''.join([random.choice(string.ascii_lowercase) for _ in range(8)])
     filename = '%s.tmp.py' % randstr
 
     # Save source and execute
@@ -520,8 +521,8 @@ def execute(source,
     #stdout, stderr, returncode = myexec(cmd) # seems to hang
     os.system(cmd)
     os.system('rm -f %s' % filename) # delete source file
-    stderr = file('stderr.txt', 'r').read().strip()
-    stdout = file('stdout.txt', 'r').read().strip()
+    stderr = open('stderr.txt', 'r').read().strip()
+    stdout = open('stdout.txt', 'r').read().strip()
     
     if debug or stderr != '':
         s = r"""PYTHON ERROR. See source, stderr, stdout below
@@ -1132,11 +1133,15 @@ def circle(x=0, y=0, center=None, r=0,
 };''' % d1
     elif label != '':
         # ANCHOR FOR LABEL [??]
-        if anchor==None:
+        if anchor in [None, '']:
             d1['label'] = label
             ret += r'\draw (%(x)s, %(y)s) node[color=%(foreground)s] {%(label)s};' \
                    % d1
-
+        else:
+            d1['label'] = label
+            ret += r'\draw (%(x)s, %(y)s) node[%(anchor)s,color=%(foreground)s] {%(label)s};' \
+                   % d1
+            
     return ret
 
 class Circle(BaseNode):
@@ -1704,6 +1709,7 @@ class RectContainer(BaseNode):
         self.layout()
         return self
     def __getitem__(self, i):
+        i = int(i) # ERROR: 2021/1/28 python2-3 error. This is called with float
         return self.rects[i]
     def __setitem__(self, i, r):
         self.rects[i] = r
@@ -3493,7 +3499,7 @@ def automata(
 
     # form node string
     node_str = ""
-    node_items = node.items()
+    node_items = list(node.items()) # PYTHON3
     node_items.sort()
     for k,v in node.items():
         d = {}
@@ -3555,7 +3561,7 @@ def automata(
             return "[bend left=%s,pos=0.5]" % angle
     edge_str = ""
     #print ("e: %s" % e)
-    e2 = e.items()
+    e2 = list(e.items()) # PYTHON3
     e2.sort()
     for k, v in e2:
         q1,q2 = k
@@ -4358,10 +4364,10 @@ x y label
     
         except Exception as e:
             str_e = str(e)
-            f = file('traceback.txt', 'w')
+            f = open('traceback.txt', 'w')
             traceback.print_exc(file=f)
             f.close()
-            str_tb = file('traceback.txt', 'r').read()
+            str_tb = open('traceback.txt', 'r').read()
             self.exception = '%s\n\n%s' % (str_tb, str_e)
             raise
     def __str__(self):
@@ -4608,8 +4614,22 @@ def graph2(shape='circle',
     """
     same as graph but as a string without the tikzpicture env
     """
-    s = apply(graph,
-              (shape,
+    
+    #s = apply(graph,
+    #          (shape,
+    #           minimum_size,
+    #           layout,
+    #           xscale,
+    #           yscale,
+    #           edges,
+    #           separator,
+    #           fill,
+    #           fill_dict,
+    #           xoffset,
+    #           yoffset,
+    #           ),
+    #          args)
+    s =  graph(shape,
                minimum_size,
                layout,
                xscale,
@@ -4620,8 +4640,7 @@ def graph2(shape='circle',
                fill_dict,
                xoffset,
                yoffset,
-               ),
-              args)
+               **args)
     s = s.replace(r"\begin{tikzpicture}", "")
     s = s.replace(r"\end{tikzpicture}", "")
     return s
@@ -6470,6 +6489,7 @@ def cyclegraph(p=None,
                startdegree=None,
                drawline=True,
                linewidth=0.03,
+               linecolor='black',
                labels=None,
                names=None, # mapping from range(num) to string for node name
                ):
@@ -6512,8 +6532,12 @@ def cyclegraph(p=None,
         name = str(names[i])
         #print ("name:", name)
         p += Circle(x=x0, y=y0, r=r,
-                    label=labels[i],
-                    linewidth=linewidth, background=background, name=name)
+                    label = labels[i],
+                    linewidth = linewidth,
+                    linecolor=linecolor,
+                    background = background,
+                    name = name
+        )
         deg += diffdeg
         #print (p)
         
@@ -6732,7 +6756,8 @@ class Graph:
             bend_right=None,
             label=None, anchor=None,
             names=None,
-            loop=None):
+            loop=None,
+            ):
         if linestyle==None: linestyle = Graph.linestyle
         if linewidth==None: linewidth = Graph.linewidth
         if linecolor==None: linecolor = Graph.linecolor        
@@ -6808,7 +6833,7 @@ def drawstack(p,
     #  +---+
     # stack: the list below is from top to bottom of stack values
 
-    def cell(label='', linewidth=0.03):
+    def cell(label='', linewidth=0.02):
         return Rect2(0, 0, w, h, label=label, linewidth=linewidth)
 
     stackvalues = xs
@@ -6824,7 +6849,7 @@ def drawstack(p,
     x1,y1 = stack.bottomleft();  x1 -= sep; y1 -= sep
     x2,y2 = stack.bottomright(); x2 += sep; y2 -= sep
     x3,y3 = stack.topright();    x3 += sep; y3 += extra_h
-    p += Line(points=[(x0,y0), (x1,y1), (x2,y2), (x3,y3)]) 
+    p += Line(points=[(x0,y0), (x1,y1), (x2,y2), (x3,y3)], linewidth=0.02) 
     return stack
 
 
@@ -6856,10 +6881,10 @@ def pda(p,
     tape = [r'{%s\texttt{%s}}' % (vphantom, _) for _ in tape]
 
     def cell(label='',
-             linewidth=0.03):
+             linewidth=0.02):
         return Rect2(0, 0, w, h,
                      label=label,
-                     linewidth=0.03)
+                     linewidth=linewidth)
         
     # input tape
     tapecontainer = RectContainer(x=x0, y=y0, align='bottom', direction='left-to-right')
@@ -6868,10 +6893,10 @@ def pda(p,
 
     tape = tapecontainer
     p += tape
-    p += Line(x0=tape[-1].x1, y0=tape[-1].y1, x1=tape[-1].x1+w/2, y1=tape[-1].y1,
-              linewidth=0.03)
-    p += Line(x0=tape[-1].x1, y0=tape[-1].y0, x1=tape[-1].x1+w/2, y1=tape[-1].y0,
-              linewidth=0.03)
+    p += Line(x0=tape[-1].x1, y0=tape[-1].y1, x1=tape[-1].x1+w/2.0, y1=tape[-1].y1,
+              linewidth=0.02)
+    p += Line(x0=tape[-1].x1, y0=tape[-1].y0, x1=tape[-1].x1+w/2.0, y1=tape[-1].y0,
+              linewidth=0.02)
 
     # "input tape"
     if input_tape_str:
@@ -6881,15 +6906,15 @@ def pda(p,
     # pda
     x0,y0 = tape.bottomleft(); y0 -= body_h + vsep
     x1,y1 = x0 + body_w, y0 + body_h
-    pda = Rect(x0=x0, y0=y0, x1=x1, y1=y1, label=state, linewidth=0.07)
+    pda = Rect(x0=x0, y0=y0, x1=x1, y1=y1, label=state, linewidth=0.02)
     p += pda
 
     # read/write head
     p0 = (x0, y0) = pda.top()
     p3 = (x3, y3) = tape[head_index].bottom()
-    p1 = (x0, (y0+y3)/2.0)
-    p2 = (x3, (y0+y3)/2.0)
-    p += Line(points=[p0, p1, p2, p3], linewidth=0.07, endstyle='->')
+    p1 = (x0, (2.0*y0+1.0*y3)/3.0)
+    p2 = (x3, (2.0*y0+1.0*y3)/3.0)
+    p += Line(points=[p0, p1, p2, p3], linewidth=0.02, endstyle='>')
 
     # stack
     if include_arm_and_stack:
@@ -6905,17 +6930,15 @@ def pda(p,
         # arm
         p0 = (x0,y0) = pda.right()
         (x1,y1) = stack.top(); y1 += armv 
-        p += Line(points=[p0, (x1,y0), (x1,y1)],
-             linewidth=0.1)
-        p += Line(points=[(x1-0.2, y1-0.2), (x1-0.2, y1), (x1+0.2, y1), (x1+0.2, y1-0.2)],
-             linewidth=0.1)
+        p += Line(points=[p0, (x1,y0), (x1,y1)], linewidth=0.02)
+        p += Line(points=[(x1-0.2, y1-0.2), (x1-0.2, y1), (x1+0.2, y1), (x1+0.2, y1-0.2)], linewidth=0.02)
 
         x0,y1 = tape.topleft()
         x1 = max(tape.right()[0] + w/2, stack.right()[0] + 0.1) # WARNINGL hardcoing 0.1
         y0 = min(pda.bottom()[1], stack.bottom()[1] - 0.1)
     else:
         x0,y1 = tape.topleft()
-        x1 = max(tape.right()[0] + w/2, pda.right()[0])
+        x1 = max(tape.right()[0] + w/2.0, pda.right()[0])
         y0 = pda.bottom()[1]
     return Rect(x0=x0,y0=y0,x1=x1,y1=y1,linewidth=0)
 
@@ -6938,7 +6961,7 @@ def pda_step(p,
     x0,y0 = r1.bottomleft()
     x1,y1 = r1.topright()
 
-    p += Line(points=[(x1+1,-1.5),(x1+2,-1.5)], linewidth=0.3, endstyle='>')
+    p += Line(points=[(x1+1,-1.5),(x1+2,-1.5)], linewidth=0.1, linecolor='red', endstyle='>')
 
     x0,y0 = r1.bottomleft()
     x1,y1 = r1.topright()
@@ -7048,7 +7071,7 @@ def pda_computation(p,
                                   (x2,y2),
                                   (x3,y3),
                                   (x4,y4)],
-                          linewidth=0.2, endstyle='>')
+                          linewidth=0.1, endstyle='>')
                 y0 = y4 - arrowvsep2 - w
                 min_y = 0
             else:
@@ -7056,7 +7079,7 @@ def pda_computation(p,
                 # Draw arrow to next pda (only if there's a next one)
                 p += Line(points=[(x1 + arrowhsep, y0 + voffset),
                                   (x1 + arrowhsep + arrowhlen, y0 + voffset)],
-                          linewidth=0.2, endstyle='>')
+                          linewidth=0.1, endstyle='>', linecolor='green')
                 x0 = x1 + arrowhsep + arrowhlen + arrowhsep
 
         index += 1
@@ -7323,7 +7346,8 @@ class ER:
     def entity(center, name='', label=None,
                attribs=None,
                derived=None,
-               keys=None, 
+               keys=None,
+               dasheds=None,
                labelfunc=None, anchor=None,
                double=None,
                ):
@@ -7334,7 +7358,8 @@ class ER:
         if labelfunc==None: labelfunc = ER.labelfunc
         ret = str(ER.entity_only(center=center, name=name, label=label, labelfunc=labelfunc, double=name in double))
         ret += str(ER.attribs(center=center, name=name, attribs=attribs,
-                              keys=keys, labelfunc=labelfunc, anchor=anchor,
+                              keys=keys, dasheds=dasheds,
+                              labelfunc=labelfunc, anchor=anchor,
                               double=double, derived=derived,
                               width=ER.entity_width, height=ER.entity_height))
         return ret
@@ -7422,12 +7447,15 @@ class ER:
                 labelfunc=None,
                 double=None,
                 anchor=None,
-                derived=None):
+                derived=None,
+                dasheds=None, # ADDED FOR PARTIAL KEY
+    ):
         if labelfunc == None:
             labelfunc = ER.labelfunc
         if double==None: double=[]
         if attribs==None: attribs = []
         if keys==None: keys = []
+        if dasheds==None: dasheds=[]
         if anchor==None: anchor={}
         if derived==None: derived=[]
         if width==None: width = max(ER.entity_width, ER.relation_width)
@@ -7447,6 +7475,8 @@ class ER:
         for a in attribs:
             if a in keys:
                 label = r'\underline{%s}' % labelfunc(a)
+            elif a in dasheds:
+                label = r'\dashuline{%s}' % labelfunc(a)
             else:
                 label = labelfunc(a)
             if a not in derived:
@@ -7472,7 +7502,8 @@ class ER:
                 linestyle = ''
             else:
                 linestyle = 'dashed'
-            ret += ER.attrib(center=(x,y), name=a, label=label, double=a in double, linestyle=linestyle)
+            ret += ER.attrib(center=(x,y), name=a, label=label,
+                             double=a in double, linestyle=linestyle)
             x += (ER.attrib_width + ER.attrib_sep) 
             ret += str(ER.line(names=[a, name], linestyle=linestyle))
 
@@ -7856,10 +7887,10 @@ def bptree_get_root(y=0, keys=[], children=[], widths=[], height=[]):
     root_keys = len([_ for _ in keys if _ != ''])
     root_width = root_keys * widths[1] + (root_keys + 1)  * widths[0]
     if len(children) % 2 == 1:
-        x2 = children[(len(children))/2].top()[0]
+        x2 = children[(len(children))//2].top()[0]
     else:
-        x0 = children[len(children)/2 - 1].top()[0]
-        x1 = children[len(children)/2].top()[0]
+        x0 = children[len(children)//2 - 1].top()[0]
+        x1 = children[len(children)//2].top()[0]
         x2 = (x0 + x1) / 2.0
     root = bpt_node(x=x2 - 0.5 * (root_keys * widths[1] + (root_keys + 1) * widths[0]),
                     y=y, M=keys, widths=widths, height=height)
@@ -8113,7 +8144,7 @@ def cyk(p, m, w=None,
         def rect(x):
             if fontsize:
                 x = r'{\%s %s}' % (fontsize, x)
-            row, col = i[0] / size, i[0] % size
+            row, col = int(i[0] / size), i[0] % size
             if (row, col) in background.keys():
                 i[0] += 1
                 return Rect2(x0=0, y0=0, x1=width, y1=height,
@@ -8165,7 +8196,7 @@ def spfp(p, x=0, y=0, s='0', ebias='11111111', f='11111111111111111111111'):
 # Note: uses Graph
 #==============================================================================
 def bintreepositions(edges, node_width=0.8, node_vsep=1.0, node_hsep=0.2):
-    keys = edges.keys()
+    keys = list(edges.keys())
     rhs = []
     for k in edges.keys():
         for x in edges[k]:
@@ -8181,7 +8212,8 @@ def bintreepositions(edges, node_width=0.8, node_vsep=1.0, node_hsep=0.2):
         if p == None:
             return -1
         else:
-            return 1 + max(height(x, edges) for x in edges.get(p, [None]))
+            xs = [height(x, edges) for x in edges.get(p, [None])]
+            return 1 + max(xs)
     ht = height(root, edges)
     d = {}
     queue = [(root, 0, 0, 1, (0,0))] # node, depth, child#, nsiblings, parent position

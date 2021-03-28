@@ -17,12 +17,12 @@ p += n6
 
 p += Pointer(points = [n5[1].center(), n6[0].left()])
 
-print p
+print(p)
 
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -49,11 +49,11 @@ p1 = n5[1].top()
 p2 = p0[0], p0[1] + 0.5
 p3 = p1[0], p2[1]
 p += Pointer(points = [p0, p2, p3, p1])
-print p
+print(p)
 
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}

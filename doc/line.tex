@@ -9,11 +9,11 @@ p += Line(x0=3, y0=0, x1=6, y1=2, linecolor='red', linewidth=0.1)
 p += Line(x0=6, y0=0, x1=9, y1=2, linecolor='red', linewidth=0.2, 
                                   linestyle='dashed')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
+print(console(s.strip()))
 
 exec(s)
 \end{python}
@@ -39,11 +39,11 @@ p += Line(x0=9, y0=0, x1=12, y1=2, linecolor='blue', linewidth=0.1,
 p += Line(x0=12, y0=0, x1=15, y1=2, linecolor='blue', linewidth=0.05,  
                                    startstyle='>>', endstyle='>>')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -65,11 +65,11 @@ p += Line(x0=6, y0=0, x1=9, y1=2, linecolor='red', linewidth=0.2,
                                   startstyle='->', endstyle='->', 
                                   arrowstyle='triangle')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -91,10 +91,10 @@ p += Line(x0=6, y0=0, x1=9, y1=2, linecolor='black', linewidth=0.05,
                                   linestyle='dashed', startstyle='dot', 
                                   endstyle='->',  arrowstyle='triangle')
 p += Grid()
-print p
+print(p)
 """.strip()
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -110,11 +110,11 @@ p += Line(points=[(1,4), (0,0), (5,0), (6,3)],
           linecolor='blue', linewidth=0.1, 
           startstyle='->', arrowstyle='triangle', endstyle='dot')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -140,11 +140,11 @@ p += Circle(center=aline.topright(), r=0.25, background='red')
 p += Circle(center=aline.bottomleft(), r=0.25, background='red')
 p += Circle(center=aline.bottomright(), r=0.25, background='red')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -164,11 +164,11 @@ for point in aline.points:
 
 p += aline
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -188,11 +188,11 @@ p += aline
 p += Circle(center=aline.midpoint(), r=0.4, 
             background='white', label=r'{\texttt{%s}}' % 42)
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -222,11 +222,11 @@ linewithpoints(p, [(10, -6), (0, -7)], 'blue', 'red!20')
 linewithpoints(p, [(11, -7), (11, 0)], 'green', 'red!20')
 linewithpoints(p, [(12, 0), (12, -7)], 'green', 'red!20')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -249,11 +249,11 @@ for i in [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
     p += Circle(center=aline.midpoint(ratio=i), r=0.4, 
                 background='red!20', label=r'{\texttt{%s}}' % i)
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -270,11 +270,11 @@ for i, x in enumerate([0.2, 0.15, 0.1, 0.05, 0.01]):
     p += Line(points=[(4-x, i), (4, i)], linecolor='blue', linewidth=x, 
               endstyle='->', arrowstyle='triangle')    
 #p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console
-print console(s.strip())
+print(console(s.strip()))
 exec(s)
 \end{python}
 
@@ -295,11 +295,11 @@ p += Rect(x0=5, y0=1, x1=6, y1=2, label='b', name='b')
 
 p += Line(names=['a', 'b'], endstyle='>')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console, makeandincludegraphics
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -319,11 +319,11 @@ p += Circle(x=8, y=3, r=1, name='c', label='c')
 
 p += Line(names=['a','b','c'], bend_left=30, endstyle='>', linewidth=0.1)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 
 exec(s)
 \end{python}
@@ -342,7 +342,7 @@ p = Plot()
 p += Circle(x=0, y=0, r=0.3, name='a', label='a')
 p += Circle(x=10, y=0, r=0.3, name='b', label='b')
 p += Line(names=['a', 'b'], anchor='below', label='hello')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -361,7 +361,7 @@ p = Plot()
 p += Circle(x=0, y=0, r=0.3, name='a', label='a')
 p += Circle(x=10, y=0, r=0.3, name='b', label='b')
 p += Line(names=['a', 'b'], bend_left=30, anchor='below', label='hello')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -380,7 +380,7 @@ p = Plot()
 p += Circle(x=0, y=0, r=0.3, name='a', label='a')
 p += Circle(x=10, y=0, r=0.3, name='b', label='b')
 p += Line(names=['a', 'b'], bend_left=30, anchor='above', label='hello')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -396,7 +396,7 @@ p = Plot()
 p += Circle(x=0, y=0, r=0.3, name='a', label='a')
 p += Circle(x=10, y=0, r=0.3, name='b', label='b')
 p += Line(names=['a', 'b'], bend_left=30, anchor='above', label='hello')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -414,7 +414,7 @@ p = Plot()
 p += Circle(x=0, y=0, r=0.3, name='a', label='a')
 p += Circle(x=0, y=3, r=0.3, name='b', label='b')
 p += Line(names=['a', 'b'], bend_left=30, anchor='left', label='hello')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -429,7 +429,7 @@ p = Plot()
 p += Circle(x=0, y=0, r=0.3, name='a', label='a')
 p += Circle(x=0, y=3, r=0.3, name='b', label='b')
 p += Line(names=['a', 'b'], bend_left=30, anchor='right', label='hello')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -456,7 +456,7 @@ p += Circle(x=x, y=y, r=0.05, background='red')
 X = POINT(x=x, y=y, label='$abcde$', anchor='south')
 p += str(X)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -483,10 +483,10 @@ p += Circle(x=1.5, y=1, r=0.05, background='black')
 
 p += Line(names=['a','a'], controls=[(1,1.5),(1.5,1)], linewidth=L)
 p += Grid(0, 0, 3, 3)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -508,10 +508,10 @@ p += Circle(x=0, y=2, r=0.05, background='black')
 p += Line(names=['22','00'], controls=[(0,2)], linewidth=0.03)
 p += Grid(x0=-1,y0=-1,x1=3,y1=3)
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -534,10 +534,10 @@ p += Circle(x=0, y=2, r=0.05, background='black')
 p += Line(names=['22','00'], controls=[(0,2)], linewidth=L, label='test', anchor='below')
 
 p += Grid(x0=-1,y0=-1,x1=3,y1=3)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 

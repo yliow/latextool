@@ -15,7 +15,7 @@ twice (fun x -> x * x) 42
     
 code(p, M)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -40,7 +40,7 @@ code(p, M, x=0, y=0)
 p += Circle(x=2, y=2, r=0.5, linecolor='red')
 code(p, M, x=2, y=2)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -63,7 +63,7 @@ twice (fun x -> x * x) 42
     
 code(p, M, width=0.3, height=1)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -88,7 +88,7 @@ twice (fun x -> x * x) 42
     
 code(p, M, border_linewidth=0.05)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -113,7 +113,7 @@ twice (fun x -> x * x) 42
     
 code(p, M, border_linewidth=0.05, innersep=0.8)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -154,7 +154,7 @@ p += r1
 p0 = r0.bottom()
 p1 = r1.top(); p1 = (p0[0], p1[1])
 p += Line(points=[p0,p1], endstyle='>', linecolor='red')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -185,7 +185,7 @@ twice (fun x -> x * x) 42    #
 """.strip()
 
 code(p, M, d={'#':r'\textred{$\rho$}'})
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -216,7 +216,7 @@ N = code(p, M)
 divlinebelow(p, N, 0, 5, 16)
 linebelow(p, N, 2, 4, 8)
 linebelow(p, N, 4, 5, 9)
-print p
+print(p)
 \end{Verbatim}
 
 \begin{python}
@@ -239,7 +239,7 @@ N = code(p, M)
 divlinebelow(p, N, 0, 5, 16)
 linebelow(p, N, 2, 4, 8)
 linebelow(p, N, 4, 5, 9)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=False)

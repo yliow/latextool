@@ -17,7 +17,7 @@ p += POINT(x=0, y=-3)
 p += '%s' % Circle(x=0, y=-5, r=0.08, background='black', name=None)
 
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -42,7 +42,7 @@ p += Circle(x=8.5, y=0.5, r=0.5, linewidth=0.1, linestyle='dashed',
 p += Circle(x=10.5, y=0.5, r=0.5, linewidth=0.1, linestyle='double', 
                                  linecolor='red')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -67,7 +67,7 @@ p += Circle(x=8.5, y=0.5, r=0.5, linewidth=0.1, linestyle='dashed',
 p += Circle(x=10.5, y=0.5, r=0.5, linewidth=0.1, linestyle='double', 
                                  linecolor='red', background='green')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -100,11 +100,11 @@ p += Circle(x=10, y=-3, r=1, linecolor='green!50!white', linewidth=0,
             background='blue!20!white', foreground='red',
             innersep=0.4, s=s)
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 \end{python}
 \begin{python}
 s = """
@@ -126,7 +126,7 @@ p += Circle(x=10, y=-3, r=1, linecolor='green!50!white', linewidth=0,
             background='blue!20!white', foreground='red',
             innersep=0.4, s=s)
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -145,7 +145,7 @@ p = Plot()
 label = 'a'
 p += Circle(x=0, y=0, r=1, label=label, anchor='above')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -166,7 +166,7 @@ p += Circle(x=0, y=0, r=1, foreground='red', label='a')
 p += Circle(x=3, y=0, r=1, background='blue!20!white', 
                            foreground='red', label='$q_0$')
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -209,7 +209,7 @@ c2 = Circle(center=c1.bottom(), r=0.5, background=b2)
 p += c1; p += c2
 
 p += Grid()
-print p
+print(p)
 """.strip()
 
 from latextool_basic import console
@@ -233,7 +233,7 @@ p += Circle(center=(5,0), r = 1, label=r'$b$', name='b')
 
 p += Line(names=['a', 'b'], linewidth=0.05, endstyle='>')
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 print(console(s))
@@ -253,7 +253,7 @@ p += Circle(center=(5,0), r = 1, label=r'$b$')
 
 p += r"\draw[->,line width=2] (a) -- (b);"
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 print(console(s))

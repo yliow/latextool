@@ -1,4 +1,4 @@
-\section{Grid}
+xs\section{Grid}
 
 Plot with default grid.
 \begin{python}
@@ -7,7 +7,7 @@ execute(r"""
 from latextool_basic import *
 p = Plot()
 p += Grid()
-print p""", print_source=True)
+print(p)""", print_source=True)
 \end{python}
 
 
@@ -18,7 +18,7 @@ execute(r"""
 from latextool_basic import *
 p = Plot()
 p += Grid(x0=-5, y0=-2, x1=5, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -30,7 +30,7 @@ execute(r"""
 from latextool_basic import *
 p = Plot()
 p += Grid(x0=-5, y0=-2, x1=5, y1=2, label_axes=False)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -44,7 +44,7 @@ execute(r"""
 from latextool_basic import *
 p = Plot()
 p += Grid(x0=-5, y0=-2, x1=5, y1=2, dx=2, dy=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -58,7 +58,7 @@ execute(r"""
 from latextool_basic import *
 p = Plot()
 p += Grid(x0=-5, y0=-2, x1=5, y1=2, dx=1.3, dy=0.7)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 

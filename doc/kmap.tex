@@ -28,12 +28,12 @@ C = table2(p, m, width=0.7, height=0.7,
 #p += kmap_rect(C[0][3], linecolor='cyan')
 #p += kmap_rect(C[2][2], C[2][3], linecolor='magenta')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'''{\scriptsize %s }''' % console(s)
+print(r'''{\scriptsize %s }''' % console(s))
 \end{python}
 
 
@@ -75,12 +75,12 @@ kmap_NN(p, C[0][0], linecolor='green')
 kmap_NN(p, C[0][1], C[0][2], linecolor='green')
 kmap_NN(p, C[1][2], C[0][3], linecolor='green')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -119,12 +119,12 @@ kmap_SE(p, C[3][3], linecolor='red')
 kmap_SE(p, C[3][2], C[2][3], linecolor='red')
 kmap_SE(p, C[3][1], C[3][3], linecolor='blue')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r"{\scriptsize %s}" % console(s)
+print(r"{\scriptsize %s}" % console(s))
 \end{python}
 
 
@@ -146,13 +146,13 @@ m = [[0,1,1,0],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')
          
-print p
+print(p)
 
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r"{\scriptsize %s}" % console(s)
+print(r"{\scriptsize %s}" % console(s))
 \end{python}
 
 
@@ -172,13 +172,13 @@ m = [[0,1,0,0],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')
          
-print p
+print(p)
 
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -198,13 +198,13 @@ m = [[0,1,0,1],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')
          
-print p
+print(p)
 
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -224,12 +224,12 @@ m = [[0,1,0,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 \begin{python}
@@ -246,12 +246,12 @@ m = [[0,1,0,0],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 \begin{python}
@@ -268,12 +268,12 @@ m = [[1,1,0,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 \begin{python}
@@ -290,12 +290,12 @@ m = [[1,1,0,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 \begin{python}
@@ -312,12 +312,12 @@ m = [[1,1,1,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 \begin{python}
@@ -334,7 +334,7 @@ m = [[1,1,1,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
@@ -354,12 +354,12 @@ m = [[1,0,0,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -376,12 +376,12 @@ m = [[1,0,1,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -398,12 +398,12 @@ m = [[1,1,1,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -421,12 +421,12 @@ m = [[0,0,1,0],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -445,12 +445,12 @@ m = [[0,1,1,0,1,1,1,1],
 
 C = kmap(p, m, width=1, height=1,
          rowlabel='$de$', collabel='$abc$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -476,12 +476,12 @@ m = [[0,0,'d',0],
 C = kmap(p, m, width=0.7, height=0.7,
          circle_terms=[1, 'd'],
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s}' % console(s)
+print(r'{\scriptsize %s}' % console(s))
 \end{python}
 
 \begin{python}
@@ -498,12 +498,12 @@ m = [[0,0,'x',0],
 C = kmap(p, m, width=0.7, height=0.7,
          circle_terms=[0, 'x'],
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s}' % console(s)
+print(r'{\scriptsize %s}' % console(s))
 \end{python}
 
 
@@ -523,12 +523,12 @@ m = [[0,0,1,0],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -545,12 +545,12 @@ m = [[0,0,0,0],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -567,12 +567,12 @@ m = [[1,1,0,0],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -590,12 +590,12 @@ m = [[1,0,0,1],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -612,12 +612,12 @@ m = [[1,0,0,1],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -635,12 +635,12 @@ m = [[1,0,1,1],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -656,12 +656,12 @@ m = [[0,0,0,0],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$x$', collabel='$yz$')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -718,12 +718,12 @@ x0,y0 = r.top(); y0 += 0.2; p0 = (x0,y0)
 x1,y1 = C[1][3].bottom(); y1 += 0.2; p1 = (x1,y1)
 p += Line(points=[p0, p1], linecolor='blue')
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -753,12 +753,12 @@ m = [[0,0,1,1],
 
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$')  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 \end{python}
 
 
@@ -782,12 +782,12 @@ m = [[0,0,1,1],
 C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$',
          donotremove=[((0,0),(2,3))])  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r"{\scriptsize %s }" % console(s)
+print(r"{\scriptsize %s }" % console(s))
 \end{python}
 
 
@@ -824,12 +824,12 @@ C = kmap(p, m, width=0.7, height=0.7,
          rowlabel='$wx$', collabel='$yz$',
          style_selector={'linecolor':f, 'linewidth':g}
          )  
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r''' {\scriptsize %s } ''' % console(s)
+print(r''' {\scriptsize %s } ''' % console(s))
 \end{python}
 
 
@@ -867,12 +867,12 @@ C = kmap(p, m, width=1, height=1,
          style_selector={'linecolor':f, 'linewidth':g}
          )
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r''' {\scriptsize %s } ''' % console(s)
+print(r''' {\scriptsize %s } ''' % console(s))
 \end{python}
 
 \newpage
@@ -905,12 +905,12 @@ C = kmap(p, m, width=1, height=1,
          style_selector={'linecolor':f, 'linewidth':g}
          )
 
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r''' {\scriptsize %s } ''' % console(s)
+print(r''' {\scriptsize %s } ''' % console(s))
 \end{python}
 
 
@@ -935,12 +935,12 @@ C = kmap(p, m, width=1.1, height=1.1,
          decimal=True
          )
          
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r"{\scriptsize %s}" % console(s)
+print(r"{\scriptsize %s}" % console(s))
 \end{python}
 
 
@@ -970,12 +970,12 @@ C = kmap(p, m, width=1.1, height=1.1,
          decimal_format=r'{\textred{\textsl{%s}}}'
          )
          
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 exec(s)
-print r"{\scriptsize %s}" % console(s)
+print(r"{\scriptsize %s}" % console(s))
 \end{python}
 
 
@@ -1026,11 +1026,11 @@ p += Line(points=[r.left(),(x,y)], endstyle='>', linecolor='red', linewidth=0.1)
 x,y = C[3][3].right(); x -= 0.2
 p += Line(points=[r.left(),(x,y)], endstyle='>', linecolor='red', linewidth=0.1)
 
-print p
+print(p)
 """.strip()
 
 
 from latextool_basic import *
 exec(s)
-print r"{\scriptsize %s}" % console(s)
+print(r"{\scriptsize %s}" % console(s))
 \end{python}

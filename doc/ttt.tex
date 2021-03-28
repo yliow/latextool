@@ -11,11 +11,11 @@ m = [[X, s, s, s],
      [s, O, O, s],
      [s, s, s, s]]
 board = ttt(p=p, m=m)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -34,11 +34,11 @@ m = [[X, s, s, s],
      [s, s, s, s]]
 board = ttt(p=p, m=m,
             rownames=['','','',''], colnames=['','','',''])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -62,11 +62,11 @@ board = ttt(p=p, x=5, y=1,
             m=m,
             rownames=['','','',''], colnames=['','','',''])
 p += Grid(x0=-1, y0=-4, x1=9, y1=2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -91,11 +91,11 @@ board = ttt(p=p, x=5, y=1,
             m=m,
             rownames=['','','',''], colnames=['','','',''])
 p += Grid(x0=-1, y0=-3, x1=9, y1=2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -119,11 +119,11 @@ board = ttt(p=p, x=0, y=0,
             m=m,
             rownames=['','','',''], colnames=['','','',''],
             border_linewidth=0.2)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -159,11 +159,11 @@ p += Line(points=[board0.right(), board1.left()], endstyle='>', linewidth=0.4)
 p += Line(points=[board0[0][1].center(),
                   board1[0][1].left()], endstyle='>', linewidth=0.1)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}

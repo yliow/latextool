@@ -9,11 +9,11 @@ m = [['', '', '',''],
      ['', 'O', '@',''],
      ['', '', '','']]
 board = othello(p=p, m=m)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -34,11 +34,11 @@ board = othello(p=p, m=m,
                 rownames=range(4),
                 colnames=range(4),
                 )
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -56,11 +56,11 @@ m = [['', '', '',''],
      ['', 'O', '@',''],
      ['', '', '','']]
 board = othello(p=p, m=m, rownames=[], colnames=[])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -85,11 +85,11 @@ board1 = othello(p=p, m=m, x=6, y=0)
 x0,y0 = board0.right(); x0 += 1; p0 = (x0,y0)
 x1,y1 = board1.left(); x1 -= 1; p1 = (x1,y1)
 p += Line(points=[p0, p1], linewidth=0.2, endstyle='>')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}
@@ -121,11 +121,11 @@ highlight(p, 3, 1)
 highlight(p, 2, 2)
 
 board = othello(p=p, m=m, x=6, y=0)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 #execute(s, print_source=True)
 \end{python}

@@ -13,10 +13,10 @@ for x in '1234578':
                label=r'{\texttt{%s}}' % x)
 p += c
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import *
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -39,11 +39,11 @@ for x in 'abcdefgh':
 p += c
 p += bend(c[2].top(), c[5].top())
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import *
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -72,10 +72,10 @@ for x in '34':
 p += d
 
 p += Line(names=['A','B'], endstyle='>')
-print p
+print(p)
 """
 from latextool_basic import *
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -101,11 +101,11 @@ p += c
 p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p 
+print(p) 
 """ 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -128,11 +128,11 @@ p += c
 p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p 
+print(p) 
 """ 
 from latextool_basic import *
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -155,11 +155,11 @@ p += c
 p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p 
+print(p) 
 """ 
 from latextool_basic import *
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -182,11 +182,11 @@ p += Rect2(x0=c.x0, y0=c.y0, x1=c.x1, y1=c.y1, linewidth=0.1, linecolor='green')
 
 
 p += Grid()
-print p 
+print(p) 
 """ 
 from latextool_basic import *
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -215,11 +215,11 @@ C += c1; c1.x = c1.x0; c1.y = c1.y0; c1.layout()
 
 p += C;
 p += Grid()
-print p 
+print(p) 
 """ 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -241,11 +241,11 @@ for i, x in enumerate([1,2,3,4,5,6]):
 
 p += c 
 p += Grid()
-print p 
+print(p) 
 """ 
 from latextool_basic import *
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -286,10 +286,10 @@ p += Line(x0=v[0].centerx(), y0=v[0].centery(),
           endstyle='->', startstyle='dot', r=0.01)
 
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import *
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -324,10 +324,10 @@ p += Line(x0=dfa.centerx(), y0=dfa.y1,
           linewidth=0.1, linecolor='blue', endstyle='->')
 
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import *
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -371,11 +371,11 @@ p += Line(x0=v[0].centerx(),y0=pda.centery(),x1=v[0].centerx(),y1=v[0].topy(),
           linewidth=0.1, linecolor='blue')
 
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import *
-print console(s.strip())
-print r'\newpage'
+print(console(s.strip()))
+print(r'\newpage')
 execute(s)
 \end{python}
 

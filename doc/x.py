@@ -43,4 +43,4 @@ def rect(index, p, x0, y0, no_draw=False):
         return None
 
 sequence(p, rect=rect)
-print p
+print(p)

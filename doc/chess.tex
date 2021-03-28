@@ -29,10 +29,10 @@ C = chess(p, x=0, y=0, xs=xs)
 p += Line(points=[C[6][4].center(), C[4][4].center()], linecolor='red',
           linewidth=0.1, endstyle='>')
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -57,7 +57,7 @@ C = chess(p, x=0, y=0, xs=xs, WIDTH=0.5)
 p += Line(points=[C[6][4].center(), C[4][4].center()], linecolor='red',
           linewidth=0.05, endstyle='>')
 
-print p
+print(p)
 \end{python}
 
 
@@ -74,7 +74,7 @@ C = chess(p, x=0, y=0, xs=xs, WIDTH=0.3)
 p += Line(points=[C[5][5].center(), C[5][7].center()], linecolor='red',
           linewidth=0.04, endstyle='>')
 
-print p
+print(p)
 \end{python}
 
 \begin{python}
@@ -90,5 +90,5 @@ C = chess(p, x=0, y=0, xs=xs, WIDTH=0.2)
 p += Line(points=[C[5][5].center(), C[5][7].center()], linecolor='red',
           linewidth=0.02, endstyle='>')
 
-print p
+print(p)
 \end{python}

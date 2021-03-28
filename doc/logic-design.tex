@@ -18,12 +18,12 @@ x,y = g.output()
 p += Line(points=[(x, y), (x + 1,y)])
 
 p += Grid(x0=-2, y0=-1, x1=2, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 exec(s)
-print console(s.strip())
+print(console(s.strip()))
 \end{python}
 
 
@@ -48,12 +48,12 @@ x,y = g.output()
 p += Line(points=[(x, y),(x+1,y)])
 
 p += Grid(x0=-2, y0=-1, x1=2, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 exec(s)
-print (console(s).strip())
+print((console(s).strip()))
 \end{python}
 
 
@@ -76,12 +76,12 @@ x,y = g.output()
 p += Line(points=[(x,y),(x + 1,y)])
 
 p += Grid(x0=-2, y0=-1, x1=2, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print((console(s).strip()))
 \end{python}
 
 
@@ -107,12 +107,12 @@ x,y = g.output()
 p += Line(points=[(x,y),(x+1,y)])
 
 p += Grid(x0=-2, y0=-1, x1=2, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -135,12 +135,12 @@ x,y = g.output()
 p += Line(points=[(x,y),(x+1,y)])
 
 p += Grid(x0=-2, y0=-1, x1=2, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -163,11 +163,11 @@ x,y = g.output()
 p += Line(points=[(x,y),(x+1,y)])
 
 p += Grid(x0=-2, y0=-1, x1=2, y1=1)
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -181,12 +181,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath([(0,0), (5,1)]))
 p += Grid(x0=-1, y0=-1, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -198,12 +198,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath([(0,0), (5,1)], endstyle='>', arrowstyle='triangle'))
 p += Grid(x0=-1, y0=-1, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -217,12 +217,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath([(0,0), (5,0)]))
 p += Grid(x0=-1, y0=-1, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -235,12 +235,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath([(0,0), (5,1)], shifts=[1]))
 p += Grid(x0=-1, y0=-1, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -253,12 +253,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath([(0,0), (5,1)], shifts=[-1]))
 p += Grid(x0=-1, y0=-1, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print((console(s).strip()))
 \end{python}
 
 TODO: shifts for vertical case
@@ -273,12 +273,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath(points=[(0,0), (5,1)], direction='vh'))
 p += Grid(x0=-1, y0=0, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -291,12 +291,12 @@ from latexcircuit import *
 p = Plot()
 p += str(OrthogonalPath(points=[(0,1), (5,0)], direction='vh'))
 p += Grid(x0=-1, y0=0, x1=6, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -311,12 +311,12 @@ AND = AND_GATE(x=0, y=0); p += str(AND)
 OR = OR_GATE(x=5, y=1); p += str(OR)
 opath = OrthogonalPath(gate0=AND, gate1=OR, input_index=0)
 p += str(opath)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -333,12 +333,12 @@ p = Plot()
 X = POINT(x=0, y=0, label='$x$')
 p += str(X)
 p += Grid(x0=-2, y0=-1, x1=4, y1=1)
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -352,11 +352,11 @@ X = POINT(x=0, y=0, label='$x$', anchor='north')
 p += str(X)
 p += str(OrthogonalPath([X.output(), (3,1)]))
 p += Grid(x0=-2, y0=-1, x1=4, y1=1)
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -373,11 +373,11 @@ p = Plot()
 g0 = AND_GATE(linewidth=5, linecolor='blue')
 p += str(g0)
 
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -392,12 +392,12 @@ p = Plot()
 g0 = AND_GATE(linewidth=5, linecolor='blue', label='$z$')
 p += str(g0)
 
-print p
+print(p)
 '''
 
 from latextool_basic import *
 execute(s)
-print (console(s)().strip())
+print(console(s)().strip())
 \end{python}
 
 
@@ -434,11 +434,11 @@ x1,y1 = x0 + 3, y0; p1 = x1,y1
 p += Line(points=[p0,p1], linewidth=0.1, linecolor='black')
 
 p += Grid()
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 \end{python}
 
 
@@ -465,11 +465,11 @@ p1 = (x1, y1)
 p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
   
 
@@ -501,11 +501,11 @@ p1 = (x1, y1)
 p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -536,11 +536,11 @@ p1 = (x1, y1)
 p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 \end{python}
 
 
@@ -568,11 +568,11 @@ p1 = (x1, y1)
 p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid()
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -591,11 +591,11 @@ p += str(g0)
 
 p += Grid(x0=-1,y0=-1,x1=3,y1=1)
 
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -610,11 +610,11 @@ p += str(g0)
 
 p += Grid(x0=-1,y0=-1,x1=3,y1=1)
 
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -645,11 +645,11 @@ p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid(x0=-1,y0=-1,x1=3,y1=1)
 
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -676,11 +676,11 @@ p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid(x0=-1,y0=-2,x1=3,y1=2)
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -707,11 +707,11 @@ p += Line(points=[p0, p1], linewidth=0.1, linecolor='green')
 
 p += Grid(x0=-1,y0=-2,x1=3,y1=2)
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -736,11 +736,11 @@ p += Line(points=[p0,p1], linewidth=0.1, linecolor='green')
 
 p += Grid(x0=-1, y0=-2, x1=5, y1=2)
 
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print (console(s).strip())
+print(console(s).strip())
 \end{python}
 
 
@@ -763,11 +763,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x, y + 1)])
 
 p += Grid(x0=-1, y0=-1, x1=1, y1=2)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -790,11 +790,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x - 1, y)])
 
 p += Grid(x0=-2, y0=-1, x1=1, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -817,11 +817,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x, y - 1)])
 
 p += Grid(x0=-1, y0=-2, x1=1, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -846,11 +846,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x, y + 1)])
 
 p += Grid(x0=-1, y0=-1, x1=1, y1=2)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -873,11 +873,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x - 1, y)])
 
 p += Grid(x0=-2, y0=-1, x1=1, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -901,11 +901,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x, y - 1)])
 
 p += Grid(x0=-1, y0=-2, x1=1, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #execute(s, print_source=True)
 \end{python}
 
@@ -931,11 +931,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x, y + 1)])
 
 p += Grid(x0=-1, y0=-1, x1=1, y1=2)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -959,11 +959,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x - 1, y)])
 
 p += Grid(x0=-2, y0=-1, x1=1, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -987,11 +987,11 @@ x,y = g.output()
 p += Line(points=[(x, y),(x, y - 1)])
 
 p += Grid(x0=-1, y0=-2, x1=1, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -1011,11 +1011,11 @@ P = OUTPUT_POINT(gate=NOR)
 
 p += str(NOR)
 p += str(P)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source=True)
 \end{python}
@@ -1031,11 +1031,11 @@ P = OUTPUT_POINT(gate=AND, output_length=4, label='z', anchor='west')
 
 p += str(AND)
 p += str(P)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s)
-print (console(s))
+print(console(s))
 #from latextool_basic import *
 #execute(s, print_source)
 \end{python}
@@ -1058,14 +1058,14 @@ P = INPUT_POINT(gate=NOR, input_index=0)
 
 p += str(NOR)
 p += str(P)
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-#print r'{\small %s }' % console(s.strip())
+#print(r'{\small %s }' % console(s.strip()))
 
 #from latextool_basic import *
-#print r'{\small %s }' % console(s.strip())
+#print(r'{\small %s }' % console(s.strip()))
 \end{python}
 \begin{python}
 from latextool_basic import *
@@ -1077,7 +1077,7 @@ P = INPUT_POINT(gate=NOR, input_index=0)
 
 p += str(NOR)
 p += str(P)
-print p
+print(p)
 \end{python}
 
 
@@ -1099,10 +1099,10 @@ p += str(P0)
 p += str(P1)
 p += str(P2)
 p += str(P3)
-print p
+print(p)
 '''
 from latextool_basic import *
-print r'{\small %s }' % console(s.strip())
+print(r'{\small %s }' % console(s.strip()))
 \end{python}
 \begin{python}
 from latextool_basic import *
@@ -1120,7 +1120,7 @@ p += str(P0)
 p += str(P1)
 p += str(P2)
 p += str(P3)
-print p
+print(p)
 \end{python}
 
 
@@ -1159,10 +1159,10 @@ p += '%s' % OrthogonalPath([Z.output(), and0.inputs()[0]])
 p += '%s' % OrthogonalPath([XYZ.output(), and0.output()])
 
 p += Grid(x0=-2, y0=-1, x1=4, y1=1)
-print p
+print(p)
 '''
 from latextool_basic import *
-print '{\small %s }' % console(s.strip())
+print('{\small %s }' % console(s.strip()))
 \end{python}
 \begin{python}
 from latextool_basic import *
@@ -1194,7 +1194,7 @@ p += '%s' % OrthogonalPath([inZ.output(), and0.inputs()[0]])
 p += '%s' % OrthogonalPath([D.output(), and0.output()])
 
 p += Grid(x0=-2, y0=-1, x1=4, y1=1)
-print p
+print(p)
 \end{python}
 
 
@@ -1252,12 +1252,12 @@ p += '%s' % OP([and2.output(), or0.inputs()[2]])
 p += '%s' % OP([or0.output(), Z.input()])
 
 p += Grid(x0=-6, y0=-1, x1=9, y1=5)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print '{\small %s}' % console(s.strip())
+print('{\small %s}' % console(s.strip()))
 \end{python}
 
 
@@ -1315,12 +1315,12 @@ p += Line(points=[(x0,y0),(x0,y0+1),(x1,y1-1),(x1,y1)])
 p += str(POINT(x=x0,y=y0+1))
 p += str(POINT(x=x1,y=y1-1))
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print '{\small %s}' % console(s.strip())
+print('{\small %s}' % console(s.strip()))
 \end{python}
 
 
@@ -1375,12 +1375,12 @@ p += Line(points=[(x0,y0),(x0,y0+1),(x1,y1-1),(x1,y1)])
 p += str(POINT(x=x0,y=y0+1))
 p += str(POINT(x=x1,y=y1-1))
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print '{\small %s}' % console(s.strip())
+print('{\small %s}' % console(s.strip()))
 \end{python}
 
 
@@ -1397,12 +1397,12 @@ from latexcircuit import *
 p = Plot()
 expr = [["a", "b"], ["a'", "b'"], ["a", "c"], ["a", "b'"]]
 layout(p, expr, AND_GATE, OR_GATE)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print '{\small %s}' % console(s.strip())
+print('{\small %s}' % console(s.strip()))
 \end{python}
 
 
@@ -1415,12 +1415,12 @@ from latexcircuit import *
 p = Plot(scale=0.5)
 expr = [["a", "b"], ["a'", "b'"], ["a", "c"], ["a", "b'"]]
 layout(p, expr, AND_GATE, OR_GATE, font='footnotesize')
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print '{\small %s}' % console(s.strip())
+print('{\small %s}' % console(s.strip()))
 \end{python}
 
 
@@ -1435,12 +1435,12 @@ from latexcircuit import *
 p = Plot()
 expr = [["a", "b", "c"], ["a'", "b'", "c'"], ["a", "c"], ["a", "b'"]]
 layout(p, expr, OR_GATE, AND_GATE)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print r'{\small %s}' % console(s.strip())
+print(r'{\small %s}' % console(s.strip()))
 \end{python}
 
 
@@ -1456,12 +1456,12 @@ p = Plot()
 expr = [["a", "b", "c", "d"], ["a'", "b'", "c'", "d'"],
         ["a", "b"], ["a", "c"], ["b","c"], ["c","d"]]
 layout(p, expr, OR_GATE, AND_GATE)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print r'{\small %s}' % console(s) 
+print(r'{\small %s}' % console(s) )
 \end{python}
 
 
@@ -1480,12 +1480,12 @@ expr = [["A_1'", "A_0", "B_1'", "B_0"],
         ["A_1", "A_0", "B_1", "B_0"],
         ]
 layout(p, expr, AND_GATE, OR_GATE)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print r'{\small %s}' % console(s) 
+print(r'{\small %s}' % console(s) )
 \end{python}
 
 
@@ -1496,12 +1496,12 @@ s = r'''
 from latextool_basic import console
 from latexcircuit import SOP2
 s = SOP("a'bcd + a'bc'd + abc'd + abcd")
-print s
+print(s)
 '''.strip()
 
 from latextool_basic import *
 execute(s)
-print r'{\small %s}' % console(s) 
+print(r'{\small %s}' % console(s) )
 \end{python}
 
 
@@ -1543,11 +1543,11 @@ x,y = g.point('c'); P2 = POINT(x=x+2, y=y, label='$c$', anchor='east')
 p += str(OrthogonalPath([P2.output(), (x,y)]))
 
 p += Grid(-3, -1, 5, 4)
-print p
+print(p)
 '''
 from latextool_basic import *
 execute(s)
-print r'{\small %s }' % console(s.strip())
+print(r'{\small %s }' % console(s.strip()))
 \end{python}
 
 
@@ -1585,13 +1585,13 @@ p += '%s' % LOGIC_BLOCK(x=6, y=1, h=3, s='half adder',
                                 'x':('', (0,2.5)),
                                 'y':('', (0,0.5))})
 p += Grid(-3, -1, 5, 4)
-print p
+print(p)
 '''
 s = s.strip()
 from latextool_basic import *
 execute(s)
-print r'{\footnotesize %s}' % console(s)
-print p
+print(r'{\footnotesize %s}' % console(s))
+print(p)
 \end{python}
 
 
@@ -1645,7 +1645,7 @@ p += '%s' % opath(points=[g1_out1, g2_in0])                   # g1 -> g2
 p += '%s' % opath(points=[g1_out0, S.input()])                # g1 -> S
 p += '%s' % opath(points=[g2_out, C1.input()])                # g2 -> C1
 
-print p
+print(p)
 \end{python}
 
 

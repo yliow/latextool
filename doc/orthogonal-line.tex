@@ -6,7 +6,7 @@ from latextool_basic import *
 p = Plot()
 points = get_points(0, 0, 3, 2, 'vbroom')
 p += Line(points = points)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -27,7 +27,7 @@ x = 5
 points = get_points(x, 0, x+3, 2, 'vbroom', delta=-0.5)
 p += Line(points = points)
 
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)
@@ -41,7 +41,7 @@ from latextool_basic import *
 p = Plot()
 points = get_points(0, 0, 3, 2, 'hbroom')
 p += Pointer(points = points)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -65,7 +65,7 @@ x = 5
 points = get_points(x, 0, x+3, 2, 'hbroom', delta=+0.5)
 p += Pointer(points = points)
 
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
@@ -107,7 +107,7 @@ for lab0, lab1s in [('A', ('B','C','D')),
         points = get_points(x0,y0,x1,y1,'vbroom')
         p += Line(points=points, linewidth=0.05)
         
-print p
+print(p)
 """
 from latextool_basic import *
 execute(s, print_source=True)

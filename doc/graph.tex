@@ -5,19 +5,19 @@
 \begin{console}
 \begin{python}
 from latextool_basic import graph
-print graph(layout="""
+print(graph(layout="""
 A
 B C
-""")
+"""))
 \end{python}
 \end{console}
 
 \begin{python}
 from latextool_basic import graph
-print graph(layout="""
+print(graph(layout="""
 A
 B C
-""")
+"""))
 \end{python}
 
 
@@ -27,7 +27,7 @@ B C
 \begin{console}
 \begin{python}
 from latextool_basic import graph
-print graph(layout='''
+print(graph(layout='''
      X1  C1
      X2  C2
      X3  C3
@@ -43,13 +43,13 @@ C1='shape=rectangle, label=$C_1$',
 C2='shape=rectangle, label=$C_2$',
 C3='shape=rectangle, label=$C_3$',
 C4='shape=rectangle, label=$C_4$',
-)
+))
 \end{python}
 \end{console}
 
 \begin{python}
 from latextool_basic import graph
-print graph(layout='''
+print(graph(layout='''
      X1  C1
      X2  C2
      X3  C3
@@ -65,7 +65,7 @@ C1='shape=rectangle, label=$C_1$',
 C2='shape=rectangle, label=$C_2$',
 C3='shape=rectangle, label=$C_3$',
 C4='shape=rectangle, label=$C_4$',
-)
+))
 \end{python}
 
 
@@ -75,7 +75,7 @@ C4='shape=rectangle, label=$C_4$',
   isoceles triangle as subtree}
 \begin{python}
 from latextool_basic import graph
-print r"""
+print(r"""
 \begin{console}
 graph(layout='''
      A
@@ -89,13 +89,13 @@ B=r'label=$\beta$',
 C=r'shape=tree, minimum height=2cm, label=$T_1$',
 D=r'shape=tree, minimum height=2cm, label=$T_2$',
 E=r'shape=tree, minimum height=2cm, label=$T_3$',
-)
+))
 \end{console}"""
 \end{python}
 
 \begin{python}
 from latextool_basic import graph
-print graph(yscale=0.8, layout='''
+print(graph(yscale=0.8, layout='''
      A
    B   C
   D E
@@ -107,7 +107,7 @@ B=r'label=$\beta$',
 C=r'shape=tree, minimum height=2cm, label=$T_1$',
 D=r'shape=tree, minimum height=2cm, label=$T_2$',
 E=r'shape=tree, minimum height=2cm, label=$T_3$',
-)
+))
 \end{python}
 
 
@@ -117,7 +117,7 @@ E=r'shape=tree, minimum height=2cm, label=$T_3$',
 
 \begin{console}
 from latextool_basic import graph
-print graph(layout='''
+print(graph(layout='''
           A
    B      C      D
        E     F
@@ -137,11 +137,11 @@ edge_label={('A','B'):{'label':'X'},
             ('F','H'):{'label':'5', 'style':'pos=0.5,below,inner sep=1mm,circle'},
             ('G','I'):{'label':'abcdef', 'style':'sloped'},
            },
-)
+))
 \end{console}
 \begin{python}
 from latextool_basic import graph
-print graph(layout='''
+print(graph(layout='''
           A
    B      C      D
        E     F
@@ -159,7 +159,7 @@ edge_label={('A','B'):{'label':'X'},
             ('F','G'):{'label':'5', 'style':'pos=0.5,above,inner sep=1mm,circle'},
             ('F','H'):{'label':'5', 'style':'pos=0.5,below,inner sep=1mm,circle'},
            },
-)
+))
 \end{python}
 
 

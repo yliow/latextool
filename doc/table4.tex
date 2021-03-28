@@ -10,7 +10,7 @@ M = [['a', 'b', 'c'],
      [6, 7, 8]]
 widths=[0.8, 1.5, 3]
 N = table4(p=p, M=M, widths=widths)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)
@@ -28,7 +28,7 @@ M = [['a', 'b', 'c'],
      [6, 7, 8]]
 widths=[0.8, 1.5, 3]
 N = table4(p=p, M=M, widths=widths, title='This is the title')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)
@@ -53,7 +53,7 @@ x1,y1 = N[-1][-1].bottomright()
 y = y0
 x = (x0 + x1) / 2
 p += POINT(x=x, y=y, r=0, label='This is the caption', anchor='north')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)

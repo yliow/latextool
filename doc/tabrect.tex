@@ -14,11 +14,11 @@ x = y + z
 p.add(tabrect, x0=2, y0=0, x1=14, y1=8, background='blue!20',
       innersep=0.5, linewidth=0.1, s=minipage)
 p += Grid()
-print p
+print(p)
 \end{python}
 \begin{python}
 from latextool_basic import *
-print console(r"""
+print(console(r"""
 from latextool_basic import *
 p = Plot()
 minipage = r'''
@@ -32,6 +32,6 @@ x = y + z
 p.add(tabrect, x0=2, y0=0, x1=14, y1=8, background='blue!20',
       innersep=0.5, linewidth=0.1, s=minipage)
 p += Grid()
-print p
-""".strip())
+print(p)
+""".strip()))
 \end{python}

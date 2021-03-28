@@ -16,10 +16,10 @@ plot.add(data, line_width='3', color='red')
 plot.add(data2, line_width='3', color='blue')
 plot.add(data3, line_width='3', color='green')
 plot.add(data4, line_width='3', color='black')
-print plot
+print(plot)
 """.strip()
 
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -36,10 +36,10 @@ s = r"""
 from latextool_basic import *
 plot = FunctionPlot()
 plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='red')
-print plot
+print(plot)
 """.strip()
 
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -54,10 +54,10 @@ s = r"""
 from latextool_basic import *
 plot = FunctionPlot(width="3in", height="2in")
 plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='blue')
-print plot
+print(plot)
 """.strip()
 
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -74,10 +74,10 @@ plot = FunctionPlot(width="3in", height="2in")
 plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='red')
 plot.add(((1, 5), (2, 3), (3, 7)), line_width='2', color='green')
 plot.add(((1, 5), (2, -3), (3, -5)), line_width='2', color='blue')
-print plot
+print(plot)
 """.strip()
 
-print console(s)
+print(console(s))
 exec(s)
 \end{python}
 
@@ -94,10 +94,10 @@ plot = FunctionPlot(width="3in", height="2in")
 plot.add(((1, 1), (2, 2), (3, 0.5)), line_width='2', color='red', legend='Graph 1')
 plot.add(((1, 5), (2, 3), (3, 7)), line_width='2', color='green', legend='Graph 2')
 plot.add(((1, 5), (2, -3), (3, -5)), line_width='2', color='blue', legend='Graph 3')
-print plot
+print(plot)
 """.strip()
 
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -118,10 +118,10 @@ from latextool_basic import *
 plot = FunctionPlot(width="6in", height="3in")
 plot.add(y_sinx, line_width='2', color='red', legend=r'$y = 5 \sin(x)$')
 plot.add(y_x, line_width='2', color='green', legend='$y = x$')
-print plot
+print(plot)
 """.strip()
 
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -144,9 +144,9 @@ data2 += [(2 + x/100.0*5, (2 + x/100.0*5)**2) for x in range(100)]
 data2 += [(7, 0), (2, 0)]
 plot.add(data)
 plot.add(data2, color='red')
-print plot
+print(plot)
 '''.strip()
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -173,9 +173,9 @@ while x < 7:
 data2.append((2,0))
 plot.add(data)
 plot.add(data2, color='red')
-print plot
+print(plot)
 '''.strip()
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -209,8 +209,8 @@ plot.add(f7, line_width='2', color='pink', legend=r'$y = x^{1.25} \ln x$')
 plot.add(f8, line_width='2', color='brown', legend=r'$y = x^{1.1} \ln x$')
 plot.add(f9, line_width='2', color='teal', legend=r'$y = 1.01^x$')
 
-print plot
+print(plot)
 '''.strip()
-print console(s)
+print(console(s))
 execute(s)
 \end{python}

@@ -8,11 +8,11 @@ Here are some examples.
 
 If you execute the following python code:
 \begin{console}
-print automata(layout="""
+print(automata(layout="""
     A
     """,
     A="initial|label=$q''_0$",
-    )
+    ))
 \end{console}
 you will get this latex code as output:
 \begin{console}
@@ -55,17 +55,17 @@ E   F
 you get this output:
 \begin{python}
 from latextool_basic import *
-print automata(layout="""
+print(automata(layout="""
 A B   C
 D
 E   F
 """
-)
+))
 \end{python}
 You can then put decorate each node.
 \begin{console}
 from latextool_basic import *
-print automata(layout="""
+print(automata(layout="""
 A B   C
 D
 E   F
@@ -73,12 +73,12 @@ E   F
 A = "initial|label=$q_0$",
 B = "label=$q_1$",
 C = "accept|label=$q_2$"
-)
+))
 \end{console}
 gives this picture
 \begin{python}
 from latextool_basic import *
-print automata(layout="""
+print(automata(layout="""
 A B   C
 D
 E   F
@@ -86,7 +86,7 @@ E   F
 A = "initial|label=$q_0$",
 B = "label=$q_1$",
 C = "accept|label=$q_2$"
-)
+))
 \end{python}
 
 
@@ -108,7 +108,7 @@ DFA for \lq\lq starts with 0 and has odd length'':
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A D B C
 """,
 edges="A,$0$,B|B,$0,1$,C|C,$0,1$,B|A,$1$,D|D,$0,1$,D",
@@ -116,9 +116,9 @@ A="initial|label=$q'_0$",
 B="accept|label=$q'_2$",
 C="label=$q'_3$",
 D="label=$q'_1$",
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -130,7 +130,7 @@ Sipser 1.7c
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
   B  D
   
 A
@@ -145,8 +145,8 @@ D="label=$q'_1$",
 E="label=$q''_1$",
 F="label=$q''_2$|accept",              
 )
-'''
-print console(s.strip())
+''')
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -159,15 +159,15 @@ from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
 
-print automata(layout="""
+print(automata(layout="""
 A B
 """,
 edges="A,$0$,B",
 A="initial|label=$q_0$",
 B="accept|label=$q_1$",
-)
+))
 '''
-print console(s.strip())
+print9console(s.strip()))
 execute(s)
 \end{python}
 
@@ -180,16 +180,16 @@ Sipser 1.7e
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A B C
 """,
 edges="A,$\ep$,B|A,$0$,A|B,$1$,B|B,$0$,C|C,$0$,C",
 A="initial|label=$q_0$",
 B="label=$q_1$",
 C="label=$q_2$",              
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -201,7 +201,7 @@ NFA for at least three 1s:
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A B C D
 """,
 edges="A,1,B|B,1,C|C,1,D|A,$0,1$,A|D,$0,1$,D|B,0,B|C,0,C",
@@ -209,9 +209,9 @@ A="initial|label=$q'_0$",
 B="label=$q'_1$",
 C="label=$q'_2$",
 D="accept|label=$q'_3$",
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -222,13 +222,13 @@ NFA for $\emptyset$:
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A
 """,
 A="initial|label=$q''_0$",
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -239,7 +239,7 @@ NFA for concat of \lq\lq contains at least 3 1s'' and $\emptyset$:
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A B C D   E
 """,
 edges="A,1,B|B,1,C|C,1,D|A,$0,1$,A|D,$0,1$,D|B,0,B|C,0,C|D,$\ep$,E",
@@ -248,9 +248,9 @@ B="label=$q'_1$",
 C="label=$q'_2$",
 D="label=$q'_3$",
 E="label=$q''_0$"
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -263,7 +263,7 @@ NFA for concat of \lq\lq length $<=$ 5'' and
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A B C D E F
 """,
 edges="A,$0,1$,B|B,$0,1$,C|C,$0,1$,D|D,$0,1$,E|E,$0,1$,F",
@@ -273,9 +273,9 @@ C="accept|label=$q'_2$",
 D="accept|label=$q'_3$",
 E="accept|label=$q'_4$",
 F="accept|label=$q'_5$",              
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -287,15 +287,15 @@ NFA for \lq\lq every odd position is a 1'':
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A B
 """,
 edges="A,$1$,B|B,$0,1$,A",
 A="accept|initial|label=$q''_0$",
 B="accept|label=$q''_1$",
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -307,7 +307,7 @@ NFA for concat of \lq\lq length $<=$5'' and \lq\lq every odd position is a 1'':
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A B C D E F G H
 """,
 edges="A,$0,1$,B|B,$0,1$,C|C,$0,1$,D|D,$0,1$,E|E,$0,1$,F"+\
@@ -326,9 +326,9 @@ E="label=$q'_4$",
 F="label=$q'_5$",
 G="accept|label=$q''_0$",
 H="accept|label=$q''_1$",
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}
 
@@ -340,7 +340,7 @@ NFA with vectors as $\Sigma$:
 from latextool_basic import execute, console
 s = r'''
 from latextool_basic import * 
-print automata(layout="""
+print(automata(layout="""
 A      B
 """,
 edges=r"A,$\begin{bmatrix}0\\0\\0 \end{bmatrix},\begin{bmatrix}0\\1\\1 \end{bmatrix},\begin{bmatrix}1\\0\\1 \end{bmatrix}$,A"+\
@@ -350,8 +350,8 @@ r"|B,$\begin{bmatrix}0\\0\\1\end{bmatrix}$,A"+\
 r"",
 A="initial|accept|label=carry=0",
 B="label=carry=1",
-)
+))
 '''
-print console(s.strip())
+print(console(s.strip()))
 execute(s)
 \end{python}

@@ -7,10 +7,10 @@ from latextool_basic import *
 p = Plot()
 
 dfa(p)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -24,10 +24,10 @@ p = Plot()
 
 dfa(p,
     state=r'$q_5$')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -43,10 +43,10 @@ dfa(p,
     tape=['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
     head_index=3,
     )
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -64,10 +64,10 @@ dfa(p,
     tape=['a','b','a','a',r'\SPACE',r'\SPACE',r'\SPACE'],
     input_tape_str=True,
     )
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -88,10 +88,10 @@ dfa(p, x0=5, y0=0,
     tape=['c','d'],
     )
 p += Grid(x0=-1, y0=-4, x1=10, y1=1)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -108,10 +108,10 @@ r = dfa(p, tape=['' for i in range(10)],)
 x0,y0 = r.bottomleft()
 x1,y1 = r.topright()
 p += Rect(x0=x0,y0=y0,x1=x1,y1=y1,linecolor='red')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -125,10 +125,10 @@ r = dfa(p, tape=[''])
 x0,y0 = r.bottomleft()
 x1,y1 = r.topright()
 p += Rect(x0=x0,y0=y0,x1=x1,y1=y1,linecolor='red')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -147,7 +147,7 @@ r = dfa(p,
     body_w = 1.5,
     body_h = 1,
     )
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)
@@ -165,10 +165,10 @@ dfa(p,
     tape=['','',''],
     w=2, h=1,
     )
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -182,10 +182,10 @@ from latextool_basic import *
 p = Plot()
 
 dfa(p, vsep=5)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -204,10 +204,10 @@ r = dfa(p, no_draw=True)
 x0,y0 = r.bottomleft()
 x1,y1 = r.topright()
 p += Rect(x0=x0, y0=y0, x1=x1, y1=y1, linecolor='red')
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
-print console(s)
+print(console(s))
 execute(s)
 \end{python}
 
@@ -261,11 +261,11 @@ def rect(index, p, x0, y0, no_draw=False):
         return None
 
 sequence(p, rect=rect)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'{\scriptsize %s}' % console(s)
+print(r'{\scriptsize %s}' % console(s))
 \end{python}
 
 
@@ -318,11 +318,11 @@ def rect(index, p, x0, y0, no_draw=False):
         return None
 
 sequence(p, rect=rect)
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-#print console(s)
+#print(console(s))
 execute(s)
 \end{python}
 

@@ -13,11 +13,11 @@ p = Plot()
 p += Rect2(x0=0, y0=0, x1=3, y1=2, linecolor='red!30!white',
            linewidth=1.0, label='hello')
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -37,11 +37,11 @@ p += r
 p += Circle(x=r.x0, y=r.y0, r=0.25, background='red', linewidth=0)
 p += Circle(x=r.x1, y=r.y1, r=0.25, background='blue', linewidth=0)
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 \end{samepage}
 
@@ -69,11 +69,11 @@ p += Circle(center=r.bottomleft(), r=0.25, background='red', linewidth=0)
 p += Circle(center=r.bottomright(), r=0.25, background='red', linewidth=0)
 
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 \end{samepage}
 

@@ -28,4 +28,4 @@ for k,(x,y) in d.items():
 for k,v in edges.items():
     for _ in v:
         p += Line(points=[rects[k].bottom(), rects[_].top()])
-print p
+print(p)

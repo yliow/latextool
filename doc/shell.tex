@@ -24,17 +24,17 @@ METHOD 2.
 The following is a python environment that prints a shell function call:
 \begin{python}
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 \end{python}
 Line after python environment with shell function call.
 Here are two such:
 \begin{python}
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 \end{python}
 \begin{python}
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 \end{python}
 
 METHOD 3.
@@ -43,7 +43,7 @@ The following is a python environment that prints an execute function call:
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 """, print_source=False)
 \end{python}
 Line after python environment with execute function call.
@@ -52,14 +52,14 @@ Here are two such:
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 """, print_source=False)
 \end{python}
 \begin{python}
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 """, print_source=False)
 \end{python}
 
@@ -76,7 +76,7 @@ The following is a python environment that prints an execute function call:
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('pwd')
+print(shell('pwd'))
 """, print_source=True)
 \end{python}
 Line after python environment with execute function call.
@@ -86,7 +86,7 @@ Another example:
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('ls -la c*.py')
+print(shell('ls -la c*.py'))
 """, print_source=True)
 \end{python}
 Line after python environment with execute function call.
@@ -96,7 +96,7 @@ Execute command in another directory
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('pwd; ls -la .b*', dir='/home/student')
+print(shell('pwd; ls -la .b*', dir='/home/student'))
 """, print_source=True)
 \end{python}
 
@@ -105,7 +105,7 @@ no execution
 from latextool_basic import execute
 execute(r"""
 from latextool_basic import shell
-print shell('ls -la', execute=False)
+print(shell('ls -la', execute=False))
 """, print_source=True)
 \end{python}
 
@@ -114,7 +114,7 @@ Executing with error:
 \begin{python}
 from latextool_basic import execute
 execute(r"""
-print x
+print(x)
 """, print_source=True)
 \end{python}
 

@@ -17,7 +17,7 @@ Y = 0
 N0 = bpt_node(x=4.5, y=Y, M=M0, widths=widths, height=height)
 
 p += N0
-print p
+print(p)
 
 '''.strip()
 
@@ -46,7 +46,7 @@ Y = 0
 N0 = bpt_node(x=4.5, y=Y, M=M0, widths=widths, height=height)
 
 p += N0
-print p
+print(p)
 
 '''.strip()
 
@@ -83,7 +83,7 @@ arc2 = bpt_arc(N0, N3, 2, linecolor='blue')
 p += N0; p += N1; p += N2; p += N3
 p += arc0; p += arc1; p += arc2
 
-print p
+print(p)
 
 '''.strip()
 
@@ -118,7 +118,7 @@ arc2 = bpt_arc(N0, N3, 2, linecolor='blue', delta=0.4)
 p += N0; p += N1; p += N2; p += N3
 p += arc0; p += arc1; p += arc2
 
-print p
+print(p)
 
 '''.strip()
 
@@ -166,7 +166,7 @@ p += Circle(x=x, y=y, r=0.05, background='blue')
 X = POINT(x=x, y=y, label='$[5, 10)$', anchor='west')
 p += str(X)
 
-print p
+print(p)
 
 '''.strip()
 
@@ -219,7 +219,7 @@ p += bpt_arc(N0, N3, 2, r=0)
 p += bpt_arc(N0, N4, 3, r=0)
 p += bpt_arc(N0, N5, 4, delta=0.2, r=0)
 
-print p
+print(p)
 
 '''.strip()
 
@@ -266,7 +266,7 @@ p += bpt_arc(N0, N3, 2, r=0)
 p += bpt_arc(N0, N4, 3, r=0)
 p += bpt_arc(N0, N5, 4, delta=0.2, r=0)
 
-print p
+print(p)
 
 '''.strip()
 

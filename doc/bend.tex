@@ -12,7 +12,7 @@ p += bend([0,0], [1, 0], dy=1, linecolor='red')
 p += bend([2,0], [5, 0], dy=1, linecolor='green')
 p += bend([6,1], [8, 1], dy=-1, linecolor='blue')
 p += Grid(x0=0, y0=0, x1=8, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -28,7 +28,7 @@ p += bend([2,0], [5, 0], dy=1, linewidth=0.1, linecolor='red')
 p += bend([6,1], [8, 1], dy=-1, linewidth=0.1, linecolor='red', 
           linestyle='dashed')
 p += Grid(x0=0, y0=0, x1=8, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -49,7 +49,7 @@ p += bend([2,-1], [3, 0], dy=1)
 p += bend([4,0], [5, -1], dy=-1)
 p += bend([6,-1], [7, 0], dy=-1)
 p += Grid(x0=0, y0=-2, x1=7, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -66,7 +66,7 @@ s1 = bend([3,1], [3.25,1], dy=-1)
 p.add(s0)
 p.add(s1)
 p += Grid(x0=0, y0=0, x1=7, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -83,7 +83,7 @@ s1 = bend([5,0.5], [9,0.5], dy=-0.5)
 p.add(s0)
 p.add(s1)
 p += Grid(x0=0, y0=0, x1=10, y1=2)
-print p
+print(p)
 """, print_source=True)
 \end{python}
 

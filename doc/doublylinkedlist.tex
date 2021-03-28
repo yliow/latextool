@@ -60,12 +60,12 @@ c.next = d; d.prev = c; d.next = e; e.prev = d
 
 p = Plot()
 p += str(c); p += str(d); p += str(e)
-print p
+print(p)
 """.strip()
 
 from latextool_basic import *
 
-print r'{\scriptsize %s }' % console(s)
+print(r'{\scriptsize %s }' % console(s))
 execute(s)
 \end{python}
 

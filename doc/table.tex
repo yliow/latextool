@@ -5,7 +5,7 @@
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table({0:0, 1:1, 2:4, 3:9, 4:16})
+print(table({0:0, 1:1, 2:4, 3:9, 4:16}))
 '''.strip()
 
 from latextool_basic import *
@@ -16,13 +16,13 @@ execute(s, print_source=True)
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([(1, 2, 3),
+print(table([(1, 2, 3),
              (2, 2, 5),
              (5, 2),
              (-1, 2, 6),
              (1, 2, 3),
             ])
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -32,14 +32,14 @@ execute(s, print_source=True)
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([(1, 2, 3),
+print(table([(1, 2, 3),
              (2, 2, 5),
              (5, 2),
              (-1, 2, 6),
              (1, 2, 3),
             ],
             col_headings = ['$x$', '$y$', '$z$'])
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -49,14 +49,14 @@ execute(s, print_source=True)
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,  8),
+print(table([('',  2, 5,  8),
              ('', '', 3,  6),
              ('', '', '', 3),
              ('', '', '', '')
             ],
             col_headings = ['0', '2', '5', '8'],
             row_headings = ['0', '2', '5', '8'])
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -66,7 +66,7 @@ execute(s, print_source=True)
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,  8),
+print(table([('',  2, 5,  8),
              ('', '', 3,  6),
              ('', '', '', 3),
              ('', '', '', '')
@@ -75,7 +75,7 @@ print table([('',  2, 5,  8),
             row_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -86,7 +86,7 @@ Too few row headings:
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,  8),
+print(table([('',  2, 5,  8),
              ('', '', 3,  6),
              ('', '', '', 3),
              ('', '', '', '')
@@ -95,7 +95,7 @@ print table([('',  2, 5,  8),
             row_headings = ['0', '2'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -107,7 +107,7 @@ Too few col headings
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,  8),
+print(table([('',  2, 5,  8),
              ('', '', 3,  6),
              ('', '', '', 3),
              ('', '', '', '')
@@ -116,7 +116,7 @@ print table([('',  2, 5,  8),
             row_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -128,14 +128,14 @@ Too few rows of data
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,  8),
+print(table([('',  2, 5,  8),
              ('', '', 3,  6),
             ],
             col_headings = ['0', '2', '5', '8'],
             row_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 from latextool_basic import *
 execute(s, print_source=True)
 \end{python}
@@ -146,14 +146,14 @@ Too few rows of data
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,  8),
+print(table([('',  2, 5,  8),
              ('', '', 3,  6),
             ],
             col_headings = ['0', '2', '5', '8'],
             row_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -167,7 +167,7 @@ Note that topleft heading does not show.
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,),
+print(table([('',  2, 5,),
              ('', '', 3,),
              ('', '', '',),
              ('', '', '',)
@@ -175,7 +175,7 @@ print table([('',  2, 5,),
             col_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -189,7 +189,7 @@ Note that topleft heading does not show.
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,),
+print(table([('',  2, 5,),
              ('', '', 3,),
              ('', '', '',),
              ('', '', '',)
@@ -197,7 +197,7 @@ print table([('',  2, 5,),
             row_headings = ['0', '2', '5', '8'],
             topleft_heading = r'$\Delta X$',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -213,7 +213,7 @@ Setting column justification.
 \begin{python}
 s = r'''
 from latextool_basic import table
-print table([('AAAAAAAAAA',  'BBBBBBBBB', 'CCCCCCCCC',),
+print(table([('AAAAAAAAAA',  'BBBBBBBBB', 'CCCCCCCCC',),
              ('1', '2', 3,),
              ('', '', '',),
              ('', '', '',)
@@ -223,7 +223,7 @@ print table([('AAAAAAAAAA',  'BBBBBBBBB', 'CCCCCCCCC',),
             topleft_heading = r'$\Delta X$',
             style='|c|l|r|c|',
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -238,7 +238,7 @@ from latextool_basic import console, execute
 
 s = r'''
 from latextool_basic import table
-print table([('',  2, 5,),
+print(table([('',  2, 5,),
              ('', '', 3,),
              ('', '', '',),
              ('', '', '',)
@@ -246,7 +246,7 @@ print table([('',  2, 5,),
             right_row_headings = ['0', '2', '5', '8'],
             col_headings = ['a', 'b', 'c'],
            )
-'''.strip()
+'''.strip())
 
 from latextool_basic import *
 execute(s, print_source=True)
@@ -271,7 +271,7 @@ a b c
 M = str_to_2darray(M)
 widths=[0.8, 1.5, 3]
 N = table4(p=p, M=M, widths=widths)
-print p
+print(p)
 '''.strip()
 from latextool_basic import *
 execute(s, print_source=True)

@@ -59,4 +59,4 @@ x += 3
 p += Line(points=[(x, y),(x + 2, y)])
 crowfoot(p, x=x+2, y=y, dx=0.25, kind="1..*", direction="east")
 
-print p
+print(p)

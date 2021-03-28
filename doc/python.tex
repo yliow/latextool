@@ -9,7 +9,7 @@ Python environment with console function call.
 Line before python environment.
 \begin{python}
 from latextool_basic import *
-print console("hello world")
+print(console("hello world"))
 \end{python}
 Line after the python environment.
 
@@ -18,8 +18,8 @@ One python environment with two console function calls.
 Line before python environment.
 \begin{python}
 from latextool_basic import *
-print console("hello world 1")
-print console("hello world 2")
+print(console("hello world 1"))
+print(console("hello world 2"))
 \end{python}
 Line after the python environment.
 ISSUE: Note that the two frames are joined up.
@@ -34,9 +34,9 @@ one blank line between the console function calls.
 Line before python environment.
 \begin{python}
 from latextool_basic import *
-print console("hello world 1")
-print ""
-print console("hello world 2")
+print(console("hello world 1"))
+print("")
+print(console("hello world 2"))
 \end{python}
 Line after the python environment.
 ISSUE: Note that the two frames are joined up.
@@ -48,12 +48,12 @@ Two python environments with one console function call each.
 Line before python environment.
 \begin{python}
 from latextool_basic import *
-print console("hello world 1")
+print(console("hello world 1"))
 \end{python}
 Line between the python environments.
 \begin{python}
 from latextool_basic import *
-print console("hello world 2")
+print(console("hello world 2"))
 \end{python}
 Line after the second python environment.
 

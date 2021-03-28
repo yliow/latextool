@@ -19,12 +19,12 @@ edges = {'A':['B','C','D', 'a'],
 from latextool_basic import Plot, tree
 p = Plot()
 p.add(tree(d, edges=edges))
-print p
+print(p)
 '''
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -49,12 +49,12 @@ edges = {'A':['B','C','D', 'a'],
 from latextool_basic import Plot, tree
 p = Plot()
 p.add(tree(d, edges=edges, node_shape='rect'))
-print p
+print(p)
 '''
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -83,12 +83,12 @@ p.add(tree(d,
            node_label={'A':'AAA'},
            node_shape='rect',
            edges=edges))
-print p
+print(p)
 '''
 
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -120,14 +120,14 @@ p.add(tree(d, hor_sep=0.1,
            node_label={'A':'a'}, node_shape='rect',
            edges=edges,
            autoadjust=True))
-print p
+print(p)
 '''
 
 from latextool_basic import console, makeandincludegraphics
-print r'''{\small
+print(r'''{\small
 %s
-}''' % console(s.strip())
-print makeandincludegraphics(python=s)
+}''' % console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 
 
@@ -177,13 +177,13 @@ for k,(x,y) in d.items():
 for k,v in edges.items():
     for _ in v:
         p += Line(points=[rects[k].bottom(), rects[_].top()])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print r'''{\small
+print(r'''{\small
 %s
-}''' % console(s)
+}''' % console(s))
 exec(s)
 \end{python}
 
@@ -221,10 +221,10 @@ for v in 'DFHKM':
     x0,y0 = r.bottom(); x0 -= 0.3
     p += Rect(x0=x0, y0=y0, x1=x1, y1=y1, background='blue!10',
               label=labels[v])
-print p
+print(p)
 '''.strip()
 
 from latextool_basic import *
-print console(s)
+print(console(s))
 exec(s)
 \end{python}

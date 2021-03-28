@@ -9,11 +9,11 @@ p = Plot()
 c = Array2d(x=0.5, y=0.5, xs=[[1,2,3],[4,5,6],[7,8,9]])
 p += c
 p += Grid()
-print p
+print(p)
 """
 from latextool_basic import console, makeandincludegraphics
-print console(s.strip())
-print makeandincludegraphics(python=s)
+print(console(s.strip()))
+print(makeandincludegraphics(python=s))
 \end{python}
 \end{samepage}
 
@@ -27,7 +27,7 @@ a = Array2d(0.5, 0.5, [[2, 3, 5, 7], [11,13,17,19]])
 
 p += a 
 p += Grid()
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -41,7 +41,7 @@ a = Array2d(0.5, 0.5, width=1.5, height=1.5, xs=[[2, 3, 5, 7], [11,13,17,19], [2
 
 p += a
 p += Grid() 
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -62,7 +62,7 @@ p += a
 p += l((0,0),(1,1))
 p += l((3,0),(2,2))
 
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -74,7 +74,7 @@ execute(r"""
 from latextool_basic import *
 p = Plot()
 p += Array2d(0, 0, width=1, height=1, xs=[[2, 3, 5, 7]])
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
@@ -116,7 +116,7 @@ x1, y1 = midx + 1 + common_len/2.0, y0 - 1
 p += _line(x0, y0, x1, y1)
 
 p += Grid()
-print p
+print(p)
 """, print_source=True)
 \end{python}
 
