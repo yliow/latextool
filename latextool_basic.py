@@ -2781,9 +2781,10 @@ def shell(cmd,
     s = s.rstrip()
     if latex:
         """
-        s = r'''\begin{consoleone}
+        s = r'''\begin{Verbatim}[frame=single]
+XXXXXXXXXXXXXXXXXXXXx
 %s
-\end{consoleone}''' % s
+\end{Verbatim}''' % s
         """
         s = verbatim(s)
     os.chdir(cwd)
