@@ -2740,6 +2740,7 @@ def shell(cmd,
           dir='', # a better name for TESTDIR
           postprocess=None,
           latex=True,
+          fontsize=r'\small', # ADDED 2021/4/1
           execute=True,
           prompt=None,
           include_stderr=True,
@@ -2780,13 +2781,11 @@ def shell(cmd,
         
     s = s.rstrip()
     if latex:
-        """
-        s = r'''\begin{Verbatim}[frame=single]
-XXXXXXXXXXXXXXXXXXXXx
+        s = r'''\begin{Verbatim}[frame=single,fontsize=%s]
 %s
-\end{Verbatim}''' % s
-        """
-        s = verbatim(s)
+\end{Verbatim}
+''' % (fontsize, s)
+        #s = verbatim(s)
     os.chdir(cwd)
 
     return to_string(s)
