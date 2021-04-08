@@ -1,5 +1,3 @@
-
-
 """
 All measures in cm by default!!!
 
@@ -2743,6 +2741,7 @@ def shell(cmd,
           fontsize=r'\small', # ADDED 2021/4/1
           execute=True,
           prompt=None,
+          width=80,
           include_stderr=True,
           ):
     if isinstance(cmd, str): cmd = [cmd]
@@ -2781,6 +2780,16 @@ def shell(cmd,
         
     s = s.rstrip()
     if latex:
+        # wraparound
+        lines = s.split('\n')
+        t = []
+        for line in lines:
+            while (len(line) > width):
+                x, line = line[:width], line[width:]
+                t.append(x)
+            if line != "":
+                t.append(line)
+        s = '\n'.join(t)
         s = r'''\begin{Verbatim}[frame=single,fontsize=%s]
 %s
 \end{Verbatim}
