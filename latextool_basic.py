@@ -8358,3 +8358,91 @@ def array_to_edges(xs):
             edges[xs[i]] = [xs[left(i)]]
             todo.append(left(i))
     return edges
+
+#==============================================================================
+# For student tests
+#==============================================================================
+def test_score_table():
+    p = Plot()
+    M = 1; N = 21
+    m00 = [['Question']]
+    m10 = [[i] for i in range(M, N)]
+    m01 = [['Points'],
+    ]
+    m11 =[[''] for i in range(M, N)]
+
+    M = [[m00, m01], [m10, m11]]
+    N = table3(p, M, 0, 0, width=3, height=0.8)
+
+    M = 21; N = 41
+    m00 = [['Question']]
+    m10 = [[i] for i in range(M, N)]
+    m01 = [['Points'],
+    ]
+    m11 =[[''] for i in range(M, N)]
+
+    M = [[m00, m01], [m10, m11]]
+    N = table3(p, M, 8, 0, width=3, height=0.8)
+
+    M = 1; N = 2
+    m00 = [['TOTAL']]
+    m10 = [[''] for i in range(M, N)]
+    m01 = [[''],]
+    m11 =[[''] for i in range(M, N)]
+    
+    M = [[m00, m01], [m10, m11]]
+    N = table3(p, M, 8, -17.5, width=3, height=0.8)
+    print(p)
+
+def practice_disclaimer():
+    print(r'''
+\begin{center}
+\fbox{\begin{minipage}{0.75\textwidth}
+    \textsc{Warning}.
+Note that this is a practice test.
+    It does not mean that you are fully prepared for the test
+just by going through a practice test.
+The only sure way to be fully prepared is to
+study all the
+class material, including class notes,
+    assignments, etc.
+\end{minipage}}
+\end{center}
+''')
+
+def ciss240_written_test_instructions():
+    print(r'''
+    \textsc{Instructions}
+\begin{enumerate}
+
+\li This is a closed-book, no-discussion, no-calculator, no-computer
+    test.
+
+\li Cheating is a serious academic offense. If caught you will 
+    receive an immediate score of -100\%.
+
+\li If a question asks for an output and the code contains
+    an error, write \verb!ERROR! as output.
+        If the program or code segment does not terminate
+    (i.e. it runs forever without stopping), write \verb!INFINITE LOOP!
+    as output.
+    When writing output, use one cell for each output character
+    in the grid provided.
+
+\li If a question asks the computation of a value
+    or the value of a variable and the program or
+    code fragment contains
+    an error, write \verb!ERROR! as value.
+    If the value is undefined, write \verb!UNDEFINED!.
+    If the program or code segment does not terminate
+    (i.e. it runs forever without stopping), write \verb!INFINITE LOOP!
+    for the answer.
+
+\li When you're asked to write a C++ statement, don't forget that it must
+    end with a semicolon.
+    
+\li Unless otherwise stated, bubblesort refers to the bubblesort algorithm in
+    our notes where values are sorted in ascending order.
+
+\end{enumerate}
+    ''')
