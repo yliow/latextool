@@ -3744,7 +3744,7 @@ def xxx(v):
     
 
 def augmatrix(aug):
-    colsize = (aug.colsize)/2
+    colsize = (aug.colsize)//2
     option = ("c"*colsize) + "|" + ("c"*colsize)
     str_matrix = (r"\begin{bmatrix}[%s]" + '\n') % option
     for row in aug.xs:
@@ -6277,21 +6277,35 @@ class XAxis:
             tick += self.tick_gap
         return s
 
-def axes(p, x0=0, y0=0, x1=1, y1=1, linewidth=None, linecolor='black!30'):
+def axes(p,
+         x0=0, y0=0, x1=1, y1=1,
+         linewidth=None, linecolor='black!50',
+         origin=(0,0),
+         x_axis_label='',  
+         y_axis_label='',
+):
+    from latexcircuit import POINT
     """
     Draws axes into plot p
     TODO: Separate x- and y-axis. For each axes, API is
     See x_axis function
     """
     if linewidth==None:
-        p += Line(points=[(x0, 0), (x1, 0)], endstyle='>', linecolor=linecolor) # x axis
-        p += Line(points=[(0, y0), (0, y1)], endstyle='>', linecolor=linecolor) # y axis
+        p += Line(points=[(x0, origin[1]), (x1, origin[1])], endstyle='>', linecolor=linecolor) # x axis
+        p += Line(points=[(origin[0], y0), (origin[0], y1)], endstyle='>', linecolor=linecolor) # y axis
     else:
-        p += Line(points=[(x0, 0), (x1, 0)],
+        p += Line(points=[(x0, origin[1]), (x1, origin[1])],
                   linewidth=linewidth, endstyle='>', linecolor=linecolor) # x axis
-        p += Line(points=[(0, y0), (0, y1)],
+        p += Line(points=[(origin[0], y0), (origin[0], y1)],
                   linewidth=linewidth, endstyle='>', linecolor=linecolor) # y axis
-
+    # x-axis label
+    if x_axis_label:
+        X = POINT(x=x1, y=origin[1], r=0, label=x_axis_label, anchor='west')
+        p += str(X)
+    # y-axis label
+    if y_axis_label:
+        X = POINT(x=origin[0], y=y1, r=0, label=y_axis_label, anchor='south')
+        p += str(X)
 
 #==============================================================================
 # The following is a temporary dumping ground for 3dplot

@@ -1649,5 +1649,49 @@ print(p)
 \end{python}
 
 
+\newpage
+\subsection{Two NOTs}
+\begin{python}
+s = r'''
+from latextool_basic import *
+from latexcircuit import *
+p = Plot()
+
+g0 = NOT_GATE(x=0, y=0)
+x,y = g0.output()
+g1 = NOT_GATE(x=2, y=y)
+
+p += str(g0)
+p += str(g1)
+
+p += Line(points=[g0.output(), g1.input()], label="$Q'$", anchor='below')
+
+x0, y0 = g1.output()
+x5, y5 = g0.input()
+
+dx = 0.25
+dy = 0.75
+
+x1, y1 = x0+dx, y0
+x2, y2 = x1, y1+dy
+x4, y4 = x5-dx, y5
+x3, y3 = x4, y2
+p += Line(points=[(x0, y0),
+                  (x1, y1), 
+                  (x2, y2),
+                  (x3, y3),
+                  (x4, y4),
+                  (x5, y5)])
+X = POINT(x=x1, y=y1, r=0, label='$Q$', anchor='west')
+p += str(X)
+print(p)
+'''.strip()
+
+from latextool_basic import *
+execute(s)
+print(r'{\footnotesize %s}' % console(s))
+print(p)
+\end{python}
+
 
 
