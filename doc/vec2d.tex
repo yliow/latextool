@@ -70,3 +70,22 @@ print(plot)
 from latextool_basic import *
 execute(s, print_source=True)
 \end{python}
+
+
+\newpage
+With axes and multiple vectors with non integer endpoints:
+\begin{python}
+s = r'''
+from latextool_basic import *
+plot = Plot()
+p, q = (-1.5, 4.2), (-4.1, -3.8); v0 = [p, q];
+p, q = (2.5, 3.2), (-1, 2.5); v1 = [p, q];
+p, q = (0.5, 2.5), (-1, 2.5); v2 = [p, q];
+vectors = [v0, v1, v2]
+vec2dplot(plot, vectors=vectors)
+print(plot)
+'''.strip()
+
+from latextool_basic import *
+execute(s, print_source=True)
+\end{python}
