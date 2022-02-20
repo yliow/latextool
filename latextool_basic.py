@@ -8460,3 +8460,53 @@ def ciss240_written_test_instructions():
 
 \end{enumerate}
     ''')
+
+#==============================================================================
+# Tower of hanoi
+# See math325/n/generating_functions/recurrence-relations.tex
+#==============================================================================
+def hanoi(p, diskss=[[]], names='ABCDEFGHIJKL', color=None, pegheight=None):
+    pegwidth=0.2
+    pw2 = pegwidth/2
+    diskcolor = 'blue!20'
+    pegcolor = 'black!10'
+    diskheight = 0.2
+    diskfactor = 0.5
+    diskinnersep = diskheight/2.0
+    diskradius = diskinnersep
+
+    if pegheight == None:
+        pegheight = max([len(_) for _ in diskss]) * 2 * diskheight + 0.1
+
+    if color==None:
+        color = lambda x:diskcolor
+        
+    names = names[:len(diskss)]
+    d = positions('   '.join(list(names)))
+    
+    #      +---+
+    #      |   |
+    #      |   |
+    #      |   |
+    #  +---+-A-+-------B--------C-------+
+    #  |                                |
+    #  +--------------------------------+
+       
+    for k in names:
+        (x,y) = d[k]
+        p += Rect(x0=x-pw2, x1=x+pw2, y0=0, y1=pegheight, background=pegcolor, name=k)
+        X = POINT(x=x, y=y, r=0, label=k, anchor='north')
+        p += str(X)
+        
+    (x0,y0) = d[names[0]]
+    (x1,y1) = d[names[-1]]
+    p += Line(x0=x0 - 3, x1=x1 + 3, y0=y0, y1=y0)
+
+    for disks,name in zip(diskss, names):
+        #print(disks, name)
+        (x0,y0) = d[name]; y0 += 0.05 # ????
+        for w in disks[::-1]:
+            p += Rect(x0=x0-w*diskfactor, x1=x0+w*diskfactor, y0=y0, y1=y0+diskheight,
+                      innersep=diskinnersep, radius=diskradius,
+                      background=color(w), linecolor='black', name='%s-%s' % ('A',w))
+            y0 += diskheight * 1.5
