@@ -16,6 +16,8 @@ from math import *
 import traceback
 import string
 
+from latexcircuit import *
+
 def to_string(s):
     """ IMPORTANT: Some strings are returned as bytes. Call this to
     convert to strings.
@@ -8414,12 +8416,10 @@ def practice_disclaimer():
 \fbox{\begin{minipage}{0.75\textwidth}
     \textsc{Warning}.
 Note that this is a practice test.
-    It does not mean that you are fully prepared for the test
+It does not mean that you are fully prepared for the test
 just by going through a practice test.
 The only sure way to be fully prepared is to
-study all the
-class material, including class notes,
-    assignments, etc.
+study all the class material, notes taken during class, assignments, etc.
 \end{minipage}}
 \end{center}
 ''')
