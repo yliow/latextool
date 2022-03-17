@@ -16,7 +16,7 @@ from math import *
 import traceback
 import string
 
-from latexcircuit import *
+#from latexcircuit import *
 
 def to_string(s):
     """ IMPORTANT: Some strings are returned as bytes. Call this to
@@ -8461,6 +8461,22 @@ def ciss240_written_test_instructions():
 \end{enumerate}
     ''')
 
+def math325_written_test_instructions():
+    print(r'''
+    \textsc{Instructions}
+\begin{enumerate}
+
+\li This is a closed-book, no-discussion, no-calculator, no-computer
+    test.
+
+\li Cheating is a serious academic offense. If caught you will 
+    receive an immediate score of -100\%.
+
+\li Write neatly. If I cannot read your solution easily you will get zero.
+    
+\end{enumerate}
+    ''')
+
 #==============================================================================
 # Tower of hanoi
 # See math325/n/generating_functions/recurrence-relations.tex
@@ -8491,7 +8507,8 @@ def hanoi(p, diskss=[[]], names='ABCDEFGHIJKL', color=None, pegheight=None):
     #  +---+-A-+-------B--------C-------+
     #  |                                |
     #  +--------------------------------+
-       
+
+    from latexcircuit import POINT
     for k in names:
         (x,y) = d[k]
         p += Rect(x0=x-pw2, x1=x+pw2, y0=0, y1=pegheight, background=pegcolor, name=k)

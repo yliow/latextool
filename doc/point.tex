@@ -12,9 +12,17 @@ p += str(X)
 p += Grid(x0=-2, y0=-1, x1=4, y1=1)
 print(p)
 '''.strip()
-
 from latextool_basic import *
-execute(s, print_source=True)
+print(console(s))
+\end{python}
+\begin{python}
+from latextool_basic import *
+from latexcircuit import *
+p = Plot()
+X = POINT(x=0, y=0, label='$abcde$')
+p += str(X)
+p += Grid(x0=-2, y0=-1, x1=4, y1=1)
+print(p)
 \end{python}
 
 \newpage
@@ -28,11 +36,21 @@ p += str(X)
 p += Grid(x0=-2, y0=-1, x1=4, y1=1)
 print(p)
 '''.strip()
-
 from latextool_basic import *
 print(console(s))
-execute(s)
 \end{python}
+\begin{python}
+from latextool_basic import *
+from latexcircuit import *
+p = Plot()
+X = POINT(x=0, y=0, r=0, label='$abcde$')
+p += str(X)
+p += Grid(x0=-2, y0=-1, x1=4, y1=1)
+print(p)
+\end{python}
+
+
+
 
 \begin{python}
 s = r'''

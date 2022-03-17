@@ -1,5 +1,5 @@
 from latextool_basic import *
-
+from latextool_basic import Circle as Circle
 
 def rotate_about(p0, p1, t):
     if t:
@@ -944,11 +944,12 @@ plot += str(X)
     def y(self): return self.y_
 
     def __str__(self):
+        from latextool_basic import Circle as Circle
         x,y,r,name = self.x_, self.y_, self.r_, self.name
         label = self.label
         s = ''
         if self.draw and r > 0:
-            s += '%s' % Circle(x=x, y=y, r=r, background='black', name=name)
+            s += str(Circle(x=x, y=y, r=r, background='black', name=name))
         
         s1 = ''
         if label:
