@@ -589,6 +589,7 @@ class Plot:
                  verbose=False,
                  center=True,
                  scale=1,
+                 scalebox=None,
                  extra=0, # extra added to the minimal grid
                  **karg   # things like linewidth, ...
                  ):      
@@ -597,6 +598,8 @@ class Plot:
         # a name will be give ('0', '1', ...)
         # see self.auto_inc
 
+        self.scalebox = scalebox # ADDED 2022/4/5
+        
         # Need to order tikz strings as objects are added to plot
         self.auto_inc = 0
         self.xs = {}
@@ -732,7 +735,14 @@ class Plot:
 \end{tikzpicture}""" % (options, s)
         latex += '\n'
         if self.center:
-            latex = r"""\begin{center}
+            if self.scalebox:
+                latex = r"""\begin{center}
+\scalebox{%s}{%%
+%s
+}%%
+\end{center}""" % (self.scalebox,latex)
+            else:
+                latex = r"""\begin{center}
 %s
 \end{center}""" % latex
             latex += '\n'
@@ -3589,7 +3599,7 @@ def automata(
         edge_str += '\n'
     return r'''
 \begin{center}
-\begin{tikzpicture}[>=triangle 60,shorten >=0.5pt,node distance=2cm,auto,initial text=]
+\begin{tikzpicture}[>=triangle 60,shorten >=0.5pt,node distance=2cm,auto,initial text=, double distance=2pt]
 %s
 \path[->]
 %s
