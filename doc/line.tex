@@ -543,3 +543,25 @@ exec(s)
 
 
 
+\subsection{loop}
+
+Example uses Graph.
+
+xxx
+\begin{python}
+s = r'''
+from latextool_basic import *
+p = Plot()
+L = 0.03
+C = 'blue!50'
+
+p += Graph.node(x=0, y=0, name='a')
+p += Line(names=['a','a'], label='test', anchor='below', loop='loop above')
+
+p += Grid(x0=-1,y0=-1,x1=3,y1=3)
+print(p)
+'''.strip()
+from latextool_basic import *
+print(console(s))
+exec(s)
+\end{python}

@@ -1908,6 +1908,19 @@ def line(x0=0, y0=0, x1=0, y1=0,
                 s = (" to [bend right=%s] %s " % (bend_right, label)).join(s)
         else:        
             s = (" to %s " % (label,)).join(s)
+    elif loop: # 2022/4/16
+        a,b = names
+        s = r'''\path (%(a)s) edge[
+                %out=140,
+                %in=50,
+                %looseness=0.3,
+                %(loop)s,
+                %distance=2cm, ->]
+                --]
+            node[above=3pt] {%(label)s} (%(a)s);''' % {'a':a,
+                                                       'loop':loop,
+                                                       'label':label}
+
     else: # use control points
         if isinstance(controls, tuple):
             controls = [controls]
@@ -8467,6 +8480,8 @@ def ciss240_written_test_instructions():
     
 \li Unless otherwise stated, bubblesort refers to the bubblesort algorithm in
     our notes where values are sorted in ascending order.
+    Binary search refers to the binary search algorithm in
+    our notes.
 
 \end{enumerate}
     ''')
