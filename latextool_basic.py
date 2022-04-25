@@ -8502,6 +8502,19 @@ def math325_written_test_instructions():
 \end{enumerate}
     ''')
 
+def honor_statement():
+    print('''
+\begin{center}
+\textsc{Honor Statement}
+\end{center}
+I, \answerbox{[REPLACE WITH YOUR FULLNAME]},
+attest to the fact that the submitted work is my own and
+is not the result of plagiarism.
+Furthermore, I have not aided another student in the act of
+plagiarism.
+\end{center}
+''')
+
 #==============================================================================
 # Tower of hanoi
 # See math325/n/generating_functions/recurrence-relations.tex
