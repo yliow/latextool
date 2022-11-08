@@ -8502,8 +8502,56 @@ def math325_written_test_instructions():
 \end{enumerate}
     ''')
 
+
+
+    
+def ciss245_written_test_instructions():
+    print(r'''
+    \textsc{Instructions}
+\begin{enumerate}
+  \li
+  This is a closed-book, no-discussion, no-calculator, no-computer
+  test.
+
+  \li
+  Cheating is a serious academic offense. If caught you will 
+  receive an immediate score of -100\%.
+
+  \li If a question asks for an output and the code contains
+    an error, write \verb!ERROR! as output.
+        If the program or code segment does not terminate
+    (i.e. it runs forever without stopping), write \verb!INFINITE LOOP!
+    as output.
+    When writing output, use one cell for each output character
+    in the grid provided.
+
+    \li If a question asks the computation of a value
+    or the value of a variable and the program or
+    code fragment contains
+    an error, write \verb!ERROR! as value.
+    If the value is undefined, write \verb!UNDEFINED!.
+    If the program or code segment does not terminate
+    (i.e. it runs forever without stopping), write \verb!INFINITE LOOP!
+    for the answer.
+
+  \li
+  When you're asked to write a C++ statement, don't forget that it must
+  end with a semicolon.
+
+  \li Unless otherwise stated, bubblesort refers to the bubblesort algorithm in
+  our notes where values are sorted in ascending order.
+  Binary search refers to the binary search algorithm in
+  our notes.
+
+\end{enumerate}
+''')
+
+
+
+
+    
 def honor_statement():
-    print('''
+    print(r'''
 \begin{center}
 \textsc{Honor Statement}
 \end{center}

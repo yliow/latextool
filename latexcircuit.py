@@ -953,18 +953,34 @@ plot += str(X)
         
         s1 = ''
         if label:
+            if name:
+                namestr = '(%s)' % name
+            else:
+                namestr = ' '
             if self.anchor=='east':
-                s1 = r'\node[anchor=%s] at (%s,%s) {%s};' % \
-                     (self.anchor, x - r, y, self.label)
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x - r, y, namestr, self.label)
             elif self.anchor=='west':
-                s1 = r'\node[anchor=%s] at (%s,%s) {%s};' % \
-                     (self.anchor, x + r, y, self.label)
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x + r, y, namestr, self.label)
             elif self.anchor=='north':
-                s1 = r'\node[anchor=%s] at (%s,%s) {%s};' % \
-                     (self.anchor, x, y - r, self.label)
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x, y - r, namestr, self.label)
             elif self.anchor=='south':
-                s1 = r'\node[anchor=%s] at (%s,%s) {%s};' % \
-                     (self.anchor, x, y + r, self.label)
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x, y + r, namestr, self.label)
+            elif self.anchor=='north east':
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x - r, y - r, namestr, self.label)
+            elif self.anchor=='north west':
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x + r, y - r, namestr, self.label)
+            elif self.anchor=='south east':
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x - r, y + r, namestr, self.label)
+            elif self.anchor=='south west':
+                s1 = r'\node[anchor=%s] at (%s,%s) %s {%s};' % \
+                     (self.anchor, x + r, y + r, namestr, self.label)
             elif self.anchor=='flushtopleft':
                 if name==None:
                     name = randstr()
