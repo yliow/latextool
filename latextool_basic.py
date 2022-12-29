@@ -8613,3 +8613,8 @@ def hanoi(p, diskss=[[]], names='ABCDEFGHIJKL', color=None, pegheight=None):
                       innersep=diskinnersep, radius=diskradius,
                       background=color(w), linecolor='black', name='%s-%s' % ('A',w))
             y0 += diskheight * 1.5
+
+
+def smallcircle(x, y, r='0.1cm', color='blue!20'):
+    """ for small circles (because Circle class has problems """
+    return r"\node[draw,shape=circle,minimum size=%s,fill=%s,line color=%s,inner sep=0](A) at (%s,%s){};" % (r, x, y, color)
