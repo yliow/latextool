@@ -1,0 +1,54 @@
+\chapter{Solutions}
+
+This is not part of latextool.
+
+See \verb!projects/solutions!
+
+Put symlink \verb!/usr/lib64/python3.7/site-packages/solutions.py!
+to point to 
+\verb!projects/solutions/solutions.py!
+
+How to use: In a section (or chapter) of latex notes with exercises put
+\begin{console}
+\section{Natural numbers $\N$}
+\begin{python0}
+from solutions import *; clear()
+\end{python0}
+
+\begin{ex}
+  \label{ex:succ-onto-nonzero}
+  What is 1 + 1?
+  \solutionlink{sol:succ-onto-nonzero}
+  \qed
+\end{ex}
+\begin{python0}
+label = "succ-onto-nonzero"
+s = r'''
+\proof
+1 + 1 = 2
+\qed
+'''
+from solutions import *; add(label, s)
+\end{python0}
+
+\begin{prop}
+  \label{prop:N-is-commutative-monoid}
+  What is 1 + 1?
+\end{prop}
+
+\proof
+Exercise.
+\solutionlink{sol:N-is-commutative-monoid}
+\qed
+\begin{python0}
+from solutions import *
+add(label="prop:N-is-commutative-monoid",
+    srcfilename='proof-N-is-commutative-monoid.tex')
+\end{python0}
+
+\newpage
+\subsection{Solutions}
+
+\input{solutions.tex}
+
+\end{console}
