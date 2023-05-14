@@ -4332,17 +4332,17 @@ class FunctionPlot:
                             # wrongly
                             #print ("---> expr: %s" % d['expr'])
                             y = eval(d['expr'])
-                            points.append("(%s,%s)" % (x,y))
+                            points.append("(%s,%s)" % (round(x,4), round(y,4))) # 2023/05/14: round coords to 4 dec pl
                         except Exception as e1: # don't use e ... conflicts with math.e
                             pass
                             #print (e)
                         x += dx; exec('%s = x' % d['vars'][0])
-                    
+
                     try:
                         # add last point just in case of fp errors
                         x = maxx; exec('%s = x' % d['vars'][0])
                         y = eval(d['expr'])
-                        points.append("(%s,%s)" % (x,y))
+                        points.append("(%s,%s)" % (round(x,4), round(y,4))) # 2023/05/14: round coords to 4 dec pl
                     except Exception as e1:
                         pass
                     
