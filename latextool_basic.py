@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 All measures in cm by default!!!
 
@@ -2198,6 +2199,28 @@ class vector(Line):
 #==============================================================================
 # Arc
 # Note that (x,y) is the starting point and not the center.
+#
+# https://tex.stackexchange.com/questions/175016/how-is-arc-defined-in-tikz
+# \draw (x,y) arc (start:stop:radius); draws an arc
+# with radius radius
+# starts from (x,y)
+# with center (x-r*cos(start), y-r*sin(start)) and
+# ends at (x-r*cos(start)+r*cos(stop), y-r*sin(start)+r*sin(stop))
+#
+# To draw an angle: starting at (0,0) and going anti-clockwise
+#                  ---
+#                     \            angle t
+#                  t   \     
+#   --------------*-----|----------
+#                 0     r
+#
+# starting point = (x,y) = (r,0)
+# radius = r
+# center = (0,0) = (x-r*cos(start), y-r*sin(start))
+# end    = (r cos t, r sin t) = (x-r*cos(start)+r*cos(stop), y-r*sin(start)+r*sin(stop))
+#
+# 0 = x - r cos(start)
+# 0 = y - r sin(start)
 #==============================================================================
 def arc(x=0, y=0, r=0, angle0=0, angle1=0,
         center=None,
@@ -3080,6 +3103,8 @@ def frame(env, top='', W=1.2, H=0.6):
 # Handle 2 cases:
 # - latex is a latex fragment
 # - latex is a python program that generates a latex fragment
+#
+# See makepdf_() too
 #==============================================================================
 def makepdf(latex,
             ahash=None,
@@ -3153,9 +3178,25 @@ def makepdf(latex,
     os.chdir(cwd)
     return stdout, stderr, returncode
 
+def makepdf_(latex_filename): # see makepdf() too
+    """
+    1. Call makepdf with contexts from latex_filename
+    2. mv pdf created in tmp/ to current dir
+    3. execute pdfcrop
+
+    If latex_filename is "plot1.tex", then plot1.pdf is created
+    """
+    latex = latex_filename
+    pdf = latex.replace('.tex', '')
+    f = open(latex, 'r'); s = f.read(); f.close()    
+    makepdf(latex=s, filename=pdf)
+    import os
+    os.system('mv tmp/%s.pdf %s.pdf; rm -f tmp/*' % (pdf, pdf))
+    os.system('pdfcrop %s.pdf %s.pdf' % (pdf, pdf))
+    
 def hash(s):
     import hashlib
-    return hashlib.md5(s).hexdigest()
+    return hashlib.md5(str(s).encode('utf-8')).hexdigest()
 
     
 def includegraphics(filename, include_filename=False):
@@ -3459,6 +3500,10 @@ class SinglyLinkedListNode(RectContainer):
 # consolegrid
 #==============================================================================
 def consolegrid(numrows=1, numcols=21, s=''):
+    import traceback
+    def f():
+        traceback.print_stack()
+    f()
     if isinstance(s, str):
         lines = s.split('\n')
         if len(lines) > numrows: numrows = len(lines)
@@ -3624,29 +3669,6 @@ def automata(
 
 
 
-if __name__ == '__main__':
-
-    '''
-    from latextool_basic import *
-
-    bline = Line(points=[(0,-1), (5,-1), (5,-6)], 
-                 linecolor='blue', linewidth=0.1, 
-                 startstyle='dot', arrowstyle='triangle', endstyle='->')
-    
-    print (bline.midpoint(ratio=0.2))
-    '''
-
-    '''
-    print (table([('',  2, 5,  8),
-             ('', '', 3,  6),
-            ],
-            col_headings = ['0', '2', '5', '8'],
-            row_headings = ['0', '2', '5', '8'],
-            topleft_heading = r'$\Delta X$',
-           ))
-    '''
-
-    print (consolegrid(2))
 
 #==============================================================================
 # Matrix
@@ -4377,7 +4399,7 @@ x y label
                 d['pin_message'] = d['pin_message'].replace("sin(", "\sin(")
                 if d['pin_message'] == '$y=$': d['pin_message'] = ''
                 d['pin_x'] = argdict.get('pin_x', d['maxx'] * 0.8) # depends on maxx
-                x = d['pin_x']
+                x = round(d['pin_x'], 4) # 2023/5/7
                 exec('%s = x' % d['vars'][0])
                 if d['expr']:
                     d['pin_y'] = eval(expr) # depends on expr
@@ -6305,7 +6327,7 @@ class XAxis:
 def axes(p,
          x0=0, y0=0, x1=1, y1=1,
          linewidth=None, linecolor='black!50',
-         origin=(0,0),
+         origin=(0,0), # 2023/5/28: what's the point of origin?
          x_axis_label='',  
          y_axis_label='',
 ):
@@ -8618,3 +8640,11 @@ def hanoi(p, diskss=[[]], names='ABCDEFGHIJKL', color=None, pegheight=None):
 def smallcircle(x, y, r='0.1cm', color='blue!20'):
     """ for small circles (because Circle class has problems """
     return r"\node[draw,shape=circle,minimum size=%s,fill=%s,line color=%s,inner sep=0](A) at (%s,%s){};" % (r, x, y, color)
+
+
+
+if __name__ == '__main__':
+    argv = sys.argv
+    #print("argv:", argv)
+    if argv[1] == 'makepdf':
+        makepdf_(latex_filename=argv[2])
