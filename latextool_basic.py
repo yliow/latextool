@@ -4951,7 +4951,54 @@ def table5(p,
                   background=background, vphantom=vphantom,
                   title=title, title_distance=title_distance)
     
-           
+#==============================================================================
+# table6: something like group table.
+#==============================================================================
+def table6(p,
+           topleft=None,
+           rowlabels=None,
+           collabels=None,
+           labels=None,
+           M=None,
+           x0=0, y0=0,
+           width=0.7, height=0.7,       # of cell
+           do_not_plot=False,           # basically just to get the
+                                        # container
+           rect=None,                   # Plays the role of Rect constructor
+                                        # for each x in m, I call rect(m)
+           background=None,
+           vphantom=None,               # vphantom: string
+                                        #           Use this vphantom
+                                        # vphantom: None
+                                        #           Autocompute vphantom
+           title=None,
+           title_distance=0.1,
+           linewidth=None,
+           border_linewidth=None,
+          ):
+    if labels:
+        rowlabels = labels; collabels = labels
+    m00 = [[topleft]]
+    m10 = [[x] for x in rowlabels]
+    m01 = [collabels]
+    m11 = M
+    M = [[m00, m01],
+         [m10, m11]]
+    N = table3(p,
+               M,
+               x0=x0, y0=y0,
+               width=width, height=height, 
+               do_not_plot=do_not_plot,
+               rect=rect,
+               background=background,
+               vphantom=vphantom,
+               title=title,
+               title_distance=title_distance,
+               linewidth=linewidth,
+               border_linewidth=border_linewidth,
+    )
+    return N
+
 def shorten(p0, p1, factor=0.5,
             start_by=None, end_by=None, by=None):
     x0, y0 = p0
