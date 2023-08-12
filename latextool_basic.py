@@ -2522,8 +2522,8 @@ def tree(pos, # return value from function positions
 # For drawing arrays
 # array - 1d array drawn horizontally
 #==============================================================================
-def array(x0, y0, width, height,
-          xs,
+def array(x0, y0, width=0.6, height=0.6,
+          xs=None,
           linewidth=L,
           arraylinewidth=L, celllinewidth='',
           color=''):
