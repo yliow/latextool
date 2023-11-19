@@ -2240,11 +2240,11 @@ def arc(x=0, y=0, r=0, angle0=0, angle1=0,
                    (style, x, y, angle0, angle1, r)
         elif startstyle =='>':
             return r"\draw[<-,%s] (%s,%s) arc (%s:%s:%s);" % \
-                   (style, x, y, angle0, angle1, r)
+                (style, x, y, angle0, angle1, r)
     elif endstyle == '>':
         if startstyle=='':
             return r"\draw[%s,->] (%s,%s) arc (%s:%s:%s);" % \
-                   (style, x, y, angle0, angle1, r)
+                (style, x, y, angle0, angle1, r)
         elif startstyle=='>':
             return r"\draw[%s,<->] (%s,%s) arc (%s:%s:%s);" % \
                    (style, x, y, angle0, angle1, r)
@@ -2714,6 +2714,7 @@ def exec_python(s):
     pass
 
 def pdflatex(filename):
+    print("pdflatex")
     if not filename.endswith('.tex'): filename += '.tex'
     d = {'filename':filename}
     cmd = 'pdflatex -halt-on-error --shell-escape %(filename)s' % d
@@ -3109,10 +3110,11 @@ def frame(env, top='', W=1.2, H=0.6):
 def makepdf(latex,
             ahash=None,
             filename=None, # example: 'main'
+            tmp='tmp'
             ):
     if ahash==None: ahash = hash(latex)
     latex = latex.strip()
-    TMP = 'tmp'
+    TMP = tmp
     s = r"""
 \documentclass[a4paper,12pt]{scrbook}
 \usepackage{amsmath,amssymb,amsthm}
