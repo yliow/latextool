@@ -8621,12 +8621,24 @@ def ciss245_written_test_instructions():
 
 
     
-def honor_statement():
-    print(r'''
+def honor_statement(white_out=False):
+    if not white_out:
+        print(r'''
 \begin{center}
 \textsc{Honor Statement}
 \end{center}
 I, \answerbox{[REPLACE WITH YOUR FULLNAME]},
+attest to the fact that the submitted work is my own and
+is not the result of plagiarism.
+Furthermore, I have not aided another student in the act of
+plagiarism.
+''')
+    else:
+        print(r'''
+\begin{center}
+\textsc{Honor Statement}
+\end{center}
+I, \answerbox{\textwhite{[REPLACE WITH YOUR FULLNAME]}},
 attest to the fact that the submitted work is my own and
 is not the result of plagiarism.
 Furthermore, I have not aided another student in the act of
