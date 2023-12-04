@@ -8546,7 +8546,7 @@ def ciss240_written_test_instructions():
     (i.e. it runs forever without stopping), write \verb!INFINITE LOOP!
     for the answer.
 
-\li When you're asked to write a C++ statement, don't forget that it must
+\li When you're asked to write a C\texttt{++} statement, don't forget that it must
     end with a semicolon.
     
 \li Unless otherwise stated, bubblesort refers to the bubblesort algorithm in
@@ -8627,7 +8627,7 @@ def honor_statement(white_out=False):
 \begin{center}
 \textsc{Honor Statement}
 \end{center}
-I, \answerbox{[REPLACE WITH YOUR FULLNAME]},
+I, \answerbox{[REPLACE WITH YOUR FULLNAME]}\ \ ,
 attest to the fact that the submitted work is my own and
 is not the result of plagiarism.
 Furthermore, I have not aided another student in the act of
@@ -8643,7 +8643,6 @@ attest to the fact that the submitted work is my own and
 is not the result of plagiarism.
 Furthermore, I have not aided another student in the act of
 plagiarism.
-\end{center}
 ''')
 
 #==============================================================================
@@ -8702,6 +8701,13 @@ def smallcircle(x, y, r='0.1cm', color='blue!20'):
     """ for small circles (because Circle class has problems """
     return r"\node[draw,shape=circle,minimum size=%s,fill=%s,line color=%s,inner sep=0](A) at (%s,%s){};" % (r, x, y, color)
 
+
+def test_preamble(course='ciss240', practice=False):
+    ciss240_written_test_instructions()
+    print(r"\mbox{}\vspace{1in}")
+    honor_statement(white_out=True)
+    if practice: practice_disclaimer()
+    test_score_table()
 
 
 if __name__ == '__main__':
