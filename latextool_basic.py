@@ -2839,9 +2839,10 @@ def shell(cmd,
             if line != "":
                 t.append(line)
         s = '\n'.join(t)
-        s = r'''\begin{Verbatim}[frame=single,fontsize=%s]
+        # 2023/12/24: Change Verbatim to console ???????????????????
+        s = r'''\begin{console}[frame=single,fontsize=%s]
 %s
-\end{Verbatim}
+\end{console}
 ''' % (fontsize, s)
         #s = verbatim(s)
     os.chdir(cwd)
