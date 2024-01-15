@@ -2792,6 +2792,7 @@ def shell(cmd,
           prompt=None,
           width=80,
           include_stderr=True,
+          env='console', # or 'Verbatim'
           ):
     if isinstance(cmd, str): cmd = [cmd]
     cwd = os.getcwd()
@@ -2840,10 +2841,10 @@ def shell(cmd,
                 t.append(line)
         s = '\n'.join(t)
         # 2023/12/24: Change Verbatim to console ???????????????????
-        s = r'''\begin{console}[frame=single,fontsize=%s]
+        s = r'''\begin{%s}[frame=single,fontsize=%s]
 %s
-\end{console}
-''' % (fontsize, s)
+\end{%s}
+''' % (env, fontsize, s, env)
         #s = verbatim(s)
     os.chdir(cwd)
 
